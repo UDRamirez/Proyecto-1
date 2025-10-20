@@ -3,4 +3,30 @@ public abstract class Pieza{
     String marca;
     double precio;
     String tipo;
+
+    
+    public Componente(String nombre, String marca, double precio, String tipo) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.tipo = tipo;
+    }
+
+    public String getNombre(){ 
+        return nombre; 
+    }
+    
+    public String getMarca(){ 
+        return marca;
+    }
+    
+    public double getPrecio(){ 
+        return precio; 
+    }
+    
+    public String getTipo(){ 
+        return tipo; 
+    }
+
+    // falta toString
 }
