@@ -1,4 +1,4 @@
-public class CompuPBuilder implements PCBuilder {
+public class CompuPBuilder implements ConstructorCompu {
     private PC pc;
 
     public CompiPBuilder() {
