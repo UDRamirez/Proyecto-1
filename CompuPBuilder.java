@@ -1,8 +1,8 @@
 public class CompuPBuilder implements ConstructorCompu {
-    private PC pc;
+    private Compu pc;
 
     public CompuPBuilder() {
-        this.pc = new PC(); 
+        this.pc = new Compu(); 
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CompuPBuilder implements ConstructorCompu {
     }
 
     @Override
-    public PC build() {
+    public Compu build() {
         return pc;
     }
 }
