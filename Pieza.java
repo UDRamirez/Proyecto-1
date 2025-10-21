@@ -5,7 +5,7 @@ public abstract class Pieza{
     String tipo;
 
     
-    public Componente(String nombre, String marca, double precio, String tipo) {
+    public Pieza(String nombre, String marca, double precio, String tipo) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
@@ -28,5 +28,8 @@ public abstract class Pieza{
         return tipo; 
     }
 
-    // falta toString
+     @Override
+    public String toString() {
+        return tipo + ": " + nombre + " | Marca: " + marca + " | Precio: $" + precio;
+    }
 }
