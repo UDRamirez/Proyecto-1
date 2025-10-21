@@ -1,11 +1,12 @@
 public class PersonalizadaBuilder implements ConstructorCompu {
 
-    //Esta clase se usa para las compus personalizadas
+    //Esta clase se usa para las compus que ya estan armadas
     
     private Compu pc;
 
     public PersonalizadaBuilder() {
-        this.pc = new Compu(); 
+        this.pc = new Compu();
+        this.programas = new ArrayList<>();
     }
 
     @Override
@@ -43,8 +44,14 @@ public class PersonalizadaBuilder implements ConstructorCompu {
         pc.setGabinete(gabinete); 
     }
 
+     @Override
+    public void agregarPrograma(Programa programa) {
+        programas.add(programa);
+    }
+
     @Override
     public Compu build() {
+        compu.setProgramas(programas);
         return pc;
     }
 }
