@@ -9,4 +9,9 @@ public class Fuente extends Pieza {
     public int getPotencia(){ 
       return potencia;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Potencia: " + potencia + " W";
+    }
 }
