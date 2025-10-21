@@ -16,4 +16,9 @@ public class Disco extends Componente {
     public String getCapacidad() { 
       return capacidad;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Tipo: " + tipodisco + " | Capacidad: " + capacidad + " GB";
+    }
 }
