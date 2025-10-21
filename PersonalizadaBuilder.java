@@ -1,10 +1,10 @@
-public class CompuPBuilder implements ConstructorCompu {
+public class PersonalizadaBuilder implements ConstructorCompu {
 
     //Esta clase se usa para las compus personalizadas
     
     private Compu pc;
 
-    public CompuPBuilder() {
+    public PersonalizadaBuilder() {
         this.pc = new Compu(); 
     }
 
