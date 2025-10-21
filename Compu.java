@@ -3,17 +3,17 @@ import java.util.List;
 
 public class Compu{
   
-  public CPU cpu;
-  public GPU gpu;
-  public Madre madre;
-  public List<RAM> rams = new ArrayList<>();
-  public List<Disco> discos = new ArrayList<>();
-  public Gabinete gab;
-  public Fuente fuente;
-  public double precioTotal;
-  //falta software
+  private CPU cpu;
+  private GPU gpu;
+  private Madre madre;
+  private List<RAM> rams = new ArrayList<>();
+  private List<Disco> discos = new ArrayList<>();
+  private Gabinete gab;
+  private Fuente fuente;
+  private double precioTotal;
+  private List<Programa> programas = new ArrayList<>();
 
-    public PC() {
+    public Compu() {
       
     }
   
@@ -26,6 +26,7 @@ public class Compu{
         if (gabinete != null) total += gab.getPrecio();
         for (RAM rar : rams) total += rar.getPrecio();
         for (Disco dis : discos) total += dis.getPrecio();
+         for (Programa p : programas) total += p.getPrecio();
         return total;
     }
 
@@ -57,6 +58,11 @@ public class Compu{
      this.gabinete = gabinete;
    }
 
+   public void addPrograma(Programa programa){
+     this.programas.add(programa);
+   }
+
+
    public CPU getCPU() { 
      return cpu; 
    }
@@ -84,7 +90,37 @@ public class Compu{
       return gab; 
     }
 
-  //Metodo mpara mostrar toda la info
+    public List<Programa> getProgramas(){
+      return programas;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("===== Detalles de tu nueva PC =====\n");
+        sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado").append("\n");
+        sb.append("GPU: ").append(gpu != null ? gpu.getNombre() : "No seleccionado").append("\n");
+        sb.append("Motherboard: ").append(madre != null ? madre.getNombre() : "No seleccionada").append("\n");
+        sb.append("Fuente: ").append(fuente != null ? fuente.getNombre() : "No seleccionada").append("\n");
+        sb.append("Gabinete: ").append(gabinete != null ? gabinete.getNombre() : "No seleccionado").append("\n");
+
+        sb.append("\n--- Memorias RAM ---\n");
+        if (rams.isEmpty()) sb.append("Sin memorias\n");
+        for (RAM r : rams) sb.append(r.getNombre()).append(" - $").append(r.getPrecio()).append("\n");
+
+        sb.append("\n--- Discos duros  ---\n");
+        if (discos.isEmpty()) sb.append("Sin discos\n");
+        for (Disco d : discos) sb.append(d.getNombre()).append(" - $").append(d.getPrecio()).append("\n");
+
+        sb.append("\n--- Programas instalados ---\n");
+        if (programas.isEmpty()) sb.append("Sin programas\n");
+        for (Programa p : programas) sb.append(p.getNombre()).append(" - $").append(p.getPrecio()).append("\n");
+
+        sb.append("\nTOTAL: $").append(total()).append("\n");
+        sb.append("=====================================\n");
+
+        return sb.toString();
+    }
 
  
   
