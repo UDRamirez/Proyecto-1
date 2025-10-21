@@ -9,4 +9,9 @@ public class RAM extends Pieza {
     public int getMemoria(){ 
       return memoria; 
     }
+
+     @Override
+    public String toString() {
+        return super.toString() + " | Capacidad: " + memoria + " GB";
+    }
 }
