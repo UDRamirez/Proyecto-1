@@ -1,12 +1,10 @@
 public abstract class Programa {
     protected String nombre;
     protected double precio;
-    protected String programa;
 
-    public Programa(String nombre, double precio, String programa) {
+    public Programa(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
-        this.programa = programa;
     }
 
     public String getNombre(){
@@ -15,10 +13,6 @@ public abstract class Programa {
   
     public double getPrecio(){
       return precio;
-    }
-  
-    public String getPrograma(){
-      return programa;
     }
 
     @Override
