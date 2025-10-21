@@ -1,6 +1,6 @@
 public class Disco extends Componente {
   
-    private String tipodisco; 
+    private String tipodisco; // hdd-ssd
     private String capacidad;
 
     public Disco(String nombre, String marca, double precio, String tipodisco, String capacidad) {
@@ -9,6 +9,11 @@ public class Disco extends Componente {
         this.capacidad = capacidad;
     }
 
-    public String getTipoDisco() { return tipodisco; }
-    public String getCapacidad() { return capacidad; }
+    public String getTipoDisco() {
+      return tipodisco;
+    }
+  
+    public String getCapacidad() { 
+      return capacidad;
+    }
 }
