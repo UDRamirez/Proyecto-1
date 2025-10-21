@@ -12,6 +12,6 @@ public class CPU extends Pieza {
 
      @Override
     public String toString() {
-        return super.toString() + " | Núcleos: " + cantidadNucleos;
+        return super.toString() + " | Núcleos: " + nucleos;
     }
 }
