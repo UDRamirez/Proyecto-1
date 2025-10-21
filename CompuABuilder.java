@@ -1,4 +1,7 @@
 public class CompuABuilder implements ConstructorCompu {
+
+    //Esta clase se usa para las compus que ya estan armadas
+    
     private Compu pc;
 
     public CompuABuilder() {
