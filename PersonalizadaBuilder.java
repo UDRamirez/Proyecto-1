@@ -3,6 +3,7 @@ public class PersonalizadaBuilder implements ConstructorCompu {
     //Esta clase se usa para las compus que ya estan armadas
     
     private Compu pc;
+     private List<Programa> programas;
 
     public PersonalizadaBuilder() {
         this.pc = new Compu();
@@ -51,7 +52,7 @@ public class PersonalizadaBuilder implements ConstructorCompu {
 
     @Override
     public Compu build() {
-        compu.setProgramas(programas);
+        pc.setProgramas(programas);
         return pc;
     }
 }
