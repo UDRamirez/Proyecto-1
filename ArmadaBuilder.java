@@ -5,7 +5,8 @@ public class ArmadaBuilder implements ConstructorCompu {
     private Compu pc;
 
     public ArmadaBuilder() {
-        this.pc = new Compu(); 
+        this.pc = new Compu();
+        this.programas = new ArrayList<>();
     }
 
     @Override
@@ -43,8 +44,14 @@ public class ArmadaBuilder implements ConstructorCompu {
         pc.setGabinete(gabinete); 
     }
 
+     @Override
+    public void agregarPrograma(Programa programa) {
+        programas.add(programa);
+    }
+
     @Override
     public Compu build() {
+        compu.setProgramas(programas);
         return pc;
     }
 }
