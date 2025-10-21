@@ -1,10 +1,10 @@
-public class CompuABuilder implements ConstructorCompu {
+public class ArmadaBuilder implements ConstructorCompu {
 
     //Esta clase se usa para las compus que ya estan armadas
     
     private Compu pc;
 
-    public CompuABuilder() {
+    public ArmadaBuilder() {
         this.pc = new Compu(); 
     }
 
