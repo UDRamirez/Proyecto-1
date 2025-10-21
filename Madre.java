@@ -9,4 +9,10 @@ public class Madre extends Pieza {
     public String getChips(){
       return chips;
     }
+
+      @Override
+    public String toString() {
+        return super.toString() + " | Chipset: " + chips;
+    }
+    
 }
