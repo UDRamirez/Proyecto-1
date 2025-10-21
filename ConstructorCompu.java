@@ -14,5 +14,5 @@ public interface ConstructorCompu{
   
     void agregarGabinete(Gabinete gab);
 
-    PC build();
+    Compu build();
 }
