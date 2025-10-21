@@ -1,4 +1,7 @@
 public class CompuPBuilder implements ConstructorCompu {
+
+    //Esta clase se usa para las compus personalizadas
+    
     private Compu pc;
 
     public CompuPBuilder() {
