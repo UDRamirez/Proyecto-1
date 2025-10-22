@@ -44,11 +44,26 @@ public class DirectorConstructor{
 
         return builder.build();
     }
-     public Compu construirPcPersonalizada(){
+     public Compu construirPcPersonalizada(String cpu, String gpu, String ram, String disco,
+                                           String madre, String fuente, String gabinete){
 	 ArmadaBuilder builder = new ArmadaBuilder();
+	 ContratoFabrica fcpu= FabricaMaestra.getFabrica("cpu");
+	 ContratoFabrica fgpu= FabricaMaestra.getFabrica("gpu");
+	 ContratoFabrica fram= FabricaMaestra.getFabrica("ram");
+	 ContratoFabrica fmadre= FabricaMaestra.getFabrica("madre");
+	 ContratoFabrica fdisco= FabricaMaestra.getFabrica("disco");
+	 ContratoFabrica ffuente= FabricaMaestra.getFabrica("fuente");
+	 ContratoFabrica fgabinete= FabricaMaestra.getFabrica("gabinete");
 
+	 builder.agregarCPU((CPU) fcpu.crearComponente(cpu));
+	 builder.agregarGPU((GPU) fgpu.crearComponente(gpu));
+	 builder.agregarRAM((RAM) fram.crearComponente(ram));
+	 builder.agregarMadre((Madre) fmadre.crearComponente(madre));
+	 builder.agregarDisco((Disco) fdisco.crearComponente(disco));
+	 builder.agregarFuente((Fuente) ffuente.crearComponente(fuente));
+	 builder.agregarGabinete((Gabinete) fgabinete.crearComponente(gabinete));
 	 
-        return null;
+	 return builder.build();
     }
 
 }
