@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Madre extends Pieza {
     private String chips; 
     private static final List<String> procesadores = Arrays.asList("AMD", "Intel");
@@ -12,9 +14,9 @@ public class Madre extends Pieza {
     }
 
     public String getTipoChip(){
-	if (chips.toLowerCase() == null) return false;
+	if (chips.toLowerCase() == null) return "[Inexistente]";
 
-        String[] palabras = texto.trim().split(" ");
+        String[] palabras = chips.trim().split(" ");
         for (String palabra : palabras) {
             if (procesadores.contains(palabra)) {
                 return palabra;

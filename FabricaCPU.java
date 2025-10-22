@@ -2,7 +2,7 @@ public class FabricaCPU implements ContratoFabrica{
 
     @Override
     public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase().trim()){
+	switch(modelo.toLowerCase()){
 	    case "core i3-13100":
                 return new CPU("Core i3-13100", "Intel", 1500, 4);
             case "core i5-13600k":

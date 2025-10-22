@@ -1,4 +1,4 @@
-public static class FabricaMaestra{
+public class FabricaMaestra{
     
     public static ContratoFabrica getFabrica(String fabrica){
 	switch(fabrica.toLowerCase()){
