@@ -15,7 +15,7 @@ public class Compu implements Compunent{
       
     }
   
-    public double total() {
+    public double getPrecio() {
         double total = 0;
         if (cpu != null) total += cpu.getPrecio();
         if (gpu != null) total += gpu.getPrecio();
@@ -89,7 +89,7 @@ public class Compu implements Compunent{
 
 
     @Override
-    public String toString() {
+    public String getDescripcion() {
          StringBuilder sb = new StringBuilder();
         sb.append("===== Hardware de la PC =====\n");
         sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado").append("\n");
