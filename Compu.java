@@ -72,9 +72,6 @@ public class Compu implements Compunent{
       return madre;
     }
   
-    public List<RAM> getDisco() { 
-      return memorias; 
-    }
     public List<Disco> getDiscos() { 
       return discos;
     }
