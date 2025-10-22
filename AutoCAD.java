@@ -1,7 +1,7 @@
-public class AutoCAD extends Software {
+public class AutoCAD extends Programa {
   
     public AutoCAD(String version, double precio) {
-        super("AutoCAD " + version, "Precio: " + precio);
+        super("AutoCAD " + version, precio);
     }
   
 }
