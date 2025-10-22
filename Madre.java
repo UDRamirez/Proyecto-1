@@ -10,6 +10,7 @@ public class Madre extends Pieza {
     public String getChips(){
       return chips;
     }
+
     public String getTipoChip(){
 	if (chips.toLowerCase() == null) return false;
 
@@ -23,4 +24,12 @@ public class Madre extends Pieza {
         return " "; 
 
     }
+
+
+      @Override
+    public String toString() {
+        return super.toString() + " | Chipset: " + chips;
+    }
+    
+
 }

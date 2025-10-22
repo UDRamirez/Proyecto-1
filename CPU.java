@@ -6,5 +6,12 @@ public class CPU extends Pieza {
         this.nucleos = nucleos;
     }
 
-    public int getNucleos() { return nucleos; }
+    public int getNucleos() { 
+        return nucleos;
+    }
+
+     @Override
+    public String toString() {
+        return super.toString() + " | Núcleos: " + nucleos;
+    }
 }

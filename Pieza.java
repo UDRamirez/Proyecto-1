@@ -28,5 +28,8 @@ public abstract class Pieza{
         return tipo; 
     }
 
-    // falta toString
+     @Override
+    public String toString() {
+        return tipo + ": " + nombre + " | Marca: " + marca + " | Precio: $" + precio;
+    }
 }

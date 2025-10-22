@@ -6,5 +6,14 @@ public class GPU extends Pieza {
         this.tipomem = tipomem;
     }
 
-   
+
+    public String getTipoMem(){
+      return tipomem; 
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Memoria GPU: " + tipomem;
+    }
+
 }
