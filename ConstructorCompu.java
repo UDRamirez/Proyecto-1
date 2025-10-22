@@ -14,7 +14,5 @@ public interface ConstructorCompu{
   
     void agregarGabinete(Gabinete gab);
 
-    void agregarPrograma(Programa programa);
-
     Compu build();
 }
