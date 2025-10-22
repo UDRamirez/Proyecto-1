@@ -3,7 +3,6 @@ public class ArmadaBuilder implements ConstructorCompu {
     //Esta clase se usa para las compus que ya estan armadas
     
     private Compu pc;
-    private List<Programa> programas;
 
     public ArmadaBuilder() {
         this.pc = new Compu();
@@ -45,14 +44,9 @@ public class ArmadaBuilder implements ConstructorCompu {
         pc.setGabinete(gabinete); 
     }
 
-     @Override
-    public void agregarPrograma(Programa programa) {
-        programas.add(programa);
-    }
 
     @Override
     public Compu build() {
-        pc.setProgramas(programas);
         return pc;
     }
 }
