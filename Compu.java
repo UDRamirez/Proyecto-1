@@ -21,7 +21,7 @@ public class Compu implements Compunent{
         if (gpu != null) total += gpu.getPrecio();
         if (madre != null) total += madre.getPrecio();
         if (fuente != null) total += fuente.getPrecio();
-        if (gabinete != null) total += gab.getPrecio();
+        if (gab != null) total += gab.getPrecio();
         for (RAM rar : rams) total += rar.getPrecio();
         for (Disco dis : discos) total += dis.getPrecio();
         return total;
@@ -51,8 +51,8 @@ public class Compu implements Compunent{
      this.fuente = fuente;
    }
   
-   public void setGabinete(Gabinete gabinete) {
-     this.gabinete = gabinete;
+   public void setGabinete(Gabinete gab) {
+     this.gab = gab;
    }
 
 
