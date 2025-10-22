@@ -1,7 +1,7 @@
 public class FabricaRAM implements ContratoFabrica{
 
     public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase()){
+	switch(modelo){
 	case  "Adata 8-GB" :
 		return new RAM("Adata 8-GB", "Adata", 500, 8);
 	case  "Adata 16-GB":

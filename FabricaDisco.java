@@ -1,7 +1,7 @@
 public class FabricaDisco implements ContratoFabrica{
 
      public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase()){
+	switch(modelo){
 	    //HDD
 	case  "Western Digital Blue 500-GB":
 		return new Disco("Western Digital Blue 500-GB", "Western Digital Blue", 450, "HDD", 500);

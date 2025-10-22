@@ -13,17 +13,17 @@ public class DirectorConstructor{
 	 ContratoFabrica ffuente= FabricaMaestra.getFabrica("fuente");
 	 ContratoFabrica fgabinete= FabricaMaestra.getFabrica("gabinete");
 
-	 builder.agregarCPU((CPU) fcpu.crearComponente("Core i3-13100"));
+	 builder.agregarCPU((CPU) fcpu.crearComponente("core i3-13100"));
 	 builder.agregarGPU((GPU) fgpu.crearComponente("GTX 1660"));
 	 builder.agregarRAM((RAM) fram.crearComponente("Kingston 8-GB"));
-	 builder.agregarMadre((Madre) fmadre.crearComponente("TUF Gaming B760-Plus WIFI D4"));
+	 builder.agregarMadre((Madre) fmadre.crearComponente("TUF Gaming B760-Plus"));
 	 builder.agregarDisco((Disco) fdisco.crearComponente("Kingston 500-GB"));
 	 builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 500-W"));
 	 builder.agregarGabinete((Gabinete) fgabinete.crearComponente("Lancer ATX"));
 
         return builder.build();
     }
-     public Compu construirPcPremiun(){
+     public Compu construirPcPremium(){
 	 ArmadaBuilder builder = new ArmadaBuilder();
 
 	 ContratoFabrica fcpu= FabricaMaestra.getFabrica("cpu");

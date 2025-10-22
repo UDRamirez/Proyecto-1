@@ -2,7 +2,7 @@ public class FabricaMadre implements ContratoFabrica{
 
 
     public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase().trim()){
+	switch(modelo){
 	case  "ROG Maximus Z790 Hero" :
 		return new Madre("ROG Maximus Z790 Hero", "ASUS", 14000, "Chipset Intel Z790");
 	case  "TUF Gaming B760-Plus":

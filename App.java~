@@ -1,0 +1,26 @@
+public class App {
+    public static void main(String[] args) {
+
+        
+        DirectorConstructor director = new DirectorConstructor();
+
+        Compu pcEconomica = director.construirPcEconomica();
+        System.out.println("=== PC Económica ===");
+        System.out.println(pcEconomica);
+
+      
+        Compu pcGamer = director.construirPcPremium();
+        System.out.println("\n=== PC Gamer ===");
+        System.out.println(pcGamer);
+
+      
+        System.out.println("\nComponentes de la PC Gamer:");
+        System.out.println("CPU: " + pcGamer.getCPU().getNombre());
+        System.out.println("GPU: " + pcGamer.getGPU().getNombre());
+        System.out.println("RAM: " + pcGamer.getRams().size() + " módulo(s)");
+
+	System.out.println("Comparacion:");
+
+	pcGamer.getDescripcion();
+    }
+}

@@ -1,7 +1,7 @@
 public class FabricaFuente implements ContratoFabrica{
 
     public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase().trim()){
+	switch(modelo){
 	    
 	case   "EVGA 800-W":
 		return new Fuente("EVGA 800-W", "EVGA", 2200, 800);

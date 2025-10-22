@@ -1,7 +1,7 @@
 public class FabricaTarjeta implements ContratoFabrica{
 
     public Pieza crearComponente(String modelo){
-	switch(modelo.toLowerCase().trim()){
+	switch(modelo){
 	case  "GTX 1660":
 		return new GPU("GTX 1660", "NVIDIA", 3500);
 	case  "RTX 3060":
