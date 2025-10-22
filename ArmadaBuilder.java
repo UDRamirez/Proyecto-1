@@ -6,7 +6,6 @@ public class ArmadaBuilder implements ConstructorCompu {
 
     public ArmadaBuilder() {
         this.pc = new Compu();
-        this.programas = new ArrayList<>();
     }
 
     @Override
