@@ -1,4 +1,4 @@
-public class Disco extends Componente {
+public class Disco extends Pieza {
   
     private String tipodisco; // hdd-ssd
     private int capacidad;
