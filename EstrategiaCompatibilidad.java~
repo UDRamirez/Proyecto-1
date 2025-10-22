@@ -1,0 +1,8 @@
+import java.util.*;
+public interface EstrategiaCompatibilidad<T, U>{
+
+    boolean esCompatible(T pieza1, U pieza2);
+    List<U> getPiezasAlternativas(T pieza, List<U> pizas);
+
+    
+}
