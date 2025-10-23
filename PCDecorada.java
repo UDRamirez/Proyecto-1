@@ -1,4 +1,4 @@
-public class PCDecorada implements Compunent{
+public class PCDecorada extends Decorador{
 
   private Compunent compu; 
   private Programa programa;
