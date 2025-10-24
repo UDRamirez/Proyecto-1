@@ -1,20 +1,62 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Compu implements Compunent{
-  
-  private CPU cpu;
-  private GPU gpu;
-  private Madre madre;
-  private List<RAM> rams = new ArrayList<>();
-  private List<Disco> discos = new ArrayList<>();
-  private Gabinete gab;
-  private Fuente fuente;
+/**
+ * Clase {@code Compu} que implementa la interfaz {@link Compunent}.
+ * <p>
+ * Representa una computadora ensamblada con sus distintos componentes de hardware,
+ * incluyendo CPU, GPU, placa madre, memorias RAM, discos duros, fuente de poder y gabinete.
+ * Proporciona métodos para agregar componentes, obtener el precio total y generar
+ * una descripción detallada del hardware instalado.
+ * </p>
+ */
+public class Compu implements Compunent {
 
-    public Compu() {
-      
-    }
-  
+    /**
+     * Procesador de la computadora.
+     */
+    private CPU cpu;
+
+    /**
+     * Tarjeta gráfica de la computadora.
+     */
+    private GPU gpu;
+
+    /**
+     * Placa madre de la computadora.
+     */
+    private Madre madre;
+
+    /**
+     * Lista de memorias RAM instaladas.
+     */
+    private List<RAM> rams = new ArrayList<>();
+
+    /**
+     * Lista de discos duros o SSDs instalados.
+     */
+    private List<Disco> discos = new ArrayList<>();
+
+    /**
+     * Gabinete de la computadora.
+     */
+    private Gabinete gab;
+
+    /**
+     * Fuente de poder de la computadora.
+     */
+    private Fuente fuente;
+
+    /**
+     * Constructor por defecto que inicializa una computadora vacía sin componentes.
+     */
+    public Compu() { }
+
+    /**
+     * Calcula el precio total de la computadora sumando el precio de todos los componentes.
+     *
+     * @return el precio total como valor {@code double}.
+     */
     public double getPrecio() {
         double total = 0;
         if (cpu != null) total += cpu.getPrecio();
@@ -27,67 +69,141 @@ public class Compu implements Compunent{
         return total;
     }
 
-   public void setCPU(CPU cpu) {
-     this.cpu = cpu; 
-   }
-  
-   public void setGPU(GPU gpu) { 
-     this.gpu = gpu; 
-   }
-  
-   public void setMadre(Madre madre) { 
-     this.madre = madre; 
-   }
-  
-   public void addRAM(RAM ram) {
-     rams.add(ram);
-   }
-  
-   public void addDisco(Disco disco) { 
-   discos.add(disco);
-   }
-  
-   public void setFuente(Fuente fuente) { 
-     this.fuente = fuente;
-   }
-  
-   public void setGabinete(Gabinete gab) {
-     this.gab = gab;
-   }
+    /**
+     * Asigna un procesador a la computadora.
+     *
+     * @param cpu el {@link CPU} que se agregará.
+     */
+    public void setCPU(CPU cpu) { 
+        this.cpu = cpu; 
+    }
 
+    /**
+     * Asigna una tarjeta gráfica a la computadora.
+     *
+     * @param gpu la {@link GPU} que se agregará.
+     */
+    public void setGPU(GPU gpu) { 
+        this.gpu = gpu; 
+    }
 
-   public CPU getCPU() { 
-     return cpu; 
-   }
-  
+    /**
+     * Asigna una placa madre a la computadora.
+     *
+     * @param madre la {@link Madre} que se agregará.
+     */
+    public void setMadre(Madre madre) { 
+        this.madre = madre; 
+    }
+
+    /**
+     * Agrega un módulo de memoria RAM a la computadora.
+     *
+     * @param ram la {@link RAM} que se agregará.
+     */
+    public void addRAM(RAM ram) { 
+        rams.add(ram); 
+    }
+
+    /**
+     * Agrega un disco duro o SSD a la computadora.
+     *
+     * @param disco el {@link Disco} que se agregará.
+     */
+    public void addDisco(Disco disco) { 
+        discos.add(disco); 
+    }
+
+    /**
+     * Asigna una fuente de poder a la computadora.
+     *
+     * @param fuente la {@link Fuente} que se agregará.
+     */
+    public void setFuente(Fuente fuente) { 
+        this.fuente = fuente; 
+    }
+
+    /**
+     * Asigna un gabinete a la computadora.
+     *
+     * @param gab el {@link Gabinete} que se agregará.
+     */
+    public void setGabinete(Gabinete gab) { 
+        this.gab = gab; 
+    }
+
+    /**
+     * Devuelve el procesador de la computadora.
+     *
+     * @return el {@link CPU} instalado.
+     */
+    public CPU getCPU() { 
+        return cpu; 
+    }
+
+    /**
+     * Devuelve la tarjeta gráfica de la computadora.
+     *
+     * @return la {@link GPU} instalada.
+     */
     public GPU getGPU() { 
-      return gpu;
+        return gpu; 
     }
 
-    public List<RAM> getRams(){
-      return rams;
+    /**
+     * Devuelve la lista de memorias RAM instaladas.
+     *
+     * @return lista de {@link RAM}.
+     */
+    public List<RAM> getRams() { 
+        return rams; 
     }
-  
+
+    /**
+     * Devuelve la placa madre de la computadora.
+     *
+     * @return la {@link Madre} instalada.
+     */
     public Madre getMadre() { 
-      return madre;
+        return madre; 
     }
-  
+
+    /**
+     * Devuelve la lista de discos duros o SSDs instalados.
+     *
+     * @return lista de {@link Disco}.
+     */
     public List<Disco> getDiscos() { 
-      return discos;
+        return discos; 
     }
-  
+
+    /**
+     * Devuelve la fuente de poder de la computadora.
+     *
+     * @return la {@link Fuente} instalada.
+     */
     public Fuente getFuente() { 
-      return fuente; 
+        return fuente; 
     }
-  
+
+    /**
+     * Devuelve el gabinete de la computadora.
+     *
+     * @return el {@link Gabinete} instalado.
+     */
     public Gabinete getGabinete() { 
-      return gab; 
+        return gab; 
     }
 
-
+    /**
+     * Genera una descripción completa del hardware de la computadora,
+     * listando todos los componentes y sus precios.
+     *
+     * @return una cadena con la descripción detallada del hardware.
+     */
     @Override
     public String getDescripcion() {
-         StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append("===== Hardware de la PC =====\n");
         sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado").append("\n");
         sb.append("GPU: ").append(gpu != null ? gpu.getNombre() : "No seleccionado").append("\n");
@@ -106,6 +222,4 @@ public class Compu implements Compunent{
         return sb.toString();
     }
 
- 
-  
 }
