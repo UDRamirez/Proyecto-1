@@ -9,6 +9,9 @@ public class PersonalizadaBuilder implements ConstructorCompu {
 
     /** Computadora que se va a construir. */
     private Compu pc;
+    
+    private List<Programa> programas = new ArrayList<>();
+
 
     /**
      * Crea un nuevo constructor para construir una computadora personalizada.
@@ -87,6 +90,25 @@ public class PersonalizadaBuilder implements ConstructorCompu {
         pc.setGabinete(gabinete);
     }
 
+    public void setProgramas(List<Programa> programas) {
+        this.programas = programas;
+    }
+
+     private void verificarCompatibilidad(Compu pc) {
+        List<String> advertencias = new ArrayList<>();
+
+        if (pc.getCPU() != null && pc.getMadre() != null) {
+            AdaptadorCPU aCPU = new AdaptadorCPU(pc.getCPU());
+            AdaptadorMadre aMadre = new AdaptadorMadre(pc.getMadre());
+            if (!aCPU.esCompatibleCon(aMadre)) {
+                advertencias.add("⚠ CPU y Motherboard no son compatibles: "
+                        + pc.getCPU().getNombre() + " vs " + pc.getMadre().getNombre());
+            }
+        }
+
+        pc.setAdvertencias(advertencias);
+    }
+
     /**
      * Devuelve la computadora completa construida.
      *
@@ -94,6 +116,8 @@ public class PersonalizadaBuilder implements ConstructorCompu {
      */
     @Override
     public Compu build() {
+        pc.setProgramas(programas);
+        verificarCompatibilidad(pc);
         return pc;
     }
 }
