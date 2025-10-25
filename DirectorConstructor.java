@@ -65,7 +65,15 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 1000-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("H6 Flow ATX"));
 
-        return builder.build();
+          Compu pcBase = builder.build();
+
+    Compunent pcConWindows = new PCDecorada(pcBase, new Windows());
+    Compunent pcOffice = new PCDecorada(pcConWindows, new Office());
+    Compunent pcPhotoshop = new PCDecorada(pcOffice, new Photoshop());
+    Compunent pcWSL = new PCDecorada(pcPhotoshop, new WSLTerminal());
+   Compunent pcFinal = new PCDecorada(pcWSL, new AutoCAD());
+
+    return pcFinal;
     }
 
     /**
@@ -100,7 +108,14 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente(fuente));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente(gabinete));
 
-        return builder.build();
+        Compunent pc = builder.build(); 
+
+    
+    for (Programa programa : programas) {
+        pc = new PCDecorada(pc, programa);
+    }
+
+    return pc;
     }
 
 }
