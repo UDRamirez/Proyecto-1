@@ -47,6 +47,11 @@ public class Compu implements Compunent {
      */
     private Fuente fuente;
 
+    private List<Programa> programas = new ArrayList<>();
+
+    private List<String> advertencias = new ArrayList<>();
+
+
     /**
      * Constructor por defecto que inicializa una computadora vacía sin componentes.
      */
@@ -132,6 +137,15 @@ public class Compu implements Compunent {
         this.gab = gab; 
     }
 
+    public void setProgramas(List<Programa> programas) {
+    this.programas = programas;
+    }
+
+    public void setAdvertencias(List<String> advertencias) {
+    this.advertencias = advertencias;
+    }
+
+  
     /**
      * Devuelve el procesador de la computadora.
      *
@@ -195,6 +209,14 @@ public class Compu implements Compunent {
         return gab; 
     }
 
+      public List<Programa> getProgramas() {
+    return programas;
+    }
+
+    public List<String> getAdvertencias() {
+    return advertencias;
+    }
+
     /**
      * Genera una descripción completa del hardware de la computadora,
      * listando todos los componentes y sus precios.
@@ -219,6 +241,15 @@ public class Compu implements Compunent {
         if (discos.isEmpty()) sb.append("Sin discos\n");
         for (Disco d : discos) sb.append(d.getNombre()).append(" - $").append(d.getPrecio()).append("\n");
 
+        sb.append("\n--- SOFTWARE INSTALADO ---\n");
+        if (programas.isEmpty()) {
+            sb.append("Sin programas\n");
+        } else {
+            for (Programa p : programas)
+                sb.append("  - ").append(p.getNombre()).append(" ($").append(p.getPrecio()).append(")\n");
+        }
+
+        sb.append("\nPrecio total: $").append(getPrecioTotal()).append("\n");
         return sb.toString();
     }
 
