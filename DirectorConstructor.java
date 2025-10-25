@@ -33,7 +33,12 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 500-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("Lancer ATX"));
 
-        return builder.build();
+          Compu pcBase = builder.build();
+
+    Compunent pcConWindows = new PCDecorada(pcBase, new Windows());
+    Compunent pcFinal = new PCDecorada(pcConWindows, new Office());
+
+    return pcFinal;
     }
 
     /**
