@@ -1,15 +1,43 @@
+/**
+ * Clase {@code Fuente}.
+ * <p>
+ * Representa una fuente de poder para una computadora.
+ * Hereda de {@link Pieza} e incluye información específica como la potencia en vatios (W).
+ * </p>
+ */
 public class Fuente extends Pieza {
-    private int potencia; 
 
+    /** Potencia de la fuente en vatios (W). */
+    private int potencia;
+
+    /**
+     * Crea una nueva instancia de {@code Fuente}.
+     *
+     * @param nombre nombre de la fuente.
+     * @param marca marca del fabricante.
+     * @param precio precio de la fuente.
+     * @param potencia potencia de la fuente en vatios (W).
+     */
     public Fuente(String nombre, String marca, double precio, int potencia) {
         super(nombre, marca, precio, "Fuente");
         this.potencia = potencia;
     }
 
-    public int getPotencia(){ 
-      return potencia;
+    /**
+     * Obtiene la potencia de la fuente.
+     *
+     * @return la potencia en vatios (W).
+     */
+    public int getPotencia() {
+        return potencia;
     }
 
+    /**
+     * Devuelve una representación en texto de la fuente,
+     * incluyendo su potencia.
+     *
+     * @return una cadena con la información detallada de la fuente.
+     */
     @Override
     public String toString() {
         return super.toString() + " | Potencia: " + potencia + " W";
