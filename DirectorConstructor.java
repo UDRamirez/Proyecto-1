@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Clase {@code DirectorConstructor}.
  * <p>
@@ -14,7 +17,7 @@ public class DirectorConstructor {
      *
      * @return un objeto {@link Compu} con la configuración económica.
      */
-    public Compu construirPcEconomica() {
+    public Compunent construirPcEconomica() {
         ArmadaBuilder builder = new ArmadaBuilder();
 
         ContratoFabrica fcpu = FabricaMaestra.getFabrica("cpu");
@@ -33,7 +36,7 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 500-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("Lancer ATX"));
 
-          Compu pc = builder.build();
+          Compunent pc = builder.build();
 
     pc = new PCDecorada(pc, new Windows());
     pc = new PCDecorada(pc, new Office());
@@ -46,7 +49,7 @@ public class DirectorConstructor {
      *
      * @return un objeto {@link Compu} con la configuración premium.
      */
-    public Compu construirPcPremium() {
+    public Compunent construirPcPremium() {
         ArmadaBuilder builder = new ArmadaBuilder();
 
         ContratoFabrica fcpu = FabricaMaestra.getFabrica("cpu");
@@ -65,7 +68,7 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 1000-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("H6 Flow ATX"));
 
-          Compu pcBase = builder.build();
+          Compunent pcBase = builder.build();
 
     pcBase = new PCDecorada(pcBase, new Windows());
     pcBase = new PCDecorada(pcBase, new Office());
