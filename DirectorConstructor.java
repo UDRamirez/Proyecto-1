@@ -35,8 +35,8 @@ public class DirectorConstructor {
 
           Compu pc = builder.build();
 
-    pc = new PCDecorada(pc, new Windows();
-    pc = new PCDecorada(pc, new Office();
+    pc = new PCDecorada(pc, new Windows());
+    pc = new PCDecorada(pc, new Office());
 
     return pc;
     }
@@ -67,11 +67,11 @@ public class DirectorConstructor {
 
           Compu pcBase = builder.build();
 
-    pcBase = new PCDecorada(pcBase, new Windows();
-    pcBase = new PCDecorada(pcBase, new Office();
-    pcBase = new PCDecorada(pcBase, new Photoshop();
-    pcBase = new PCDecorada(pcBase, new WSLTerminal();
-    pcBase = new PCDecorada(pcBase, new AutoCAD();
+    pcBase = new PCDecorada(pcBase, new Windows());
+    pcBase = new PCDecorada(pcBase, new Office());
+    pcBase = new PCDecorada(pcBase, new Photoshop());
+    pcBase = new PCDecorada(pcBase, new WSLTerminal());
+    pcBase = new PCDecorada(pcBase, new AutoCAD());
 
     }
 
