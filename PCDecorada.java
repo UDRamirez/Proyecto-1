@@ -13,6 +13,8 @@ public class PCDecorada implements Compunent {
     /** Programa que se añade a la computadora. */
     private Programa programa;
 
+    private List<String> instalados;
+
     /**
      * Crea una nueva instancia de {@code PCDecorada}.
      *
@@ -22,6 +24,21 @@ public class PCDecorada implements Compunent {
     public PCDecorada(Compunent compu, Programa programa) {
         this.compu = compu;
         this.programa = programa;
+        this.instalados = new ArrayList<>();
+        if (compu instanceof PCDecorada) {
+            this.instalados.addAll(((PCDecorada) compu).getProgramasInstalados());
+        }
+        if (!instalados.contains(programa.getNombre())) {
+            this.instalados.add(programa.getNombre());
+        } else {
+            System.out.println("El programa " + programa.getNombre() + " ya está instalado.");
+        }
+    
+    }
+
+
+       public List<String> getProgramasInstalados() {
+        return instalados;
     }
 
     /**
@@ -43,6 +60,8 @@ public class PCDecorada implements Compunent {
      */
     @Override
     public String getDescripcion() {
-        return compu.getDescripcion() + "\nPrograma añadido: " + programa.getNombre();
+         String desc = compu.getDescripcion();
+        if (!instalados.contains(programa.getNombre())) return desc;
+        return desc + "\nPrograma agregado: " + programa.getNombre();
     }
 }
