@@ -43,4 +43,16 @@ public class FabricaRAM implements ContratoFabrica {
                 return null;
         }
     }
+
+    public List<String> getModelos() {
+    List<String> modelos = new ArrayList<>();
+    modelos.add("Adata 8-GB");
+    modelos.add("Adata 16-GB");
+    modelos.add("Adata 32-GB");
+    modelos.add("Kingston 8-GB");
+    modelos.add("Kingston 16-GB");
+    modelos.add("Kingston 32-GB");
+    return modelos;
+}
+    
 }
