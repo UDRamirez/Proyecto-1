@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class PCDecorada implements Compunent {
 
     private Compunent compu;
@@ -6,6 +9,7 @@ public class PCDecorada implements Compunent {
 
     public PCDecorada(Compunent compu, Programa programa) {
         this.compu = compu;
+        this.programa = programa;
         this.instalados = new ArrayList<>();
 
         if (compu instanceof PCDecorada) {
@@ -13,11 +17,9 @@ public class PCDecorada implements Compunent {
         }
 
         if (!instalados.contains(programa.getNombre())) {
-            this.programa = programa;
             this.instalados.add(programa.getNombre());
         } else {
-            this.programa = null;
-            System.out.println("El programa " + programa.getNombre() + " ya está instalado.");
+            System.out.println("Advertencia: El programa '" + programa.getNombre() + "' ya está instalado y no se agregará nuevamente.");
         }
     }
 
@@ -25,20 +27,23 @@ public class PCDecorada implements Compunent {
         return instalados;
     }
 
+    public boolean tienePrograma(String nombre) {
+        return instalados.contains(nombre);
+    }
+
     @Override
     public double getPrecio() {
-        if (programa != null) {
-            return compu.getPrecio() + programa.getPrecio();
-        }
-        return compu.getPrecio();
+        return compu.getPrecio() + (instalados.contains(programa.getNombre()) ? programa.getPrecio() : 0);
     }
 
     @Override
     public String getDescripcion() {
         String desc = compu.getDescripcion();
-        if (programa != null) {
+
+        if (instalados.contains(programa.getNombre())) {
             desc += "\nPrograma agregado: " + programa.getNombre();
         }
+
         return desc;
     }
 }
