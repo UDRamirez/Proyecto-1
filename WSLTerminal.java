@@ -12,7 +12,7 @@ public class WSLTerminal extends Programa {
      * @param dist   distribución de Linux (por ejemplo, "Ubuntu").
      * @param precio precio del programa.
      */
-    public WSLTerminal(String dist, double precio) {
+    public WSLTerminal() {
         super("WSL Terminal: Linux", 500.0);
     }
 }
