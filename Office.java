@@ -12,7 +12,7 @@ public class Office extends Programa {
      * @param version versión del programa (por ejemplo, "2024").
      * @param precio  precio del programa.
      */
-    public Office(String version, double precio) {
+    public Office() {
         super("Microsoft Office 2024 ", 500.0);
     }
 }
