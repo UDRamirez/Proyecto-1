@@ -47,4 +47,32 @@ public class FabricaFuente implements ContratoFabrica {
                 return null;
         }
     }
+
+    
+    /**
+     * Devuelve una lista con todos los modelos de fuentes de poder disponibles en la fábrica.
+     *
+     * @return lista de nombres de modelos de fuentes EVGA, Corsair y XPG.
+     */
+    @Override
+    public List<String> getModelos() {
+        List<String> modelos = new ArrayList<>();
+
+        // EVGA
+        modelos.add("EVGA 800-W");
+        modelos.add("EVGA 1000-W");
+        modelos.add("EVGA 1500-W");
+
+        // Corsair
+        modelos.add("Corsair 800-W");
+        modelos.add("Corsair 1200-W");
+        modelos.add("Corsair 1500-W");
+
+        // XPG
+        modelos.add("XPG 500-W");
+        modelos.add("XPG 700-W");
+        modelos.add("XPG 1000-W");
+
+        return modelos;
+    }
 }
