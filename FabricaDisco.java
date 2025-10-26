@@ -47,4 +47,29 @@ public class FabricaDisco implements ContratoFabrica {
                 return null;
         }
     }
+
+     /**
+     * Devuelve una lista con todos los modelos de discos disponibles en la fábrica.
+     *
+     * @return lista de nombres de modelos de discos HDD y SSD.
+     */
+    @Override
+    public List<String> getModelos() {
+        List<String> modelos = new ArrayList<>();
+
+        // HDD
+        modelos.add("Western Digital Blue 500-GB");
+        modelos.add("Western Digital Blue 1-TB");
+        modelos.add("Seagate Barracuda 1-TB");
+        modelos.add("Seagate Barracuda 2-TB");
+
+        // SSD
+        modelos.add("Kingston 500-GB");
+        modelos.add("Kingston 1-TB");
+        modelos.add("Kingston 2-TB");
+        modelos.add("Kingston 4-TB");
+
+        return modelos;
+    }
+}
 }
