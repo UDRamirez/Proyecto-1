@@ -13,7 +13,7 @@ public class AutoCAD extends Programa {
      * @param version la versión del software AutoCAD (por ejemplo, "2024").
      * @param precio el precio del programa.
      */
-    public AutoCAD(String version, double precio) {
+    public AutoCAD() {
         super("AutoCAD 2024 ", 250.0);
     }
 
