@@ -41,4 +41,14 @@ public class FabricaTarjeta implements ContratoFabrica {
                 return null;
         }
     }
+
+    public List<String> getModelos() {
+    List<String> modelos = new ArrayList<>();
+    modelos.add("GTX 1660");
+    modelos.add("RTX 3060");
+    modelos.add("RTX 4070");
+    modelos.add("RTX 4080");
+    modelos.add("RTX 4090");
+    return modelos;
+}
 }
