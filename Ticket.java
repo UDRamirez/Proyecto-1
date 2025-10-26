@@ -23,7 +23,6 @@ public class Ticket {
         info += "Sucursal: " + sucursal + "\n";
         info += "Fecha: " + fecha + "\n\n";
         info += compu.toString() + "\n";
-        info += "TOTAL: $" + total + "\n";
         info += "==================================================================\n";
         return info;
     }
