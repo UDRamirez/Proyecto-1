@@ -76,6 +76,8 @@ public class DirectorConstructor {
     pcBase = new PCDecorada(pcBase, new WSLTerminal());
     pcBase = new PCDecorada(pcBase, new AutoCAD());
 
+        return pcBase;
+
     }
 
     /**
