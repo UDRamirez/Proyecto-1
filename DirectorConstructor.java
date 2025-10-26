@@ -33,12 +33,12 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 500-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("Lancer ATX"));
 
-          Compu pcBase = builder.build();
+          Compu pc = builder.build();
 
-    Compunent pcConWindows = new PCDecorada(pcBase, new Windows());
-    Compunent pcFinal = new PCDecorada(pcConWindows, new Office());
+    pc = new PCDecorada(pc, new Windows();
+    pc = new PCDecorada(pc, new Office();
 
-    return pcFinal;
+    return pc;
     }
 
     /**
@@ -67,13 +67,12 @@ public class DirectorConstructor {
 
           Compu pcBase = builder.build();
 
-    Compunent pcConWindows = new PCDecorada(pcBase, new Windows());
-    Compunent pcOffice = new PCDecorada(pcConWindows, new Office());
-    Compunent pcPhotoshop = new PCDecorada(pcOffice, new Photoshop());
-    Compunent pcWSL = new PCDecorada(pcPhotoshop, new WSLTerminal());
-   Compunent pcFinal = new PCDecorada(pcWSL, new AutoCAD());
+    pcBase = new PCDecorada(pcBase, new Windows();
+    pcBase = new PCDecorada(pcBase, new Office();
+    pcBase = new PCDecorada(pcBase, new Photoshop();
+    pcBase = new PCDecorada(pcBase, new WSLTerminal();
+    pcBase = new PCDecorada(pcBase, new AutoCAD();
 
-    return pcFinal;
     }
 
     /**
@@ -88,34 +87,42 @@ public class DirectorConstructor {
      * @param gabinete nombre o modelo del gabinete.
      * @return un objeto {@link Compu} con la configuración personalizada.
      */
-    public Compu construirPcPersonalizada(String cpu, String gpu, String ram, String disco,
-                                          String madre, String fuente, String gabinete) {
-        ArmadaBuilder builder = new ArmadaBuilder();
+ public Compunent construirPcPersonalizada(
+        String cpu,
+        String gpu,
+        String ram,
+        String disco,
+        String madre,
+        String fuente,
+        String gabinete,
+        List<Programa> programas) {  
 
-        ContratoFabrica fcpu = FabricaMaestra.getFabrica("cpu");
-        ContratoFabrica fgpu = FabricaMaestra.getFabrica("gpu");
-        ContratoFabrica fram = FabricaMaestra.getFabrica("ram");
-        ContratoFabrica fmadre = FabricaMaestra.getFabrica("madre");
-        ContratoFabrica fdisco = FabricaMaestra.getFabrica("disco");
-        ContratoFabrica ffuente = FabricaMaestra.getFabrica("fuente");
-        ContratoFabrica fgabinete = FabricaMaestra.getFabrica("gabinete");
+    ArmadaBuilder builder = new ArmadaBuilder();
 
-        builder.agregarCPU((CPU) fcpu.crearComponente(cpu));
-        builder.agregarGPU((GPU) fgpu.crearComponente(gpu));
-        builder.agregarRAM((RAM) fram.crearComponente(ram));
-        builder.agregarMadre((Madre) fmadre.crearComponente(madre));
-        builder.agregarDisco((Disco) fdisco.crearComponente(disco));
-        builder.agregarFuente((Fuente) ffuente.crearComponente(fuente));
-        builder.agregarGabinete((Gabinete) fgabinete.crearComponente(gabinete));
+    ContratoFabrica fcpu = FabricaMaestra.getFabrica("cpu");
+    ContratoFabrica fgpu = FabricaMaestra.getFabrica("gpu");
+    ContratoFabrica fram = FabricaMaestra.getFabrica("ram");
+    ContratoFabrica fmadre = FabricaMaestra.getFabrica("madre");
+    ContratoFabrica fdisco = FabricaMaestra.getFabrica("disco");
+    ContratoFabrica ffuente = FabricaMaestra.getFabrica("fuente");
+    ContratoFabrica fgabinete = FabricaMaestra.getFabrica("gabinete");
 
-        Compunent pc = builder.build(); 
+    builder.agregarCPU((CPU) fcpu.crearComponente(cpu));
+    builder.agregarGPU((GPU) fgpu.crearComponente(gpu));
+    builder.agregarRAM((RAM) fram.crearComponente(ram));
+    builder.agregarMadre((Madre) fmadre.crearComponente(madre));
+    builder.agregarDisco((Disco) fdisco.crearComponente(disco));
+    builder.agregarFuente((Fuente) ffuente.crearComponente(fuente));
+    builder.agregarGabinete((Gabinete) fgabinete.crearComponente(gabinete));
 
-    
-    for (Programa programa : programas) {
-        pc = new PCDecorada(pc, programa);
+    Compunent pc = builder.build();
+
+    if (programas != null && !programas.isEmpty()) {
+        for (Programa programa : programas) {
+            pc = new PCDecorada(pc, programa);
+        }
     }
 
     return pc;
-    }
-
+}
 }
