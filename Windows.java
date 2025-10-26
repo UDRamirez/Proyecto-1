@@ -12,7 +12,7 @@ public class Windows extends Programa {
      * @param version versión del sistema operativo (por ejemplo, "10").
      * @param precio  precio del sistema operativo.
      */
-    public Windows(String version, double precio) {
+    public Windows() {
         super("Windows 10", 500.0);
     }
 }
