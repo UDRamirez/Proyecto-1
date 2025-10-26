@@ -36,4 +36,18 @@ public class FabricaMadre implements ContratoFabrica {
                 return null;
         }
     }
+
+     /**
+     * Devuelve una lista con todos los modelos de placas madre disponibles en la fábrica.
+     *
+     * @return lista de nombres de modelos de placas madre ASUS y MSI.
+     */
+    public List<String> getModelos() {
+        List<String> modelos = new ArrayList<>();
+        modelos.add("ROG Maximus Z790 Hero");   // ASUS
+        modelos.add("TUF Gaming B760-Plus");    // ASUS
+        modelos.add("MEG Z790 Godlike");        // MSI
+        modelos.add("MAG B760 Tomahawk");       // MSI
+        return modelos;
+    }
 }
