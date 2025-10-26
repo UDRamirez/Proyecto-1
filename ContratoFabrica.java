@@ -20,5 +20,5 @@ public interface ContratoFabrica {
      *
      * @return lista de nombres de modelos.
      */
-    List<String> getModelosDisponibles();
+    List<String> getModelos();
 }
