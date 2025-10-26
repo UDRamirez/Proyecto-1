@@ -12,7 +12,7 @@ public class Photoshop extends Programa {
      * @param version versión del programa (por ejemplo, "2025").
      * @param precio  precio del programa.
      */
-    public Photoshop(String version, double precio) {
+    public Photoshop() {
         super("Adobe Photoshop 2025", 500.0);
     }
 }
