@@ -34,6 +34,17 @@ public class FabricaCPU implements ContratoFabrica {
                 return null;
         }
     }
+
+     @Override
+    public List<String> getModelos() {
+        List<String> modelos = new ArrayList<>();
+        modelos.add("Core i3-13100");
+        modelos.add("Core i5-13600K");
+        modelos.add("Core i7-13700K");
+        modelos.add("Core i3-13100");
+        modelos.add("Core i9-13900K");
+        
+    }
 }
 
 
