@@ -22,7 +22,7 @@ public class FabricaDisco implements ContratoFabrica{
 	case  "Kingston 4-TB":
 		return new Disco("Kingston 4-TB", "Kingston", 3200, "SSD", 8096);
 	default:
-	    System.out.println("No se ha encontrado ese modelo:  " +  modelo);
+	    System.out.println("No se ha encontrado ese modelo (Disco):  " +  modelo);
 	    return null;
 	}
     

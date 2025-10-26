@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.Serializable;
 /**
  * Clase {@code Compu} que implementa la interfaz {@link Compunent}.
  * <p>
@@ -10,7 +10,7 @@ import java.util.List;
  * una descripción detallada del hardware instalado.
  * </p>
  */
-public class Compu implements Compunent {
+public class Compu implements Compunent, Serializable {
 
     /**
      * Procesador de la computadora.

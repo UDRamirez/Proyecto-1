@@ -13,7 +13,7 @@ public class FabricaMadre implements ContratoFabrica{
 		return new Madre("MAG B760 Tomahawk", "MSI", 4200, "Chipset Intel B760");
 	  
 	default:
-	    System.out.println("No se ha encontrado ese modelo:  " + modelo);
+	    System.out.println("No se ha encontrado ese modelo (Madre):  " + modelo);
 	    return null;
 	}
 	

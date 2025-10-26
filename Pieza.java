@@ -1,4 +1,5 @@
-public abstract class Pieza{
+import java.io.Serializable;
+public abstract class Pieza implements Serializable{
     String nombre;
     String marca;
     double precio;
