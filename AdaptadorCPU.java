@@ -8,7 +8,7 @@
  */
 public class AdaptadorCPU implements AdaptadorPieza {
 
-    /** 
+    /**
      * Instancia del objeto {@link CPU} que representa la pieza adaptada.
      */
     private final CPU cpu;
@@ -30,13 +30,22 @@ public class AdaptadorCPU implements AdaptadorPieza {
      * </p>
      *
      * @param otra otra pieza adaptada a verificar.
-     * @return {@code true} si ambas piezas son compatibles, {@code false} en caso contrario.
+     * @return {@code true} si ambas piezas son compatibles, {@code false} en caso
+     *         contrario.
      */
     @Override
     public boolean esCompatibleCon(AdaptadorPieza otra) {
         if (otra instanceof AdaptadorMadre) {
             AdaptadorMadre madre = (AdaptadorMadre) otra;
-            return cpu.getMarca().equalsIgnoreCase(madre.getMadre().getTipoChip());
+            boolean sonCompatibles = cpu.getMarca().equalsIgnoreCase(madre.getMadre().getTipoChip());
+
+            if (!sonCompatibles) {
+                cpu.setAdaptado(true);
+                madre.getMadre().setAdaptado(true);
+                return true;
+            }
+
+            return true;
         }
         return false;
     }
