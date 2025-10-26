@@ -32,4 +32,16 @@ public class FabricaGabinete implements ContratoFabrica {
                 return null;
         }
     }
+
+     /**
+     * Devuelve una lista con todos los modelos de gabinetes disponibles en la fábrica.
+     *
+     * @return lista de nombres de modelos de gabinetes NZXT y Yeiyian.
+     */
+    @Override
+    public List<String> getModelos() {
+        List<String> modelos = new ArrayList<>();
+        modelos.add("H6 Flow ATX");  // NZXT
+        modelos.add("Lancer ATX");    // Yeiyian
+        return modelos;
 }
