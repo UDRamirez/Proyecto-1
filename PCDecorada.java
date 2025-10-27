@@ -10,12 +10,10 @@ public class PCDecorada implements Compunent {
         this.compu = compu;
         this.instalados = new ArrayList<>();
 
-        // Si el componente ya es una PCDecorada, copia sus programas instalados
-        if (compu instanceof PCDecorada) {
-            this.instalados.addAll(((PCDecorada) compu).getProgramas());
+        if (compu.getProgramas() != null) {
+            this.instalados.addAll(compu.getProgramas());
         }
 
-        // Evita duplicados
         if (!tienePrograma(programa.getNombre())) {
             this.instalados.add(programa);
         } else {
@@ -29,30 +27,36 @@ public class PCDecorada implements Compunent {
 
     public boolean tienePrograma(String nombre) {
         for (Programa p : instalados) {
-            if (p.getNombre().equals(nombre)) {
-                return true;
-            }
+            if (p.getNombre().equals(nombre)) return true;
         }
         return false;
     }
 
     @Override
     public double getPrecio() {
-        double precioTotal = compu.getPrecio();
-        for (Programa p : instalados) {
-            precioTotal += p.getPrecio();
-        }
-        return precioTotal;
+        double total = compu.getPrecio();
+        for (Programa p : instalados) total += p.getPrecio();
+        return total;
     }
 
     @Override
     public String getDescripcion() {
-        StringBuilder desc = new StringBuilder(compu.getDescripcion());
-        desc.append("\n\nProgramas instalados:");
-        for (Programa p : instalados) {
-            desc.append("\n + ").append(p.getNombre());
+        StringBuilder sb = new StringBuilder(compu.getDescripcionBase());
+
+        sb.append("\nProgramas instalados:");
+        if (instalados.isEmpty()) sb.append(" Sin programas");
+        else {
+            for (Programa p : instalados) {
+                sb.append("\n + ").append(p.getNombre());
+            }
         }
-        desc.append("\nPrecio total: $").append(getPrecio());
-        return desc.toString();
+
+        sb.append("\nPrecio total: $").append(getPrecio());
+        return sb.toString();
+    }
+
+    @Override
+    public String getDescripcionBase() {
+        return compu.getDescripcionBase();
     }
 }
