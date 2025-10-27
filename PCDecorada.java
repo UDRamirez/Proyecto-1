@@ -36,14 +36,19 @@ public class PCDecorada implements Compunent {
         return compu.getPrecio() + (instalados.contains(programa.getNombre()) ? programa.getPrecio() : 0);
     }
 
-    @Override
-    public String getDescripcion() {
-        String desc = compu.getDescripcion();
+   @Override
+public String getDescripcion() {
+    StringBuilder desc = new StringBuilder(compu.getDescripcion());
 
-        if (instalados.contains(programa.getNombre())) {
-            desc += "\nPrograma agregado: " + programa.getNombre();
-        }
+    desc.append("\n\nProgramas instalados:");
 
-        return desc;
+    // Evita duplicados y muestra todos los nombres
+    for (String p : instalados) {
+        desc.append("\n  + ").append(p);
     }
+
+    desc.append("\nPrecio total: $").append(getPrecio());
+
+    return desc.toString();
+}
 }
