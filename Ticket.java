@@ -9,7 +9,7 @@ public class Ticket {
         this.idTicket = generarId();
         this.sucursal = sucursal;
         this.fecha = java.time.LocalDateTime.now().toString();
-        this.total = compu.total();
+        this.total = compu.getPrecio();
         this.contenido = generarContenido(compu);
     }
 
