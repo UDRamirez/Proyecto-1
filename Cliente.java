@@ -7,13 +7,12 @@ public class Cliente {
  
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
-            SucursalRemota chihuahua = (SucursalRemota) registry.lookup("SucursalChihuahua");
-            SucursalRemota jalisco = (SucursalRemota) registry.lookup("SucursalJalisco");
-
+            SucursalRemota chihuahuaRemoto = (SucursalRemota) registry.lookup("SucursalChihuahua");
+	    SucursalRemota chihuahua = new SucursalProxy(chihuahuaRemoto);
             System.out.println("Cliente conectado correctamente.\n");
 
             chihuahua.pedirPc("eco");   
-            chihuahua.pedirPc("prem"); 
+        
 
            
 
