@@ -101,7 +101,7 @@ public class Compu implements Compunent{
     }
 
     @Override
-    public String toString() {
+    public String getDescripcion() {
         StringBuilder sb = new StringBuilder();
         sb.append("===== Detalles de tu nueva PC =====\n");
 
