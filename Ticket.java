@@ -5,7 +5,7 @@ public class Ticket {
     private String fecha;
     private double total;
 
-    public Ticket(Compu compu, String sucursal) {
+    public Ticket(Compunent compu, String sucursal) {
         this.idTicket = generarId();
         this.sucursal = sucursal;
         this.fecha = java.time.LocalDateTime.now().toString();
