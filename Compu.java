@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Compu {
+public class Compu implements Compunent{
 
     private CPU cpu;
     private GPU gpu;
