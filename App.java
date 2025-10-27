@@ -148,7 +148,7 @@ public class App {
                     pcSeleccionada = director.construirPcPersonalizada(
                             cpu.getNombre(), 
                             compuPersonal.getGPU().getNombre(),
-                            compuPersonal.getDisco().get(0).getNombre(),
+                            compuPersonal.getRams().get(0).getNombre(),
                             compuPersonal.getDiscos().get(0).getNombre(),
                             madre.getNombre(),
                             compuPersonal.getFuente().getNombre(),
