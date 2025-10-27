@@ -163,7 +163,7 @@ public class Compu implements Compunent{
             }
         }
 
-        sb.append("\nTOTAL: $").append(total()).append("\n");
+        sb.append("\nTOTAL: $").append(getPrecio()).append("\n");
 
         return sb.toString();
     }
