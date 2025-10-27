@@ -29,12 +29,12 @@ public class App {
             int opcion = sc.nextInt();
             sc.nextLine(); // limpiar buffer
 
-            Compu pcSeleccionada = null;
+            Compunent pcSeleccionada = null;
 
             switch (opcion) {
                 case 1:
                     // Mostrar info de la Económica antes de confirmar
-                    Compu pcEcoPreview = director.construirPcEconomica();
+                    Compunent pcEcoPreview = director.construirPcEconomica();
                     System.out.println("\n=== Detalles PC Económica ===");
                     System.out.println(pcEcoPreview);
 
@@ -46,7 +46,7 @@ public class App {
 
                 case 2:
                     // Mostrar info de la Premium antes de confirmar
-                    Compu pcPremPreview = director.construirPcPremium();
+                    Compunent pcPremPreview = director.construirPcPremium();
                     System.out.println("\n=== Detalles PC Premium ===");
                     System.out.println(pcPremPreview);
 
