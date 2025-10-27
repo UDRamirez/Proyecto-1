@@ -31,6 +31,15 @@ public class FabricaCPU implements ContratoFabrica {
                 return new CPU("Core i7-13700K", "Intel", 5800, 8);
             case "core i9-13900k":
                 return new CPU("Core i9-13900K", "Intel", 9500, 16);
+            case "ryzen 5 5600g":
+                return new CPU("Ryzen 5 5600G", "AMD", 1500, 4);
+            case "ryzen 5 7600x":
+                 return new CPU("Ryzen 5 7600X", "AMD", 3000, 6);
+            case "ryzen 7 7700x":
+                 return new CPU("Ryzen 7 7700X", "AMD", 6000, 8);
+            case "ryzen 9 7950x3d":
+                 return new CPU("Ryzen 9 7950X3D", "AMD", 9000, 16);
+
             default:
                 System.out.println("No se ha encontrado este modelo: " + modelo);
                 return null;
