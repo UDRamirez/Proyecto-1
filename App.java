@@ -8,7 +8,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         DirectorConstructor director = new DirectorConstructor();
-        System.out.println("=== Bienvenido a RockBuster PC ===");
+        System.out.println("=== Bienvenido a la plataforma de MonosChinos MX===");
+         System.out.println("¡Consulta la info de nuestras PC's o arma la tuya!");
 
         boolean continuar = true;
 
@@ -45,7 +46,7 @@ public class App {
                     break;
 
                 case 3:
-                    System.out.println("\n=== Construye tu PC Personalizada ===");
+                    System.out.println("\n=== ¡Construyamos tu nueva PC!===");
                     Compu compuPersonal = new Compu();
                     List<Programa> programasPersonal = new ArrayList<>();
 
@@ -67,7 +68,7 @@ public class App {
                     AdaptadorCPU adapCPU = new AdaptadorCPU(cpu);
                     AdaptadorMadre adapMadre = new AdaptadorMadre(madre);
                     if (!adapCPU.esCompatibleCon(adapMadre)) {
-                        System.out.println("\n⚠ CPU y Motherboard no son compatibles.");
+                        System.out.println("\nCPU y Motherboard no son compatibles.");
                         System.out.println("¿Desea continuar de todos modos? (s/n)");
                         if (!sc.nextLine().equalsIgnoreCase("s")) {
                             System.out.println("No se añadieron CPU ni Motherboard.");
@@ -162,7 +163,7 @@ public class App {
 
                 case 0:
                     continuar = false;
-                    System.out.println("\nGracias por usar RockBuster PC. ¡Hasta pronto!");
+                    System.out.println("\nGracias por visitar a MonosChinosMX. ¡Hasta pronto!");
                     break;
 
                 default:
@@ -184,7 +185,7 @@ public class App {
                     System.out.println("\n===== TICKET DE COMPRA =====");
                     System.out.println(ticket.getContenido());
                     if (huboAdaptacion) {
-                        System.out.println("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
+                        System.out.println("Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
                     }
                 }
             }
