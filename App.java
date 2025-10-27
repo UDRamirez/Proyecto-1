@@ -29,14 +29,15 @@ public class App {
             int opcion = sc.nextInt();
             sc.nextLine(); // limpiar buffer
 
-            Compu pcSeleccionada = null;
+            // 🔹 Ahora puede ser Compu o PCDecorada
+            Compunent pcSeleccionada = null;
 
             switch (opcion) {
                 case 1:
                     // Mostrar info de la Económica antes de confirmar
                     Compunent pcEcoPreview = director.construirPcEconomica();
                     System.out.println("\n=== Detalles PC Económica ===");
-                    System.out.println(pcEcoPreview);
+                    System.out.println(pcEcoPreview.getDescripcion());
 
                     System.out.println("\n¿Desea ordenar esta PC? (s/n)");
                     if (sc.nextLine().equalsIgnoreCase("s")) {
@@ -48,7 +49,7 @@ public class App {
                     // Mostrar info de la Premium antes de confirmar
                     Compunent pcPremPreview = director.construirPcPremium();
                     System.out.println("\n=== Detalles PC Premium ===");
-                    System.out.println(pcPremPreview);
+                    System.out.println(pcPremPreview.getDescripcion());
 
                     System.out.println("\n¿Desea ordenar esta PC? (s/n)");
                     if (sc.nextLine().equalsIgnoreCase("s")) {
@@ -58,7 +59,7 @@ public class App {
 
                 case 3:
                     System.out.println("\n=== Construye tu PC Personalizada ===");
-                    pcSeleccionada = new Compu();
+                    Compu compuPersonal = new Compu(); // Compu real
 
                     // === CPU ===
                     ContratoFabrica fabCPU = FabricaMaestra.getFabrica("cpu");
@@ -96,8 +97,8 @@ public class App {
                         }
                     }
 
-                    pcSeleccionada.setCPU(cpu);
-                    pcSeleccionada.setMadre(madre);
+                    compuPersonal.setCPU(cpu);
+                    compuPersonal.setMadre(madre);
 
                     // === GPU ===
                     ContratoFabrica fabGPU = FabricaMaestra.getFabrica("gpu");
@@ -109,7 +110,7 @@ public class App {
                     }
                     int idxGPU = sc.nextInt() - 1;
                     sc.nextLine();
-                    pcSeleccionada.setGPU((GPU) fabGPU.crearComponente(modelosGPU.get(idxGPU)));
+                    compuPersonal.setGPU((GPU) fabGPU.crearComponente(modelosGPU.get(idxGPU)));
 
                     // === RAM ===
                     ContratoFabrica fabRAM = FabricaMaestra.getFabrica("ram");
@@ -121,7 +122,7 @@ public class App {
                     }
                     int idxRAM = sc.nextInt() - 1;
                     sc.nextLine();
-                    pcSeleccionada.addRAM((RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM)));
+                    compuPersonal.addRAM((RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM)));
 
                     // === Disco ===
                     ContratoFabrica fabDisco = FabricaMaestra.getFabrica("disco");
@@ -133,7 +134,7 @@ public class App {
                     }
                     int idxDisco = sc.nextInt() - 1;
                     sc.nextLine();
-                    pcSeleccionada.addDisco((Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco)));
+                    compuPersonal.addDisco((Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco)));
 
                     // === Fuente ===
                     ContratoFabrica fabFuente = FabricaMaestra.getFabrica("fuente");
@@ -145,7 +146,7 @@ public class App {
                     }
                     int idxFuente = sc.nextInt() - 1;
                     sc.nextLine();
-                    pcSeleccionada.setFuente((Fuente) fabFuente.crearComponente(modelosFuente.get(idxFuente)));
+                    compuPersonal.setFuente((Fuente) fabFuente.crearComponente(modelosFuente.get(idxFuente)));
 
                     // === Gabinete ===
                     ContratoFabrica fabGabinete = FabricaMaestra.getFabrica("gabinete");
@@ -157,8 +158,9 @@ public class App {
                     }
                     int idxGabinete = sc.nextInt() - 1;
                     sc.nextLine();
-                    pcSeleccionada.setGabinete((Gabinete) fabGabinete.crearComponente(modelosGabinete.get(idxGabinete)));
+                    compuPersonal.setGabinete((Gabinete) fabGabinete.crearComponente(modelosGabinete.get(idxGabinete)));
 
+                    pcSeleccionada = compuPersonal; // ✅ al final
                     break;
 
                 case 0:
@@ -174,8 +176,14 @@ public class App {
             if (pcSeleccionada != null) {
                 Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
-                boolean huboAdaptacion = (pcSeleccionada.getCPU() != null && pcSeleccionada.getCPU().getAdaptado())
-                        || (pcSeleccionada.getMadre() != null && pcSeleccionada.getMadre().getAdaptado());
+                boolean huboAdaptacion = false;
+
+                // Solo si la PC es una Compu real
+                if (pcSeleccionada instanceof Compu) {
+                    Compu c = (Compu) pcSeleccionada;
+                    huboAdaptacion = (c.getCPU() != null && c.getCPU().getAdaptado())
+                            || (c.getMadre() != null && c.getMadre().getAdaptado());
+                }
 
                 System.out.println("\n===== TICKET DE COMPRA =====");
                 System.out.println(ticket.getContenido());
