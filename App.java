@@ -29,7 +29,7 @@ public class App {
             int opcion = sc.nextInt();
             sc.nextLine(); // limpiar buffer
 
-            Compunent pcSeleccionada = null;
+            Compu pcSeleccionada = null;
 
             switch (opcion) {
                 case 1:
