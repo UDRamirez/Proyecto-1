@@ -47,3 +47,4 @@ public class FabricaGabinete implements ContratoFabrica {
         modelos.add("Lancer ATX");    // Yeiyian
         return modelos;
 }
+}
