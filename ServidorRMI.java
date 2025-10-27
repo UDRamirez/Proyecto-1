@@ -13,13 +13,13 @@ public class ServidorRMI {
             SucursalPrincipal principal = new SucursalPrincipal(sucursales);
 
             SucursalRemotaConcreta chihuahua = new SucursalRemotaConcreta("Sucursal Chihuahua", principal);
-            SucursalRemotaConcreta juarez = new SucursalRemotaConcreta("Sucursal Juárez", principal);
+            SucursalRemotaConcreta jalisco = new SucursalRemotaConcreta("Sucursal Jalisco", principal);
 
             sucursales.put("Sucursal Chihuahua", chihuahua);
-            sucursales.put("Sucursal Juárez", juarez);
+            sucursales.put("Sucursal Jalisco", jalisco);
 
             registry.rebind("SucursalChihuahua", chihuahua);
-            registry.rebind("SucursalJuarez", juarez);
+            registry.rebind("SucursalJalisco", jalisco);
 
             System.out.println("Servidor RMI iniciado. Esperando clientes...");
         } catch (Exception e) {

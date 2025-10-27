@@ -3,7 +3,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.io.Serializable;
 
-public class SucursalPrincipal  implements Sucursal, Remote, Serializable{
+public class SucursalPrincipal  implements Sucursal{
     private DirectorConstructor constructor;
     private Map<String, SucursalRemota> sucursalesRemotas;
    
@@ -66,7 +66,18 @@ public class SucursalPrincipal  implements Sucursal, Remote, Serializable{
 	default: return null;
         }
     }
-  
+  public Compu fabricarPc(String tipoPc, Especificaciones specs) {
+        switch (tipoPc.toLowerCase()) {
+            case "eco": return construirPcEco();
+            case "prem": return construirPcPrem();
+            case "perso":
+                return construirPcPerso(
+                    specs.cpu, specs.gpu, specs.ram, specs.disco,
+                    specs.madre, specs.fuente, specs.gabinete
+                );
+            default: return null;
+        }
+    }
     public List<String> getPuntosDistribucion() {
         return new ArrayList<>(sucursalesRemotas.keySet());
     }

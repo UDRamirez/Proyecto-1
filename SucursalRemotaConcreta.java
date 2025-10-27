@@ -25,4 +25,13 @@ public class SucursalRemotaConcreta extends UnicastRemoteObject implements Sucur
         Compu pc = principal.fabricarPc(tipoPc);
         principal.distribuir(pc, nombre);
     }
+    @Override
+    public void pedirPcPersonalizada(Especificaciones specs) throws RemoteException {
+        Compu pc = principal.fabricarPc("perso", specs);
+        principal.distribuir(pc, nombre);
+    }
+
+    public List<Compu> getInventario() {
+        return inventario;
+    }
 }
