@@ -13,7 +13,7 @@ public class PCDecorada implements Compunent {
         this.instalados = new ArrayList<>();
 
         if (compu instanceof PCDecorada) {
-            this.instalados.addAll(((PCDecorada) compu).getProgramasInstalados());
+            this.instalados.addAll(((PCDecorada) compu).getProgramas());
         }
 
         if (!instalados.contains(programa.getNombre())) {
@@ -23,7 +23,7 @@ public class PCDecorada implements Compunent {
         }
     }
 
-    public List<String> getProgramasInstalados() {
+    public List<String> getProgramas() {
         return instalados;
     }
 
