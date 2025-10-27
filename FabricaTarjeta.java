@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Clase {@code FabricaTarjeta}.
  * <p>
