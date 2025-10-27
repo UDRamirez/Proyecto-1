@@ -8,14 +8,12 @@ public class Compu {
     private Madre madre;
     private List<RAM> rams = new ArrayList<>();
     private List<Disco> discos = new ArrayList<>();
-    private Gabinete gab;
+    private Gabinete gabinete;
     private Fuente fuente;
     private double precioTotal;
     private List<Programa> programas = new ArrayList<>();
 
-    public Compu() {
-
-    }
+    public Compu() {}
 
     public double total() {
         double total = 0;
@@ -28,9 +26,9 @@ public class Compu {
         if (fuente != null)
             total += fuente.getPrecio();
         if (gabinete != null)
-            total += gab.getPrecio();
-        for (RAM rar : rams)
-            total += rar.getPrecio();
+            total += gabinete.getPrecio();
+        for (RAM ram : rams)
+            total += ram.getPrecio();
         for (Disco dis : discos)
             total += dis.getPrecio();
         for (Programa p : programas)
@@ -51,7 +49,7 @@ public class Compu {
     }
 
     public void addRAM(RAM ram) {
-        memorias.add(ram);
+        rams.add(ram);
     }
 
     public void addDisco(Disco disco) {
@@ -82,8 +80,8 @@ public class Compu {
         return madre;
     }
 
-    public List<RAM> getDisco() {
-        return memorias;
+    public List<RAM> getRams() {
+        return rams;
     }
 
     public List<Disco> getDiscos() {
@@ -95,7 +93,7 @@ public class Compu {
     }
 
     public Gabinete getGabinete() {
-        return gab;
+        return gabinete;
     }
 
     public List<Programa> getProgramas() {
@@ -127,8 +125,8 @@ public class Compu {
             sb.append(" [ADAPTADO]");
         sb.append("\n");
 
-        sb.append("Gabinete: ").append(gab != null ? gab.getNombre() : "No seleccionado");
-        if (gab != null && gab.getAdaptado())
+        sb.append("Gabinete: ").append(gabinete != null ? gabinete.getNombre() : "No seleccionado");
+        if (gabinete != null && gabinete.getAdaptado())
             sb.append(" [ADAPTADO]");
         sb.append("\n");
 
@@ -169,6 +167,4 @@ public class Compu {
 
         return sb.toString();
     }
-
 }
-
