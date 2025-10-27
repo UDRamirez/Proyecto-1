@@ -1,32 +1,33 @@
 /**
- * Clase {@code AdaptadorCPU} que implementa la interfaz {@code AdaptadorPieza}.
+ * Clase {@code AdaptadorMadre} que implementa la interfaz
+ * {@link AdaptadorPieza}.
  * <p>
- * Esta clase actúa como un adaptador para un objeto de tipo {@link CPU},
+ * Esta clase actúa como un adaptador para una pieza de tipo {@link Madre},
  * permitiendo verificar su compatibilidad con otras piezas del sistema,
- * en particular con una placa madre ({@link AdaptadorMadre}).
+ * como un procesador ({@link AdaptadorCPU}).
  * </p>
  */
-public class AdaptadorCPU implements AdaptadorPieza {
+public class AdaptadorMadre implements AdaptadorPieza {
 
     /**
-     * Instancia del objeto {@link CPU} que representa la pieza adaptada.
+     * Instancia de la placa madre que representa la pieza adaptada.
      */
-    private final CPU cpu;
+    private final Madre madre;
 
     /**
-     * Constructor que inicializa el adaptador con una CPU específica.
+     * Constructor que inicializa el adaptador con una placa madre específica.
      *
-     * @param cpu la CPU que se va a adaptar.
+     * @param madre la placa madre que se va a adaptar.
      */
-    public AdaptadorCPU(CPU cpu) {
-        this.cpu = cpu;
+    public AdaptadorMadre(Madre madre) {
+        this.madre = madre;
     }
 
     /**
-     * Verifica la compatibilidad de esta CPU con otra pieza adaptada.
+     * Verifica la compatibilidad de esta placa madre con otra pieza adaptada.
      * <p>
-     * En este caso, comprueba si la CPU es compatible con una placa madre,
-     * comparando la marca del CPU con el tipo de chip de la placa madre.
+     * En este caso, comprueba si la placa madre es compatible con una CPU,
+     * comparando el tipo de chip de la placa con la marca del procesador.
      * </p>
      *
      * @param otra otra pieza adaptada a verificar.
@@ -35,13 +36,13 @@ public class AdaptadorCPU implements AdaptadorPieza {
      */
     @Override
     public boolean esCompatibleCon(AdaptadorPieza otra) {
-        if (otra instanceof AdaptadorMadre) {
-            AdaptadorMadre madre = (AdaptadorMadre) otra;
-            boolean sonCompatibles = cpu.getMarca().equalsIgnoreCase(madre.getMadre().getTipoChip());
+        if (otra instanceof AdaptadorCPU) {
+            AdaptadorCPU cpu = (AdaptadorCPU) otra;
+            boolean sonCompatibles = madre.getTipoChip().equalsIgnoreCase(cpu.getCpu().getMarca());
 
             if (!sonCompatibles) {
-                cpu.setAdaptado(true);
-                madre.getMadre().setAdaptado(true);
+                madre.setAdaptado(true);
+                cpu.getCpu().setAdaptado(true);
                 return true;
             }
 
@@ -51,22 +52,22 @@ public class AdaptadorCPU implements AdaptadorPieza {
     }
 
     /**
-     * Obtiene el nombre o marca de la CPU.
+     * Obtiene el nombre o tipo de chip de la placa madre.
      *
-     * @return una cadena con el nombre de la CPU.
+     * @return una cadena con el tipo de chip de la placa madre.
      */
     @Override
     public String getNombre() {
-        return cpu.getMarca();
+        return madre.getTipoChip();
     }
 
     /**
-     * Devuelve la instancia original de {@link CPU} asociada a este adaptador.
+     * Devuelve la instancia original de {@link Madre} asociada a este adaptador.
      *
-     * @return el objeto {@link CPU} adaptado.
+     * @return el objeto {@link Madre} adaptado.
      */
-    public CPU getCpu() {
-        return cpu;
+    public Madre getMadre() {
+        return madre;
     }
 
 }
