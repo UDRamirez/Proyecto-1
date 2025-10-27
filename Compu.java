@@ -15,7 +15,7 @@ public class Compu implements Compunent{
 
     public Compu() {}
 
-    public double total() {
+    public double getPrecio() {
         double total = 0;
         if (cpu != null)
             total += cpu.getPrecio();
