@@ -5,6 +5,7 @@ public class Ticket {
     private String fecha;
     private double total;
 
+    // 🔹 Acepta cualquier Compunent (Compu o PCDecorada)
     public Ticket(Compunent compu, String sucursal) {
         this.idTicket = generarId();
         this.sucursal = sucursal;
@@ -17,12 +18,12 @@ public class Ticket {
         return "TKT-" + System.currentTimeMillis();
     }
 
-    private String generarContenido(Compu compu) {
+    private String generarContenido(Compunent compu) {
         String info = "======================== TICKET DE COMPRA ========================\n\n";
         info += "ID: " + idTicket + "\n";
         info += "Sucursal: " + sucursal + "\n";
         info += "Fecha: " + fecha + "\n\n";
-        info += compu.toString() + "\n";
+        info += compu.getDescripcion() + "\n";
         info += "==================================================================\n";
         return info;
     }
