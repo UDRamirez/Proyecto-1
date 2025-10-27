@@ -1,3 +1,4 @@
+import java.util.List;
 /**
  * Interfaz {@code Compunent}.
  * <p>
@@ -23,4 +24,5 @@ public interface Compunent {
      */
     String getDescripcion();
 
+    List<Programa> getProgramas();
 }
