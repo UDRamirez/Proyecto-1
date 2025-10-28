@@ -1,27 +1,26 @@
-
 /**
  * Clase {@code FabricaMaestra}.
  * <p>
- * Esta clase actúa como una fábrica central (o fábrica abstracta) que devuelve
- * la fábrica concreta correspondiente según el tipo de componente solicitado.
+ * Esta clase actua como una fabrica central (o fabrica abstracta) que devuelve
+ * la fabrica concreta correspondiente segun el tipo de componente solicitado.
  * </p>
  *
  * <p>
- * Implementa el patrón de diseño <b>Abstract Factory</b>, centralizando la creación
- * de las distintas fábricas de componentes de PC, como CPU, RAM, GPU, fuente, disco,
+ * Implementa el patron de diseño <b>Abstract Factory</b>, centralizando la creacion
+ * de las distintas fabricas de componentes de PC, como CPU, RAM, GPU, fuente, disco,
  * tarjeta madre y gabinete.
  * </p>
  */
 public class FabricaMaestra {
 
     /**
-     * Devuelve la fábrica concreta correspondiente al tipo de componente solicitado.
+     * Devuelve la fabrica concreta correspondiente al tipo de componente solicitado.
      * <p>
-     * Si el tipo indicado no coincide con ninguna fábrica conocida, se devuelve {@code null}.
+     * Si el tipo indicado no coincide con ninguna fabrica conocida, se devuelve {@code null}.
      * </p>
      *
-     * @param fabrica el nombre del tipo de fábrica deseada (por ejemplo: "cpu", "ram", "gpu", etc.).
-     * @return una instancia de la fábrica correspondiente que implementa {@link ContratoFabrica},
+     * @param fabrica el nombre del tipo de fabrica deseada (por ejemplo: "cpu", "ram", "gpu", etc.).
+     * @return una instancia de la fabrica correspondiente que implementa {@link ContratoFabrica},
      *         o {@code null} si no se encuentra una coincidencia.
      */
     public static ContratoFabrica getFabrica(String fabrica) {
