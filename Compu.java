@@ -7,7 +7,7 @@ import java.io.Serializable;
  * <p>
  * Representa una computadora ensamblada con sus distintos componentes de hardware,
  * incluyendo CPU, GPU, placa madre, memorias RAM, discos duros, fuente de poder y gabinete.
- * Proporciona métodos para agregar componentes, verificar compatibilidad,
+ * Proporciona metodos para agregar componentes, verificar compatibilidad,
  * obtener el precio total y generar una descripcion detallada del hardware instalado.
  * </p>
  *
@@ -79,23 +79,67 @@ public class Compu implements Compunent, Serializable {
     }
 
     // Setters para los componentes
-    public void setCPU(CPU cpu) { this.cpu = cpu; }
-    public void setGPU(GPU gpu) { this.gpu = gpu; }
-    public void setMadre(Madre madre) { this.madre = madre; }
-    public void addRAM(RAM ram) { rams.add(ram); }
-    public void addDisco(Disco disco) { discos.add(disco); }
-    public void setFuente(Fuente fuente) { this.fuente = fuente; }
-    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
-    public void addPrograma(Programa programa) { this.programas.add(programa); }
+    public void setCPU(CPU cpu) { 
+        this.cpu = cpu; 
+    }
+    
+    public void setGPU(GPU gpu) { 
+        this.gpu = gpu; 
+    }
+    
+    public void setMadre(Madre madre) { 
+        this.madre = madre; 
+    }
+    
+    public void addRAM(RAM ram) {
+        rams.add(ram); 
+    }
+    
+    public void addDisco(Disco disco) { 
+        discos.add(disco); 
+    }
+    
+    public void setFuente(Fuente fuente) {
+        this.fuente = fuente; 
+    }
+    
+    public void setGabinete(Gabinete gabinete) { 
+        this.gabinete = gabinete;
+    }
+    
+    public void addPrograma(Programa programa) {
+        this.programas.add(programa); 
+    }
 
     // Getters para los componentes
-    public CPU getCPU() { return cpu; }
-    public GPU getGPU() { return gpu; }
-    public Madre getMadre() { return madre; }
-    public List<RAM> getRams() { return rams; }
-    public List<Disco> getDiscos() { return discos; }
-    public Fuente getFuente() { return fuente; }
-    public Gabinete getGabinete() { return gabinete; }
+    public CPU getCPU() {
+        return cpu; 
+    }
+    
+    public GPU getGPU() {
+        return gpu; 
+    }
+    
+    public Madre getMadre() { 
+        return madre;
+    }
+    
+    public List<RAM> getRams() {
+        return rams;
+    }
+    
+    public List<Disco> getDiscos() { 
+        return discos; 
+    }
+    
+    public Fuente getFuente() { 
+        return fuente;
+    }
+    
+    public Gabinete getGabinete() { 
+        return gabinete; 
+    }
+    
     @Override
     public List<Programa> getProgramas() { return programas; }
 
@@ -141,7 +185,7 @@ public class Compu implements Compunent, Serializable {
         sb.append("\nPrecio total: $").append(getPrecio());
 
         if (huboIncompatibilidad) {
-            sb.append("\n⚠ Se detectaron incompatibilidades en algunos componentes.");
+            sb.append("\n Se detectaron incompatibilidades en algunos componentes.");
         }
 
         return sb.toString();
