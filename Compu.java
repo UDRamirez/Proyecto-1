@@ -9,9 +9,14 @@ public class Compu implements Compunent {
     private List<Disco> discos = new ArrayList<>();
     private Fuente fuente;
     private Gabinete gabinete;
-    private boolean huboIncompatibilidad = false; // <-- NUEVO ATRIBUTO
+    private boolean huboIncompatibilidad = false;
 
     // getters y setters de los componentes existentes
+
+     public boolean tuvoIncompatibilidad() { 
+        return this.huboIncompatibilidad;
+    }
+    
     public void setCPU(CPU cpu) { this.cpu = cpu; }
     public void setMadre(Madre madre) { this.madre = madre; }
     public void setGPU(GPU gpu) { this.gpu = gpu; }
