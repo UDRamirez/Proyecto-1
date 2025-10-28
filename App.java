@@ -19,8 +19,7 @@ public class App {
             System.out.println("3- PC Personalizada");
             System.out.println("0- Salir");
 
-            int opcion = sc.nextInt();
-            sc.nextLine(); // limpiar buffer
+            int opcion = leerEntero(sc, "Ingrese una opción: ", 0, 3);
             Compunent pcSeleccionada = null;
 
             switch (opcion) {
@@ -53,14 +52,12 @@ public class App {
                     ContratoFabrica fabCPU = FabricaMaestra.getFabrica("cpu");
                     List<String> modelosCPU = fabCPU.getModelos();
                     int idxCPU = seleccionarComponente(sc, "CPU", modelosCPU, fabCPU);
-
                     CPU cpu = (CPU) fabCPU.crearComponente(modelosCPU.get(idxCPU));
 
                     // === Motherboard ===
                     ContratoFabrica fabMadre = FabricaMaestra.getFabrica("madre");
                     List<String> modelosMadre = fabMadre.getModelos();
                     int idxMadre = seleccionarComponente(sc, "Motherboard", modelosMadre, fabMadre);
-
                     Madre madre = (Madre) fabMadre.crearComponente(modelosMadre.get(idxMadre));
 
                     // Compatibilidad CPU-Madre
@@ -84,36 +81,34 @@ public class App {
                     int idxGPU = seleccionarComponente(sc, "GPU", modelosGPU, fabGPU);
                     compuPersonal.setGPU((GPU) fabGPU.crearComponente(modelosGPU.get(idxGPU)));
 
-                    // === RAM ===
+                    // === RAM (múltiples) ===
                     ContratoFabrica fabRAM = FabricaMaestra.getFabrica("ram");
                     List<String> modelosRAM = fabRAM.getModelos();
-                    boolean agregarMasRAM = true;
+                    boolean agregarRAM = true;
+                    while (agregarRAM) {
+                        int idxRAM = seleccionarComponente(sc, "RAM", modelosRAM, fabRAM);
+                        compuPersonal.addRAM((RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM)));
 
-    while (agregarMasRAM) {
-    int idxRAM = seleccionarComponente(sc, "RAM", modelosRAM, fabRAM);
-    RAM nuevaRAM = (RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM));
-    compuPersonal.addRAM(nuevaRAM);
+                        System.out.println("¿Desea agregar otra RAM? (s/n)");
+                        if (!sc.nextLine().equalsIgnoreCase("s")) {
+                            agregarRAM = false;
+                        }
+                    }
 
-    System.out.println("RAM agregada: " + nuevaRAM.getNombre());
-    System.out.println("¿Desea agregar otra memoria RAM? (s/n)");
-    agregarMasRAM = sc.nextLine().equalsIgnoreCase("s");
-}
-
-
-                    // === Disco ===
+                    // === Disco (múltiples) ===
                     ContratoFabrica fabDisco = FabricaMaestra.getFabrica("disco");
                     List<String> modelosDisco = fabDisco.getModelos();
-                    boolean agregarMasDisco = true;
+                    boolean agregarDisco = true;
+                    while (agregarDisco) {
+                        int idxDisco = seleccionarComponente(sc, "Disco", modelosDisco, fabDisco);
+                        compuPersonal.addDisco((Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco)));
 
-    while (agregarMasDisco) {
-    int idxDisco = seleccionarComponente(sc, "Disco", modelosDisco, fabDisco);
-    Disco nuevoDisco = (Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco));
-    compuPersonal.addDisco(nuevoDisco);
+                        System.out.println("¿Desea agregar otro disco? (s/n)");
+                        if (!sc.nextLine().equalsIgnoreCase("s")) {
+                            agregarDisco = false;
+                        }
+                    }
 
-    System.out.println("Disco agregado: " + nuevoDisco.getNombre());
-    System.out.println("¿Desea agregar otro disco? (s/n)");
-    agregarMasDisco = sc.nextLine().equalsIgnoreCase("s");
-}
                     // === Fuente ===
                     ContratoFabrica fabFuente = FabricaMaestra.getFabrica("fuente");
                     List<String> modelosFuente = fabFuente.getModelos();
@@ -128,23 +123,17 @@ public class App {
 
                     // === Programas personalizados ===
                     boolean agregarProgramas = true;
+                    String[] opciones = {"Windows", "Office", "Photoshop", "AutoCAD", "WSLTerminal"};
                     while (agregarProgramas) {
                         System.out.println("\n¿Desea agregar un programa? (s/n)");
                         if (!sc.nextLine().equalsIgnoreCase("s")) break;
 
                         System.out.println("Seleccione el programa a agregar:");
-                        String[] opciones = {"Windows", "Office", "Photoshop", "AutoCAD", "WSLTerminal"};
                         for (int i = 0; i < opciones.length; i++) {
                             System.out.println((i + 1) + ". " + opciones[i]);
                         }
-                        int progIdx = sc.nextInt() - 1;
-                        sc.nextLine();
 
-                        if (progIdx < 0 || progIdx >= opciones.length) {
-                            System.out.println("Opción inválida, no se añadió programa.");
-                            continue;
-                        }
-
+                        int progIdx = leerEntero(sc, "Seleccione una opción: ", 1, opciones.length) - 1;
                         Programa prog = switch (opciones[progIdx]) {
                             case "Windows" -> new Windows();
                             case "Office" -> new Office();
@@ -164,7 +153,7 @@ public class App {
                     }
 
                     pcSeleccionada = director.construirPcPersonalizada(
-                            cpu.getNombre(), 
+                            cpu.getNombre(),
                             compuPersonal.getGPU().getNombre(),
                             compuPersonal.getRams().get(0).getNombre(),
                             compuPersonal.getDiscos().get(0).getNombre(),
@@ -193,8 +182,7 @@ public class App {
                     Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
                     boolean huboAdaptacion = false;
-                    if (pcSeleccionada instanceof Compu) {
-                        Compu c = (Compu) pcSeleccionada;
+                    if (pcSeleccionada instanceof Compu c) {
                         huboAdaptacion = (c.getCPU() != null && c.getCPU().getAdaptado())
                                 || (c.getMadre() != null && c.getMadre().getAdaptado());
                     }
@@ -213,24 +201,31 @@ public class App {
 
     // 🔹 Método auxiliar para seleccionar componentes con validación
     private static int seleccionarComponente(Scanner sc, String tipo, List<String> modelos, ContratoFabrica fab) {
-        int idx = -1;
-        while (true) {
-            System.out.println("\n--- Seleccione su " + tipo + " ---");
-            for (int i = 0; i < modelos.size(); i++) {
-                Pieza temp = (Pieza) fab.crearComponente(modelos.get(i));
-                System.out.println((i + 1) + ". " + temp.getNombre() + " - $" + temp.getPrecio());
-            }
-            System.out.print("Ingrese el número de su elección: ");
-            if (!sc.hasNextInt()) {
-                System.out.println("Debe ingresar un número.");
-                sc.nextLine();
-                continue;
-            }
-            idx = sc.nextInt() - 1;
-            sc.nextLine();
-            if (idx >= 0 && idx < modelos.size()) break;
-            System.out.println("Opción inválida, intente de nuevo.");
+        System.out.println("\n--- Seleccione su " + tipo + " ---");
+        for (int i = 0; i < modelos.size(); i++) {
+            Pieza temp = (Pieza) fab.crearComponente(modelos.get(i));
+            System.out.println((i + 1) + ". " + temp.getNombre() + " - $" + temp.getPrecio());
         }
-        return idx;
+        return leerEntero(sc, "Ingrese el número de su elección: ", 1, modelos.size()) - 1;
+    }
+
+    // 🔹 Método seguro para leer enteros con validación
+    private static int leerEntero(Scanner sc, String mensaje, int min, int max) {
+        int numero;
+        while (true) {
+            System.out.print(mensaje);
+            String entrada = sc.nextLine();
+            try {
+                numero = Integer.parseInt(entrada);
+                if (numero >= min && numero <= max) {
+                    return numero;
+                } else {
+                    System.out.println("⚠ El número debe estar entre " + min + " y " + max + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠ Entrada inválida. Debe ingresar un número.");
+            }
+        }
     }
 }
+
