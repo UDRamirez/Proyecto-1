@@ -42,7 +42,7 @@ public class Cliente {
 
             System.out.println("Cliente conectado correctamente.\n");
 
-            // Realizar la petición de una computadora "eco"
+            // Realizar la peticion de una computadora "eco"
             chihuahua.pedirPc("eco");   
 
             System.out.println("\nPeticion de PCs enviada correctamente.");
