@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+
 /**
  * Clase {@code Compu} que implementa la interfaz {@link Compunent}.
  * <p>
  * Representa una computadora ensamblada con sus distintos componentes de hardware,
  * incluyendo CPU, GPU, placa madre, memorias RAM, discos duros, fuente de poder y gabinete.
- * Proporciona métodos para agregar componentes, obtener el precio total y generar
- * una descripción detallada del hardware instalado.
+ * Proporciona métodos para agregar componentes, verificar compatibilidad,
+ * obtener el precio total y generar una descripción detallada del hardware instalado.
  * </p>
  */
 public class Compu implements Compunent, Serializable {
-
-
 
     private CPU cpu;
     private GPU gpu;
@@ -23,8 +22,47 @@ public class Compu implements Compunent, Serializable {
     private Fuente fuente;
     private List<Programa> programas = new ArrayList<>();
 
+    // 🔹 Campo agregado de tu versión
+    private boolean huboIncompatibilidad = false;
+
+    // Constructor vacío
     public Compu() {}
 
+    // 🔹 Métodos de compatibilidad
+    public boolean tuvoIncompatibilidad() {
+        return this.huboIncompatibilidad;
+    }
+
+    public void setIncompatibilidad(boolean valor) {
+        this.huboIncompatibilidad = valor;
+    }
+
+    public boolean getIncompatibilidad() {
+        return this.huboIncompatibilidad;
+    }
+
+    // 🔹 Setters
+    public void setCPU(CPU cpu) { this.cpu = cpu; }
+    public void setGPU(GPU gpu) { this.gpu = gpu; }
+    public void setMadre(Madre madre) { this.madre = madre; }
+    public void addRAM(RAM ram) { rams.add(ram); }
+    public void addDisco(Disco disco) { discos.add(disco); }
+    public void setFuente(Fuente fuente) { this.fuente = fuente; }
+    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
+    public void addPrograma(Programa programa) { this.programas.add(programa); }
+
+    // 🔹 Getters
+    public CPU getCPU() { return cpu; }
+    public GPU getGPU() { return gpu; }
+    public Madre getMadre() { return madre; }
+    public List<RAM> getRams() { return rams; }
+    public List<Disco> getDiscos() { return discos; }
+    public Fuente getFuente() { return fuente; }
+    public Gabinete getGabinete() { return gabinete; }
+    @Override
+    public List<Programa> getProgramas() { return programas; }
+
+    // 🔹 Cálculo de precio total
     @Override
     public double getPrecio() {
         double total = 0;
@@ -39,34 +77,9 @@ public class Compu implements Compunent, Serializable {
         return total;
     }
 
-    public void setCPU(CPU cpu) { this.cpu = cpu; }
-    public void setGPU(GPU gpu) { this.gpu = gpu; }
-    public void setMadre(Madre madre) { this.madre = madre; }
-    public void addRAM(RAM ram) { rams.add(ram); }
-    public void addDisco(Disco disco) { discos.add(disco); }
-    public void setFuente(Fuente fuente) { this.fuente = fuente; }
-    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
-    public void addPrograma(Programa programa) { this.programas.add(programa); }
-
-    public CPU getCPU() { return cpu; }
-    public GPU getGPU() { return gpu; }
-    public Madre getMadre() { return madre; }
-    public List<RAM> getRams() { return rams; }
-    public List<Disco> getDiscos() { return discos; }
-    public Fuente getFuente() { return fuente; }
-    public Gabinete getGabinete() { return gabinete; }
-    @Override
-    public List<Programa> getProgramas() { return programas; }
-
-    /**
-     * Genera una descripción completa del hardware de la computadora,
-     * listando todos los componentes y sus precios.
-     *
-     * @return una cadena con la descripción detallada del hardware.
-     */
+    // 🔹 Descripción general
     @Override
     public String getDescripcion() {
-
         StringBuilder sb = new StringBuilder(getDescripcionBase());
 
         sb.append("\nProgramas instalados:");
@@ -79,9 +92,16 @@ public class Compu implements Compunent, Serializable {
         }
 
         sb.append("\nPrecio total: $").append(getPrecio());
+
+        // 🔹 Si hubo incompatibilidad, lo indicamos al final
+        if (huboIncompatibilidad) {
+            sb.append("\n⚠️ Se detectaron incompatibilidades en algunos componentes.");
+        }
+
         return sb.toString();
     }
 
+    // 🔹 Descripción detallada del hardware
     @Override
     public String getDescripcionBase() {
         StringBuilder sb = new StringBuilder();
@@ -129,5 +149,4 @@ public class Compu implements Compunent, Serializable {
 
         return sb.toString();
     }
-
 }
