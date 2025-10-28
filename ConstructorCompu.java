@@ -19,49 +19,49 @@
 public interface ConstructorCompu {
 
     /**
-     * Agrega un procesador {@link CPU} a la computadora en construcción.
+     * Agrega un procesador {@link CPU} a la computadora en construccion.
      *
      * @param cpu la CPU a agregar.
      */
     void agregarCPU(CPU cpu);
 
     /**
-     * Agrega una tarjeta gráfica {@link GPU} a la computadora en construcción.
+     * Agrega una tarjeta grafica {@link GPU} a la computadora en construccion.
      *
      * @param gpu la GPU a agregar.
      */
     void agregarGPU(GPU gpu);
 
     /**
-     * Agrega una placa madre {@link Madre} a la computadora en construcción.
+     * Agrega una placa madre {@link Madre} a la computadora en construccion.
      *
      * @param madre la placa madre a agregar.
      */
     void agregarMadre(Madre madre);
 
     /**
-     * Agrega un módulo de memoria RAM {@link RAM} a la computadora en construcción.
+     * Agrega un modulo de memoria RAM {@link RAM} a la computadora en construccion.
      *
      * @param ram la memoria RAM a agregar.
      */
     void agregarRAM(RAM ram);
 
     /**
-     * Agrega un disco duro o SSD {@link Disco} a la computadora en construcción.
+     * Agrega un disco duro o SSD {@link Disco} a la computadora en construccion.
      *
      * @param disco el disco a agregar.
      */
     void agregarDisco(Disco disco);
 
     /**
-     * Agrega una fuente de poder {@link Fuente} a la computadora en construcción.
+     * Agrega una fuente de poder {@link Fuente} a la computadora en construccion.
      *
      * @param fuente la fuente a agregar.
      */
     void agregarFuente(Fuente fuente);
 
     /**
-     * Agrega un gabinete {@link Gabinete} a la computadora en construcción.
+     * Agrega un gabinete {@link Gabinete} a la computadora en construccion.
      *
      * @param gab el gabinete a agregar.
      */
