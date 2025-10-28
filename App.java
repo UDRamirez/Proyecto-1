@@ -203,9 +203,7 @@ public class App {
                     }
 
                     System.out.println(ticket.getContenido());
-                    if (huboAdaptacion) {
-                        System.out.println("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
-                    }
+                   
                 }
             }
         }
