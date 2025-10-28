@@ -18,7 +18,7 @@ public class GPU extends Pieza {
      * @param precio precio de la GPU.
      * @param tipomem tipo de memoria de la GPU.
      */
-    public GPU(String nombre, String marca, double precio, String tipomem) {
+    public GPU(String nombre, String marca, double precio) {
         super(nombre, marca, precio, "GPU");
         this.tipomem = tipomem;
     }
