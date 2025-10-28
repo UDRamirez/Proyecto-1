@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Clase {@code Especificaciones} que implementa {@link Serializable}.
  * <p>
- * Representa la configuración completa de una computadora,
+ * Representa la configuracion completa de una computadora,
  * incluyendo CPU, GPU, RAM, disco, placa madre, fuente, gabinete
  * y una lista de programas instalados.
  * </p>
