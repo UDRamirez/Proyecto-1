@@ -67,7 +67,7 @@ public class Compu implements Compunent {
     @Override
     public String getDescripcionBase() {
         StringBuilder sb = new StringBuilder();
-        sb.append("===== Detalles de tu nueva PC =====\n");
+        sb.append("===== Detalles esta PC =====\n");
 
         sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado");
         if (cpu != null && cpu.getAdaptado()) sb.append(" [ADAPTADO]");
