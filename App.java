@@ -44,6 +44,7 @@ public class App {
                     System.out.println("\n=== Construye tu PC Personalizada ===");
                     Compu compuPersonal = new Compu();
                     List<Programa> programasPersonal = new ArrayList<>();
+                    boolean huboIncompatibilidad = false;
 
                     // === CPU ===
                     ContratoFabrica fabCPU = FabricaMaestra.getFabrica("cpu");
@@ -64,12 +65,18 @@ public class App {
                         System.out.println("\n⚠ CPU y Motherboard no son compatibles.");
                         if (!preguntarSN(sc, "¿Desea continuar de todos modos? (s/n)")) {
                             System.out.println("No se añadieron CPU ni Motherboard.");
-                            break;
+                        } else {
+                            // marcar que hubo adaptación
+                            cpu.setAdaptado(true);
+                            madre.setAdaptado(true);
+                            huboIncompatibilidad = true;
+                            compuPersonal.setCPU(cpu);
+                            compuPersonal.setMadre(madre);
                         }
+                    } else {
+                        compuPersonal.setCPU(cpu);
+                        compuPersonal.setMadre(madre);
                     }
-
-                    compuPersonal.setCPU(cpu);
-                    compuPersonal.setMadre(madre);
 
                     // === GPU ===
                     ContratoFabrica fabGPU = FabricaMaestra.getFabrica("gpu");
@@ -157,19 +164,19 @@ public class App {
                         }
                     }
 
-                    pcSeleccionada = director.construirPcPersonalizada(
-                            cpu.getNombre(),
-                            compuPersonal.getGPU().getNombre(),
-                            compuPersonal.getRams().get(0).getNombre(),
-                            compuPersonal.getDiscos().get(0).getNombre(),
-                            madre.getNombre(),
-                            compuPersonal.getFuente().getNombre(),
-                            compuPersonal.getGabinete().getNombre(),
-                            programasPersonal
-                    );
+                    // Decoramos la computadora con los programas seleccionados
+                    Compunent pcFinal = compuPersonal;
+                    for (Programa p : programasPersonal) {
+                        pcFinal = new PCDecorada(pcFinal, p);
+                    }
+
+                    pcSeleccionada = pcFinal;
 
                     System.out.println("\n=== Detalles PC Personalizada ===");
                     System.out.println(pcSeleccionada.getDescripcion());
+
+                    // Guardamos si hubo adaptación para el ticket
+                    compuPersonal.setIncompatibilidad(huboIncompatibilidad);
                 }
 
                 case 0 -> {
@@ -182,22 +189,23 @@ public class App {
 
             if (pcSeleccionada != null) {
                 if (preguntarSN(sc, "\n¿Desea confirmar la compra de esta PC? (s/n)")) {
+                    Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
-                    // 🔹 Desempaquetamos decoradores hasta llegar a la base Compu
-                    Compunent base = pcSeleccionada;
+                    // Revisamos si hubo incompatibilidad
                     boolean huboAdaptacion = false;
+                    Compunent base = pcSeleccionada;
                     while (base instanceof PCDecorada decorada) {
-                        base = decorada.getBase();
+                        base = decorada.compu; // accedemos al compu base
                     }
 
-                    // 🔹 Verificamos adaptaciones si la base es Compu
                     if (base instanceof Compu c) {
-                        huboAdaptacion = (c.getCPU() != null && c.getCPU().getAdaptado()) ||
-                                         (c.getMadre() != null && c.getMadre().getAdaptado());
+                        huboAdaptacion = c.getIncompatibilidad();
                     }
 
-                    Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central", huboAdaptacion);
                     System.out.println(ticket.getContenido());
+                    if (huboAdaptacion) {
+                        System.out.println("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
+                    }
                 }
             }
         }
