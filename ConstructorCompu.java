@@ -1,10 +1,20 @@
 /**
  * Interfaz {@code ConstructorCompu}.
  * <p>
- * Define los métodos que un builder de computadoras debe implementar
+ * Define los metodos que un builder de computadoras debe implementar
  * para agregar componentes individuales y finalmente construir
  * un objeto {@link Compu}.
  * </p>
+ *
+ * <h2>Ejemplo de uso:</h2>
+ * <pre>{@code
+ * ConstructorCompu builder = new ArmadaBuilder();
+ * builder.agregarCPU(new CPU("Ryzen 5", "AMD", 250.0, 6));
+ * builder.agregarGPU(new GPU("RTX 3060", "Nvidia", 400.0));
+ * Compu pc = builder.build();
+ * }</pre>
+ *
+ * @see Compu
  */
 public interface ConstructorCompu {
 
