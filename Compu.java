@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Compu implements Compunent {
     private CPU cpu;
     private Madre madre;
