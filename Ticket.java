@@ -6,6 +6,7 @@ public class Ticket {
     private double total;
     private boolean huboAdaptacion;
 
+    // 🔹 Acepta cualquier Compunent (Compu o PCDecorada) y si hubo adaptación
     public Ticket(Compunent compu, String sucursal, boolean huboAdaptacion) {
         this.idTicket = generarId();
         this.sucursal = sucursal;
@@ -20,19 +21,16 @@ public class Ticket {
     }
 
     private String generarContenido(Compunent compu) {
-        StringBuilder info = new StringBuilder();
-        info.append("======================== TICKET DE COMPRA ========================\n\n");
-        info.append("ID: ").append(idTicket).append("\n");
-        info.append("Sucursal: ").append(sucursal).append("\n");
-        info.append("Fecha: ").append(fecha).append("\n\n");
-        info.append(compu.getDescripcion()).append("\n");
-
+        String info = "======================== TICKET DE COMPRA ========================\n\n";
+        info += "ID: " + idTicket + "\n";
+        info += "Sucursal: " + sucursal + "\n";
+        info += "Fecha: " + fecha + "\n\n";
+        info += compu.getDescripcion() + "\n";
         if (huboAdaptacion) {
-            info.append("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.\n");
+            info += "\n⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.\n";
         }
-
-        info.append("==================================================================\n");
-        return info.toString();
+        info += "==================================================================\n";
+        return info;
     }
 
     public String getContenido() {
