@@ -5,7 +5,10 @@ import java.io.Serializable;
  * <p>
  * Representa un programa o software con un nombre y un precio.
  * Esta clase sirve como base para diferentes tipos de programas
- * que pueden ser instalados o utilizados en una computadora.
+ * que pueden ser instalados en una computadora.
+ * </p>
+ * <p>
+ * Implementa {@link Serializable} para permitir su serializacion.
  * </p>
  */
 public abstract class Programa implements Serializable {
@@ -19,27 +22,40 @@ public abstract class Programa implements Serializable {
     /**
      * Constructor que inicializa los atributos principales del programa.
      *
-     * @param nombre el nombre del programa.
-     * @param precio el precio del programa.
+     * @param nombre nombre del programa.
+     * @param precio precio del programa.
      */
     public Programa(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    /** @return el nombre del programa. */
+    /**
+     * Obtiene el nombre del programa.
+     *
+     * @return nombre del programa.
+     */
     public String getNombre() {
         return nombre;
     }
 
-    /** @return el precio del programa. */
+    /**
+     * Obtiene el precio del programa.
+     *
+     * @return precio del programa.
+     */
     public double getPrecio() {
         return precio;
     }
 
-    /** @return representación formateada del programa. */
+    /**
+     * Devuelve una representacion en texto del programa.
+     *
+     * @return cadena con nombre y precio del programa.
+     */
     @Override
     public String toString() {
         return String.format("%s - $%.2f", nombre, precio);
     }
 }
+
