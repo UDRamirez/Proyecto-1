@@ -1,6 +1,6 @@
-
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Clase {@code FabricaFuente}.
  * <p>
@@ -15,7 +15,7 @@ public class FabricaFuente implements ContratoFabrica {
      * Crea un componente de tipo {@link Fuente} según el modelo proporcionado.
      * <p>
      * Si el modelo no coincide con ninguno de los disponibles, se muestra un mensaje
-     * indicando que no se encontró el modelo y se devuelve {@code null}.
+     * indicando que no se encontro el modelo y se devuelve {@code null}.
      * </p>
      *
      * @param modelo el nombre exacto del modelo de fuente a crear.
@@ -46,14 +46,13 @@ public class FabricaFuente implements ContratoFabrica {
                 return new Fuente("XPG 1000-W", "Kingston", 3000, 1000);
 
             default:
-                System.out.println("No se ha encontrado ese modelo:  " + modelo);
+                System.out.println("No se ha encontrado ese modelo: " + modelo);
                 return null;
         }
     }
 
-    
     /**
-     * Devuelve una lista con todos los modelos de fuentes de poder disponibles en la fábrica.
+     * Devuelve una lista con todos los modelos de fuentes de poder disponibles en la fabrica.
      *
      * @return lista de nombres de modelos de fuentes EVGA, Corsair y XPG.
      */
@@ -77,6 +76,5 @@ public class FabricaFuente implements ContratoFabrica {
         modelos.add("XPG 1000-W");
 
         return modelos;
-
     }
 }
