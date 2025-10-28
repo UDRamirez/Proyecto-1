@@ -87,15 +87,33 @@ public class App {
                     // === RAM ===
                     ContratoFabrica fabRAM = FabricaMaestra.getFabrica("ram");
                     List<String> modelosRAM = fabRAM.getModelos();
-                    int idxRAM = seleccionarComponente(sc, "RAM", modelosRAM, fabRAM);
-                    compuPersonal.addRAM((RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM)));
+                    boolean agregarMasRAM = true;
+
+    while (agregarMasRAM) {
+    int idxRAM = seleccionarComponente(sc, "RAM", modelosRAM, fabRAM);
+    RAM nuevaRAM = (RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM));
+    compuPersonal.addRAM(nuevaRAM);
+
+    System.out.println("RAM agregada: " + nuevaRAM.getNombre());
+    System.out.println("¿Desea agregar otra memoria RAM? (s/n)");
+    agregarMasRAM = sc.nextLine().equalsIgnoreCase("s");
+}
+
 
                     // === Disco ===
                     ContratoFabrica fabDisco = FabricaMaestra.getFabrica("disco");
                     List<String> modelosDisco = fabDisco.getModelos();
-                    int idxDisco = seleccionarComponente(sc, "Disco", modelosDisco, fabDisco);
-                    compuPersonal.addDisco((Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco)));
+                    boolean agregarMasDisco = true;
 
+    while (agregarMasDisco) {
+    int idxDisco = seleccionarComponente(sc, "Disco", modelosDisco, fabDisco);
+    Disco nuevoDisco = (Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco));
+    compuPersonal.addDisco(nuevoDisco);
+
+    System.out.println("Disco agregado: " + nuevoDisco.getNombre());
+    System.out.println("¿Desea agregar otro disco? (s/n)");
+    agregarMasDisco = sc.nextLine().equalsIgnoreCase("s");
+}
                     // === Fuente ===
                     ContratoFabrica fabFuente = FabricaMaestra.getFabrica("fuente");
                     List<String> modelosFuente = fabFuente.getModelos();
