@@ -1,6 +1,6 @@
-
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Clase {@code FabricaDisco}.
  * <p>
@@ -13,9 +13,9 @@ public class FabricaDisco implements ContratoFabrica {
     /**
      * Crea un componente de tipo {@link Disco} según el modelo proporcionado.
      * <p>
-     * La fábrica reconoce distintos modelos de discos HDD y SSD de marcas como
+     * La fabrica reconoce distintos modelos de discos HDD y SSD de marcas como
      * Western Digital, Seagate y Kingston. Si el modelo no coincide con ninguno,
-     * se mostrará un mensaje indicando que no se encontró y se devolverá {@code null}.
+     * se mostrara un mensaje indicando que no se encontro y se devolvera {@code null}.
      * </p>
      *
      * @param modelo el nombre exacto del modelo del disco a crear.
@@ -46,13 +46,13 @@ public class FabricaDisco implements ContratoFabrica {
                 return new Disco("Kingston 4-TB", "Kingston", 3200, "SSD", 8096);
 
             default:
-                System.out.println("No se ha encontrado ese modelo:  " + modelo);
+                System.out.println("No se ha encontrado ese modelo: " + modelo);
                 return null;
         }
     }
 
-     /**
-     * Devuelve una lista con todos los modelos de discos disponibles en la fábrica.
+    /**
+     * Devuelve una lista con todos los modelos de discos disponibles en la fabrica.
      *
      * @return lista de nombres de modelos de discos HDD y SSD.
      */
@@ -75,5 +75,3 @@ public class FabricaDisco implements ContratoFabrica {
         return modelos;
     }
 }
-
-
