@@ -25,6 +25,10 @@ public class PCDecorada implements Compunent {
         return instalados;
     }
 
+    public Compunent getBase(){
+        return compu;
+    }
+
     public boolean tienePrograma(String nombre) {
         for (Programa p : instalados) {
             if (p.getNombre().equals(nombre)) return true;
