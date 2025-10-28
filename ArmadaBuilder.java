@@ -15,7 +15,6 @@
  *       mediante pasos controlados, separando la construcción de su representación.</li>
  * </ul>
  *
- * @author Miguel
  * @version 1.0
  */
 public class ArmadaBuilder implements ConstructorCompu {
