@@ -23,7 +23,7 @@ public class App {
 
     /**
      * Metodo principal del programa. Controla el flujo de seleccion y creacion de PCs,
-     * gestionando tanto PCs prediseñadas como personalizadas.
+     * gestionando tanto PCs predisenadas como personalizadas.
      *
      * @param args argumentos de linea de comandos (no utilizados).
      */
@@ -32,7 +32,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         DirectorConstructor director = new DirectorConstructor();
         System.out.println("=== Bienvenido a la plataforma de MonosChinosMX ===");
-        System.out.println("=== Por favor, consulta nuestras PCs pre-hechas o haz la tuya propia ===");
+        System.out.println("=== Por favor, consulte nuestras PCs pre-hechas o haga la suya propia ===");
 
         // Inicializacion del sistema de Proxy/RMI
         Map<String, SucursalRemota> sucursalesMap = new HashMap<>();
