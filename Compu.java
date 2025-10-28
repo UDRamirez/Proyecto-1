@@ -2,113 +2,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Compu implements Compunent {
-
     private CPU cpu;
-    private GPU gpu;
     private Madre madre;
-    private List<RAM> rams = new ArrayList<>();
-    private List<Disco> discos = new ArrayList<>();
-    private Gabinete gabinete;
+    private GPU gpu;
     private Fuente fuente;
-    private List<Programa> programas = new ArrayList<>();
+    private Gabinete gabinete;
+    private List<RAM> rams;
+    private List<Disco> discos;
+    private boolean tuvoIncompatibilidad = false;
 
-    public Compu() {}
+    public Compu() {
+        rams = new ArrayList<>();
+        discos = new ArrayList<>();
+    }
+
+    public void setCPU(CPU cpu) { this.cpu = cpu; }
+    public CPU getCPU() { return cpu; }
+
+    public void setMadre(Madre madre) { this.madre = madre; }
+    public Madre getMadre() { return madre; }
+
+    public void setGPU(GPU gpu) { this.gpu = gpu; }
+    public GPU getGPU() { return gpu; }
+
+    public void setFuente(Fuente fuente) { this.fuente = fuente; }
+    public Fuente getFuente() { return fuente; }
+
+    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
+    public Gabinete getGabinete() { return gabinete; }
+
+    public void addRAM(RAM ram) { rams.add(ram); }
+    public List<RAM> getRams() { return rams; }
+
+    public void addDisco(Disco disco) { discos.add(disco); }
+    public List<Disco> getDiscos() { return discos; }
+
+    public void setIncompatibilidad(boolean valor) { tuvoIncompatibilidad = valor; }
+    public boolean tuvoIncompatibilidad() { return tuvoIncompatibilidad; }
 
     @Override
     public double getPrecio() {
         double total = 0;
-        if (cpu != null) total += cpu.getPrecio();
-        if (gpu != null) total += gpu.getPrecio();
-        if (madre != null) total += madre.getPrecio();
-        if (fuente != null) total += fuente.getPrecio();
-        if (gabinete != null) total += gabinete.getPrecio();
-        for (RAM r : rams) total += r.getPrecio();
-        for (Disco d : discos) total += d.getPrecio();
-        for (Programa p : programas) total += p.getPrecio();
+        if(cpu != null) total += cpu.getPrecio();
+        if(madre != null) total += madre.getPrecio();
+        if(gpu != null) total += gpu.getPrecio();
+        if(fuente != null) total += fuente.getPrecio();
+        if(gabinete != null) total += gabinete.getPrecio();
+        for(RAM r : rams) total += r.getPrecio();
+        for(Disco d : discos) total += d.getPrecio();
         return total;
     }
-
-    public void setCPU(CPU cpu) { this.cpu = cpu; }
-    public void setGPU(GPU gpu) { this.gpu = gpu; }
-    public void setMadre(Madre madre) { this.madre = madre; }
-    public void addRAM(RAM ram) { rams.add(ram); }
-    public void addDisco(Disco disco) { discos.add(disco); }
-    public void setFuente(Fuente fuente) { this.fuente = fuente; }
-    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
-    public void addPrograma(Programa programa) { this.programas.add(programa); }
-
-    public CPU getCPU() { return cpu; }
-    public GPU getGPU() { return gpu; }
-    public Madre getMadre() { return madre; }
-    public List<RAM> getRams() { return rams; }
-    public List<Disco> getDiscos() { return discos; }
-    public Fuente getFuente() { return fuente; }
-    public Gabinete getGabinete() { return gabinete; }
-    @Override
-    public List<Programa> getProgramas() { return programas; }
 
     @Override
     public String getDescripcion() {
         StringBuilder sb = new StringBuilder(getDescripcionBase());
-
-        sb.append("\nProgramas instalados:");
-        if (programas.isEmpty()) {
-            sb.append(" Sin programas");
-        } else {
-            for (Programa p : programas) {
-                sb.append("\n + ").append(p.getNombre());
-            }
-        }
-
         sb.append("\nPrecio total: $").append(getPrecio());
         return sb.toString();
     }
 
     @Override
     public String getDescripcionBase() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("===== Detalles esta PC =====\n");
-
-        sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado");
-        if (cpu != null && cpu.getAdaptado()) sb.append(" [ADAPTADO]");
-        sb.append("\n");
-
-        sb.append("GPU: ").append(gpu != null ? gpu.getNombre() : "No seleccionado");
-        if (gpu != null && gpu.getAdaptado()) sb.append(" [ADAPTADO]");
-        sb.append("\n");
-
-        sb.append("Motherboard: ").append(madre != null ? madre.getNombre() : "No seleccionada");
-        if (madre != null && madre.getAdaptado()) sb.append(" [ADAPTADO]");
-        sb.append("\n");
-
-        sb.append("Fuente: ").append(fuente != null ? fuente.getNombre() : "No seleccionada");
-        if (fuente != null && fuente.getAdaptado()) sb.append(" [ADAPTADO]");
-        sb.append("\n");
-
-        sb.append("Gabinete: ").append(gabinete != null ? gabinete.getNombre() : "No seleccionado");
-        if (gabinete != null && gabinete.getAdaptado()) sb.append(" [ADAPTADO]");
-        sb.append("\n");
-
-        sb.append("\n--- Memorias RAM ---\n");
-        if (rams.isEmpty()) sb.append("Sin memorias\n");
-        else {
-            for (RAM r : rams) {
-                sb.append(r.getNombre());
-                if (r.getAdaptado()) sb.append(" [ADAPTADO]");
-                sb.append(" - $").append(r.getPrecio()).append("\n");
-            }
+        StringBuilder sb = new StringBuilder("=== Componentes de la PC ===");
+        if(cpu != null) sb.append("\nCPU: ").append(cpu.getNombre());
+        if(madre != null) sb.append("\nMotherboard: ").append(madre.getNombre());
+        if(gpu != null) sb.append("\nGPU: ").append(gpu.getNombre());
+        if(!rams.isEmpty()) {
+            sb.append("\nRAM:");
+            for(RAM r : rams) sb.append(" ").append(r.getNombre());
         }
-
-        sb.append("\n--- Discos duros ---\n");
-        if (discos.isEmpty()) sb.append("Sin discos\n");
-        else {
-            for (Disco d : discos) {
-                sb.append(d.getNombre());
-                if (d.getAdaptado()) sb.append(" [ADAPTADO]");
-                sb.append(" - $").append(d.getPrecio()).append("\n");
-            }
+        if(!discos.isEmpty()) {
+            sb.append("\nDiscos:");
+            for(Disco d : discos) sb.append(" ").append(d.getNombre());
         }
-
+        if(fuente != null) sb.append("\nFuente: ").append(fuente.getNombre());
+        if(gabinete != null) sb.append("\nGabinete: ").append(gabinete.getNombre());
         return sb.toString();
+    }
+
+    @Override
+    public List<Programa> getProgramas() {
+        return new ArrayList<>();
     }
 }
