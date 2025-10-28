@@ -182,28 +182,22 @@ public class App {
 
             if (pcSeleccionada != null) {
                 if (preguntarSN(sc, "\n¿Desea confirmar la compra de esta PC? (s/n)")) {
-                    Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
-                    boolean huboAdaptacion = false;
-
-                    // 🔹 Desempaquetamos todas las decoraciones hasta llegar a la base Compu
+                    // 🔹 Desempaquetamos decoradores hasta llegar a la base Compu
                     Compunent base = pcSeleccionada;
-                    while (base instanceof PCDecorada) {
-                        base = ((PCDecorada) base).compu;
+                    boolean huboAdaptacion = false;
+                    while (base instanceof PCDecorada decorada) {
+                        base = decorada.getBase();
                     }
 
-                    // 🔹 Si la base es una computadora real, revisamos si hubo adaptaciones
+                    // 🔹 Verificamos adaptaciones si la base es Compu
                     if (base instanceof Compu c) {
-                        if ((c.getCPU() != null && c.getCPU().getAdaptado()) ||
-                                (c.getMadre() != null && c.getMadre().getAdaptado())) {
-                            huboAdaptacion = true;
-                        }
+                        huboAdaptacion = (c.getCPU() != null && c.getCPU().getAdaptado()) ||
+                                         (c.getMadre() != null && c.getMadre().getAdaptado());
                     }
 
+                    Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central", huboAdaptacion);
                     System.out.println(ticket.getContenido());
-                    if (huboAdaptacion) {
-                        System.out.println("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
-                    }
                 }
             }
         }
@@ -245,4 +239,3 @@ public class App {
         }
     }
 }
-
