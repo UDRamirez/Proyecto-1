@@ -2,7 +2,7 @@
  * Clase {@code Fuente}.
  * <p>
  * Representa una fuente de poder para una computadora.
- * Hereda de {@link Pieza} e incluye información específica como la potencia en vatios (W).
+ * Hereda de {@link Pieza} e incluye informacion especifica como la potencia en vatios (W).
  * </p>
  */
 public class Fuente extends Pieza {
@@ -33,10 +33,10 @@ public class Fuente extends Pieza {
     }
 
     /**
-     * Devuelve una representación en texto de la fuente,
+     * Devuelve una representacion en texto de la fuente,
      * incluyendo su potencia.
      *
-     * @return una cadena con la información detallada de la fuente.
+     * @return una cadena con la informaci0n detallada de la fuente.
      */
     @Override
     public String toString() {
