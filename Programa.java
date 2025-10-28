@@ -1,4 +1,5 @@
 import java.io.Serializable;
+
 /**
  * Clase abstracta {@code Programa}.
  * <p>
@@ -9,14 +10,10 @@ import java.io.Serializable;
  */
 public abstract class Programa implements Serializable {
 
-    /**
-     * Nombre del programa.
-     */
+    /** Nombre del programa. */
     protected String nombre;
 
-    /**
-     * Precio del programa.
-     */
+    /** Precio del programa. */
     protected double precio;
 
     /**
@@ -30,32 +27,19 @@ public abstract class Programa implements Serializable {
         this.precio = precio;
     }
 
-    /**
-     * Devuelve el nombre del programa.
-     *
-     * @return una cadena con el nombre del programa.
-     */
+    /** @return el nombre del programa. */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Devuelve el precio del programa.
-     *
-     * @return el precio del programa como valor {@code double}.
-     */
+    /** @return el precio del programa. */
     public double getPrecio() {
         return precio;
     }
 
-    /**
-     * Devuelve una representación en cadena del programa,
-     * incluyendo su nombre y precio formateado.
-     *
-     * @return una cadena con la información del programa.
-     */
+    /** @return representación formateada del programa. */
     @Override
     public String toString() {
-        return String.format("%s (%s) - $%.2f", nombre, precio);
+        return String.format("%s - $%.2f", nombre, precio);
     }
 }
