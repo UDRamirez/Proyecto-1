@@ -1,44 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Compu implements Compunent {
     private CPU cpu;
     private Madre madre;
     private GPU gpu;
+    private List<RAM> rams = new ArrayList<>();
+    private List<Disco> discos = new ArrayList<>();
     private Fuente fuente;
     private Gabinete gabinete;
-    private List<RAM> rams;
-    private List<Disco> discos;
-    private boolean tuvoIncompatibilidad = false;
+    private boolean huboIncompatibilidad = false; // <-- NUEVO ATRIBUTO
 
-    public Compu() {
-        rams = new ArrayList<>();
-        discos = new ArrayList<>();
-    }
-
+    // getters y setters de los componentes existentes
     public void setCPU(CPU cpu) { this.cpu = cpu; }
-    public CPU getCPU() { return cpu; }
-
     public void setMadre(Madre madre) { this.madre = madre; }
-    public Madre getMadre() { return madre; }
-
     public void setGPU(GPU gpu) { this.gpu = gpu; }
-    public GPU getGPU() { return gpu; }
-
+    public void addRAM(RAM ram) { this.rams.add(ram); }
+    public void addDisco(Disco disco) { this.discos.add(disco); }
     public void setFuente(Fuente fuente) { this.fuente = fuente; }
-    public Fuente getFuente() { return fuente; }
-
     public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
+
+    public List<RAM> getRams() { return rams; }
+    public List<Disco> getDiscos() { return discos; }
+    public CPU getCPU() { return cpu; }
+    public Madre getMadre() { return madre; }
+    public GPU getGPU() { return gpu; }
+    public Fuente getFuente() { return fuente; }
     public Gabinete getGabinete() { return gabinete; }
 
-    public void addRAM(RAM ram) { rams.add(ram); }
-    public List<RAM> getRams() { return rams; }
+    // NUEVOS MÉTODOS PARA LA INCOMPATIBILIDAD
+    public void setIncompatibilidad(boolean valor) {
+        this.huboIncompatibilidad = valor;
+    }
 
-    public void addDisco(Disco disco) { discos.add(disco); }
-    public List<Disco> getDiscos() { return discos; }
-
-    public void setIncompatibilidad(boolean valor) { tuvoIncompatibilidad = valor; }
-    public boolean tuvoIncompatibilidad() { return tuvoIncompatibilidad; }
+    public boolean getIncompatibilidad() {
+        return this.huboIncompatibilidad;
+    }
 
     @Override
     public double getPrecio() {
@@ -46,10 +40,10 @@ public class Compu implements Compunent {
         if(cpu != null) total += cpu.getPrecio();
         if(madre != null) total += madre.getPrecio();
         if(gpu != null) total += gpu.getPrecio();
-        if(fuente != null) total += fuente.getPrecio();
-        if(gabinete != null) total += gabinete.getPrecio();
         for(RAM r : rams) total += r.getPrecio();
         for(Disco d : discos) total += d.getPrecio();
+        if(fuente != null) total += fuente.getPrecio();
+        if(gabinete != null) total += gabinete.getPrecio();
         return total;
     }
 
@@ -62,7 +56,7 @@ public class Compu implements Compunent {
 
     @Override
     public String getDescripcionBase() {
-        StringBuilder sb = new StringBuilder("=== Componentes de la PC ===");
+        StringBuilder sb = new StringBuilder("Componentes de la PC:");
         if(cpu != null) sb.append("\nCPU: ").append(cpu.getNombre());
         if(madre != null) sb.append("\nMotherboard: ").append(madre.getNombre());
         if(gpu != null) sb.append("\nGPU: ").append(gpu.getNombre());
@@ -81,6 +75,6 @@ public class Compu implements Compunent {
 
     @Override
     public List<Programa> getProgramas() {
-        return new ArrayList<>();
+        return new ArrayList<>(); // Compu base no tiene programas
     }
 }
