@@ -1,7 +1,23 @@
 import java.util.List;
 
+/**
+ * Clase {@code DirectorConstructor}.
+ * <p>
+ * Esta clase actua como director en el patron Builder, encargandose de la construccion
+ * de diferentes tipos de computadoras preconfiguradas o personalizadas.
+ * Utiliza {@link ArmadaBuilder} y {@link ContratoFabrica} para armar los componentes.
+ * </p>
+ */
 public class DirectorConstructor {
 
+    /**
+     * Construye una computadora economica preconfigurada.
+     * <p>
+     * Agrega componentes basicos y algunos programas preinstalados.
+     * </p>
+     *
+     * @return un objeto {@link Compunent} representando la PC economica.
+     */
     public Compunent construirPcEconomica() {
         ArmadaBuilder builder = new ArmadaBuilder();
 
@@ -21,16 +37,22 @@ public class DirectorConstructor {
         builder.agregarFuente((Fuente) ffuente.crearComponente("XPG 500-W"));
         builder.agregarGabinete((Gabinete) fgabinete.crearComponente("Lancer ATX"));
 
-        // Construir la PC base
         Compunent pc = builder.build();
 
-        // Agregar programas antes de generar precio/descripcion
         pc = new PCDecorada(pc, new Windows());
         pc = new PCDecorada(pc, new Office());
 
         return pc;
     }
 
+    /**
+     * Construye una computadora premium preconfigurada.
+     * <p>
+     * Agrega componentes de gama alta y todos los programas disponibles.
+     * </p>
+     *
+     * @return un objeto {@link Compunent} representando la PC premium.
+     */
     public Compunent construirPcPremium() {
         ArmadaBuilder builder = new ArmadaBuilder();
 
@@ -52,7 +74,6 @@ public class DirectorConstructor {
 
         Compunent pc = builder.build();
 
-        // Agregar todos los programas de alta gama
         pc = new PCDecorada(pc, new Windows());
         pc = new PCDecorada(pc, new Office());
         pc = new PCDecorada(pc, new Photoshop());
@@ -62,7 +83,23 @@ public class DirectorConstructor {
         return pc;
     }
 
-    // Para PC personalizada: recibir la lista de programas y agregarlos aquí
+    /**
+     * Construye una computadora personalizada.
+     * <p>
+     * Permite especificar cada componente y agregar una lista de programas,
+     * evitando duplicados en la instalacion.
+     * </p>
+     *
+     * @param cpu modelo de CPU a usar.
+     * @param gpu modelo de GPU a usar.
+     * @param ram modelo de RAM a usar.
+     * @param disco modelo de disco a usar.
+     * @param madre modelo de placa madre a usar.
+     * @param fuente modelo de fuente de poder a usar.
+     * @param gabinete modelo de gabinete a usar.
+     * @param programas lista de programas a instalar.
+     * @return un objeto {@link Compunent} representando la PC personalizada.
+     */
     public Compunent construirPcPersonalizada(
             String cpu, String gpu, String ram, String disco, String madre,
             String fuente, String gabinete, List<Programa> programas) {
