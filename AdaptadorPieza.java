@@ -3,7 +3,7 @@
  * <p>
  * Define el contrato que deben seguir todas las clases adaptadoras de piezas de hardware.
  * Los adaptadores permiten verificar la compatibilidad entre diferentes componentes
- * y obtener información básica sobre ellos (como su nombre o tipo).
+ * y obtener informacion basica sobre ellos (como su nombre o tipo).
  * </p>
  */
 public interface AdaptadorPieza {
