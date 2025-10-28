@@ -1,7 +1,7 @@
 /**
  * Clase {@code AdaptadorMadre} que implementa la interfaz {@link AdaptadorPieza}.
  * <p>
- * Esta clase actúa como un adaptador para una pieza de tipo {@link Madre},
+ * Esta clase actua como un adaptador para una pieza de tipo {@link Madre},
  * permitiendo verificar su compatibilidad con otras piezas del sistema,
  * como un procesador ({@link AdaptadorCPU}).
  * </p>
@@ -14,7 +14,7 @@ public class AdaptadorMadre implements AdaptadorPieza {
     private final Madre madre;
 
     /**
-     * Constructor que inicializa el adaptador con una placa madre específica.
+     * Constructor que inicializa el adaptador con una placa madre especifica.
      *
      * @param madre la placa madre que se va a adaptar.
      */
@@ -25,11 +25,11 @@ public class AdaptadorMadre implements AdaptadorPieza {
     /**
      * Verifica la compatibilidad de esta placa madre con otra pieza adaptada.
      * <p>
-     * En este caso, comprueba si la placa madre es compatible con una CPU,
+     * En este caso, se comprueba si la placa madre es compatible con una CPU,
      * comparando el tipo de chip de la placa con la marca del procesador.
      * </p>
      *
-     * @param otra otra pieza adaptada a verificar.
+     * @param otra la otra pieza adaptada que se desea verificar.
      * @return {@code true} si ambas piezas son compatibles, {@code false} en caso contrario.
      */
     @Override
@@ -59,5 +59,5 @@ public class AdaptadorMadre implements AdaptadorPieza {
     public Madre getMadre() {
         return madre;
     }
-
 }
+
