@@ -12,188 +12,51 @@ import java.io.Serializable;
  */
 public class Compu implements Compunent, Serializable {
 
-    /**
-     * Procesador de la computadora.
-     */
+
+
     private CPU cpu;
-
-    /**
-     * Tarjeta gráfica de la computadora.
-     */
     private GPU gpu;
-
-    /**
-     * Placa madre de la computadora.
-     */
     private Madre madre;
-
-    /**
-     * Lista de memorias RAM instaladas.
-     */
     private List<RAM> rams = new ArrayList<>();
-
-    /**
-     * Lista de discos duros o SSDs instalados.
-     */
     private List<Disco> discos = new ArrayList<>();
-
-    /**
-     * Gabinete de la computadora.
-     */
-    private Gabinete gab;
-
-    /**
-     * Fuente de poder de la computadora.
-     */
+    private Gabinete gabinete;
     private Fuente fuente;
+    private List<Programa> programas = new ArrayList<>();
 
-    /**
-     * Constructor por defecto que inicializa una computadora vacía sin componentes.
-     */
-    public Compu() { }
+    public Compu() {}
 
-    /**
-     * Calcula el precio total de la computadora sumando el precio de todos los componentes.
-     *
-     * @return el precio total como valor {@code double}.
-     */
+    @Override
     public double getPrecio() {
         double total = 0;
         if (cpu != null) total += cpu.getPrecio();
         if (gpu != null) total += gpu.getPrecio();
         if (madre != null) total += madre.getPrecio();
         if (fuente != null) total += fuente.getPrecio();
-        if (gab != null) total += gab.getPrecio();
-        for (RAM rar : rams) total += rar.getPrecio();
-        for (Disco dis : discos) total += dis.getPrecio();
+        if (gabinete != null) total += gabinete.getPrecio();
+        for (RAM r : rams) total += r.getPrecio();
+        for (Disco d : discos) total += d.getPrecio();
+        for (Programa p : programas) total += p.getPrecio();
         return total;
     }
 
-    /**
-     * Asigna un procesador a la computadora.
-     *
-     * @param cpu el {@link CPU} que se agregará.
-     */
-    public void setCPU(CPU cpu) { 
-        this.cpu = cpu; 
-    }
+    public void setCPU(CPU cpu) { this.cpu = cpu; }
+    public void setGPU(GPU gpu) { this.gpu = gpu; }
+    public void setMadre(Madre madre) { this.madre = madre; }
+    public void addRAM(RAM ram) { rams.add(ram); }
+    public void addDisco(Disco disco) { discos.add(disco); }
+    public void setFuente(Fuente fuente) { this.fuente = fuente; }
+    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
+    public void addPrograma(Programa programa) { this.programas.add(programa); }
 
-    /**
-     * Asigna una tarjeta gráfica a la computadora.
-     *
-     * @param gpu la {@link GPU} que se agregará.
-     */
-    public void setGPU(GPU gpu) { 
-        this.gpu = gpu; 
-    }
-
-    /**
-     * Asigna una placa madre a la computadora.
-     *
-     * @param madre la {@link Madre} que se agregará.
-     */
-    public void setMadre(Madre madre) { 
-        this.madre = madre; 
-    }
-
-    /**
-     * Agrega un módulo de memoria RAM a la computadora.
-     *
-     * @param ram la {@link RAM} que se agregará.
-     */
-    public void addRAM(RAM ram) { 
-        rams.add(ram); 
-    }
-
-    /**
-     * Agrega un disco duro o SSD a la computadora.
-     *
-     * @param disco el {@link Disco} que se agregará.
-     */
-    public void addDisco(Disco disco) { 
-        discos.add(disco); 
-    }
-
-    /**
-     * Asigna una fuente de poder a la computadora.
-     *
-     * @param fuente la {@link Fuente} que se agregará.
-     */
-    public void setFuente(Fuente fuente) { 
-        this.fuente = fuente; 
-    }
-
-    /**
-     * Asigna un gabinete a la computadora.
-     *
-     * @param gab el {@link Gabinete} que se agregará.
-     */
-    public void setGabinete(Gabinete gab) { 
-        this.gab = gab; 
-    }
-
-    /**
-     * Devuelve el procesador de la computadora.
-     *
-     * @return el {@link CPU} instalado.
-     */
-    public CPU getCPU() { 
-        return cpu; 
-    }
-
-    /**
-     * Devuelve la tarjeta gráfica de la computadora.
-     *
-     * @return la {@link GPU} instalada.
-     */
-    public GPU getGPU() { 
-        return gpu; 
-    }
-
-    /**
-     * Devuelve la lista de memorias RAM instaladas.
-     *
-     * @return lista de {@link RAM}.
-     */
-    public List<RAM> getRams() { 
-        return rams; 
-    }
-
-    /**
-     * Devuelve la placa madre de la computadora.
-     *
-     * @return la {@link Madre} instalada.
-     */
-    public Madre getMadre() { 
-        return madre; 
-    }
-
-    /**
-     * Devuelve la lista de discos duros o SSDs instalados.
-     *
-     * @return lista de {@link Disco}.
-     */
-    public List<Disco> getDiscos() { 
-        return discos; 
-    }
-
-    /**
-     * Devuelve la fuente de poder de la computadora.
-     *
-     * @return la {@link Fuente} instalada.
-     */
-    public Fuente getFuente() { 
-        return fuente; 
-    }
-
-    /**
-     * Devuelve el gabinete de la computadora.
-     *
-     * @return el {@link Gabinete} instalado.
-     */
-    public Gabinete getGabinete() { 
-        return gab; 
-    }
+    public CPU getCPU() { return cpu; }
+    public GPU getGPU() { return gpu; }
+    public Madre getMadre() { return madre; }
+    public List<RAM> getRams() { return rams; }
+    public List<Disco> getDiscos() { return discos; }
+    public Fuente getFuente() { return fuente; }
+    public Gabinete getGabinete() { return gabinete; }
+    @Override
+    public List<Programa> getProgramas() { return programas; }
 
     /**
      * Genera una descripción completa del hardware de la computadora,
@@ -203,21 +66,66 @@ public class Compu implements Compunent, Serializable {
      */
     @Override
     public String getDescripcion() {
+
+        StringBuilder sb = new StringBuilder(getDescripcionBase());
+
+        sb.append("\nProgramas instalados:");
+        if (programas.isEmpty()) {
+            sb.append(" Sin programas");
+        } else {
+            for (Programa p : programas) {
+                sb.append("\n + ").append(p.getNombre());
+            }
+        }
+
+        sb.append("\nPrecio total: $").append(getPrecio());
+        return sb.toString();
+    }
+
+    @Override
+    public String getDescripcionBase() {
         StringBuilder sb = new StringBuilder();
-        sb.append("===== Hardware de la PC =====\n");
-        sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado").append("\n");
-        sb.append("GPU: ").append(gpu != null ? gpu.getNombre() : "No seleccionado").append("\n");
-        sb.append("Motherboard: ").append(madre != null ? madre.getNombre() : "No seleccionada").append("\n");
-        sb.append("Fuente: ").append(fuente != null ? fuente.getNombre() : "No seleccionada").append("\n");
-        sb.append("Gabinete: ").append(gab != null ? gab.getNombre() : "No seleccionado").append("\n");
+        sb.append("===== Detalles de tu nueva PC =====\n");
+
+        sb.append("CPU: ").append(cpu != null ? cpu.getNombre() : "No seleccionado");
+        if (cpu != null && cpu.getAdaptado()) sb.append(" [ADAPTADO]");
+        sb.append("\n");
+
+        sb.append("GPU: ").append(gpu != null ? gpu.getNombre() : "No seleccionado");
+        if (gpu != null && gpu.getAdaptado()) sb.append(" [ADAPTADO]");
+        sb.append("\n");
+
+        sb.append("Motherboard: ").append(madre != null ? madre.getNombre() : "No seleccionada");
+        if (madre != null && madre.getAdaptado()) sb.append(" [ADAPTADO]");
+        sb.append("\n");
+
+        sb.append("Fuente: ").append(fuente != null ? fuente.getNombre() : "No seleccionada");
+        if (fuente != null && fuente.getAdaptado()) sb.append(" [ADAPTADO]");
+        sb.append("\n");
+
+        sb.append("Gabinete: ").append(gabinete != null ? gabinete.getNombre() : "No seleccionado");
+        if (gabinete != null && gabinete.getAdaptado()) sb.append(" [ADAPTADO]");
+        sb.append("\n");
 
         sb.append("\n--- Memorias RAM ---\n");
         if (rams.isEmpty()) sb.append("Sin memorias\n");
-        for (RAM r : rams) sb.append(r.getNombre()).append(" - $").append(r.getPrecio()).append("\n");
+        else {
+            for (RAM r : rams) {
+                sb.append(r.getNombre());
+                if (r.getAdaptado()) sb.append(" [ADAPTADO]");
+                sb.append(" - $").append(r.getPrecio()).append("\n");
+            }
+        }
 
         sb.append("\n--- Discos duros ---\n");
         if (discos.isEmpty()) sb.append("Sin discos\n");
-        for (Disco d : discos) sb.append(d.getNombre()).append(" - $").append(d.getPrecio()).append("\n");
+        else {
+            for (Disco d : discos) {
+                sb.append(d.getNombre());
+                if (d.getAdaptado()) sb.append(" [ADAPTADO]");
+                sb.append(" - $").append(d.getPrecio()).append("\n");
+            }
+        }
 
         return sb.toString();
     }

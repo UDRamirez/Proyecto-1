@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Interfaz {@code ContratoFabrica}.
  * <p>
@@ -14,5 +17,13 @@ public interface ContratoFabrica {
      * @return una instancia de {@link Pieza} correspondiente al modelo.
      */
     Pieza crearComponente(String modelo);
+
+    
+  /**
+     * Devuelve la lista de modelos disponibles de esta fábrica.
+     *
+     * @return lista de nombres de modelos.
+     */
+    List<String> getModelos();
 
 }

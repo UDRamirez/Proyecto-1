@@ -1,3 +1,4 @@
+
 /**
  * Interfaz {@code Compunent}.
  * <p>
@@ -22,5 +23,6 @@ public interface Compunent {
      * @return una cadena con la descripción del hardware.
      */
     String getDescripcion();
+
 
 }
