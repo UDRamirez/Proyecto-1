@@ -54,6 +54,10 @@ public class FabricaCPU implements ContratoFabrica {
         modelos.add("Core i7-13700K");
         modelos.add("Core i3-13100");
         modelos.add("Core i9-13900K");
+        modelos.add("Ryzen 5 5600G");
+        modelos.add("Ryzen 5 7600X");
+        modelos.add("Ryzen 7 7700X");
+        modelos.add("Ryzen 9 7950X3D");
         return modelos;
         
     }
