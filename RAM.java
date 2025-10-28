@@ -1,8 +1,11 @@
 /**
  * Clase {@code RAM}.
  * <p>
- * Representa un módulo de memoria RAM de computadora.
- * Hereda de {@link Pieza} e incluye información sobre su capacidad en GB.
+ * Representa un modulo de memoria RAM de computadora.
+ * Hereda de {@link Pieza} e incluye informacion sobre su capacidad en GB.
+ * </p>
+ * <p>
+ * Permite obtener su capacidad y mostrar la informacion completa del modulo.
  * </p>
  */
 public class RAM extends Pieza {
@@ -13,9 +16,9 @@ public class RAM extends Pieza {
     /**
      * Crea una nueva instancia de {@code RAM}.
      *
-     * @param nombre nombre del módulo RAM.
-     * @param marca  marca del fabricante.
-     * @param precio precio del módulo.
+     * @param nombre nombre del modulo RAM.
+     * @param marca marca del fabricante.
+     * @param precio precio del modulo.
      * @param memoria capacidad de la memoria en GB.
      */
     public RAM(String nombre, String marca, double precio, int memoria) {
@@ -33,10 +36,10 @@ public class RAM extends Pieza {
     }
 
     /**
-     * Devuelve una representación en texto de la memoria RAM,
+     * Devuelve una representacion en texto de la memoria RAM,
      * incluyendo su capacidad.
      *
-     * @return una cadena con la información detallada de la RAM.
+     * @return cadena con la informacion detallada del modulo RAM.
      */
     @Override
     public String toString() {
