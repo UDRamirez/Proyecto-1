@@ -1,12 +1,12 @@
 /**
  * Clase {@code AutoCAD} que extiende {@link Programa}.
  * <p>
- * Representa una versión específica del software de diseño asistido por computadora AutoCAD.
- * Cada instancia incluye la versión del programa y su precio base.
+ * Representa una version especifica del software de diseño asistido por computadora AutoCAD.
+ * Cada instancia incluye la version del programa y su precio base.
  * </p>
  *
  * <h2>Descripción:</h2>
- * Esta clase forma parte del conjunto de decoradores de software que pueden añadirse
+ * Esta clase forma parte del conjunto de decoradores de software que pueden anadirse
  * a una computadora ensamblada. Permite incorporar el programa AutoCAD como parte
  * del paquete de software de una PC.
  *
