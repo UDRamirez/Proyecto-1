@@ -26,7 +26,6 @@ public class App {
             switch (opcion) {
                 case 1 -> {
                     Compunent pcEcoPreview = director.construirPcEconomica();
-                    System.out.println("\n=== Detalles PC Económica ===");
                     System.out.println(pcEcoPreview.getDescripcion());
                     if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcEcoPreview;
@@ -35,7 +34,6 @@ public class App {
 
                 case 2 -> {
                     Compunent pcPremPreview = director.construirPcPremium();
-                    System.out.println("\n=== Detalles PC Premium ===");
                     System.out.println(pcPremPreview.getDescripcion());
                     if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcPremPreview;
@@ -202,7 +200,6 @@ public class App {
                         }
                     }
 
-                    System.out.println("\n===== TICKET DE COMPRA =====");
                     System.out.println(ticket.getContenido());
                     if (huboAdaptacion) {
                         System.out.println("⚠ Se realizaron adaptaciones en CPU o Motherboard por incompatibilidad.");
