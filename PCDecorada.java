@@ -44,5 +44,7 @@ public class PCDecorada implements Compunent {
     }
 
     @Override
-    public String getDescripcionBase() { return compu.getDescripcionBase(); }
+    public String getDescripcionBase() { 
+        return compu.getDescripcionBase(); 
+    }
 }
