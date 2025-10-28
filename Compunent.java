@@ -5,8 +5,8 @@ import java.util.List;
  * <p>
  * Define el contrato que deben implementar todas las clases que representen
  * una computadora o componente ensamblado completo.
- * Proporciona métodos para obtener el precio, la descripcion y la lista de programas
- * instalados, así como la descripcion base del hardware.
+ * Proporciona metodos para obtener el precio, la descripcion y la lista de programas
+ * instalados, asi como la descripcion base del hardware.
  * </p>
  *
  * <h2>Implementaciones:</h2>
