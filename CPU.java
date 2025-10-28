@@ -2,7 +2,7 @@
  * Clase {@code CPU} que extiende {@link Pieza}.
  * <p>
  * Representa un procesador (Unidad Central de Procesamiento) de una computadora.
- * Incluye información sobre su nombre, marca, precio y número de nucleos.
+ * Incluye informacion sobre su nombre, marca, precio y numero de nucleos.
  * </p>
  *
  * <h2>Descripción:</h2>
