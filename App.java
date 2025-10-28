@@ -8,7 +8,8 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
         DirectorConstructor director = new DirectorConstructor();
-        System.out.println("=== Bienvenido a RockBuster PC ===");
+        System.out.println("=== ¡Bienvenido a la plataforma de MonosChinosMX! ===");
+        System.out.println("===Por favor, consulta nuestras Pc's pre-hechas o haz la tuya propia===");
 
         boolean continuar = true;
 
@@ -20,14 +21,14 @@ public class App {
             System.out.println("0- Salir");
 
             int opcion = sc.nextInt();
-            sc.nextLine(); // limpiar buffer
+            sc.nextLine(); 
             Compunent pcSeleccionada = null;
 
             switch (opcion) {
                 case 1 -> {
                     Compunent pcEcoPreview = director.construirPcEconomica();
                     System.out.println(pcEcoPreview.getDescripcion());
-                    if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\n¿Deseas ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcEcoPreview;
                     }
                 }
@@ -35,30 +36,30 @@ public class App {
                 case 2 -> {
                     Compunent pcPremPreview = director.construirPcPremium();
                     System.out.println(pcPremPreview.getDescripcion());
-                    if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\n¿Deseas ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcPremPreview;
                     }
                 }
 
                 case 3 -> {
-                    System.out.println("\n=== Construye tu PC Personalizada ===");
+                    System.out.println("\n=== ¡Construyamos tu propia PC! ===");
                     Compu compuPersonal = new Compu();
                     List<Programa> programasPersonal = new ArrayList<>();
                     boolean huboIncompatibilidad = false;
 
-                    // === CPU ===
+                    //CPU
                     ContratoFabrica fabCPU = FabricaMaestra.getFabrica("cpu");
                     List<String> modelosCPU = fabCPU.getModelos();
                     int idxCPU = seleccionarComponente(sc, "CPU", modelosCPU, fabCPU);
                     CPU cpu = (CPU) fabCPU.crearComponente(modelosCPU.get(idxCPU));
 
-                    // === Motherboard ===
+                    //Motherboard
                     ContratoFabrica fabMadre = FabricaMaestra.getFabrica("madre");
                     List<String> modelosMadre = fabMadre.getModelos();
                     int idxMadre = seleccionarComponente(sc, "Motherboard", modelosMadre, fabMadre);
                     Madre madre = (Madre) fabMadre.crearComponente(modelosMadre.get(idxMadre));
 
-                    // Compatibilidad CPU-Madre
+                    // Compatibilidad
                     AdaptadorCPU adapCPU = new AdaptadorCPU(cpu);
                     AdaptadorMadre adapMadre = new AdaptadorMadre(madre);
                     if (!adapCPU.esCompatibleCon(adapMadre)) {
@@ -78,13 +79,13 @@ public class App {
                         compuPersonal.setMadre(madre);
                     }
 
-                    // === GPU ===
+                    //GPU
                     ContratoFabrica fabGPU = FabricaMaestra.getFabrica("gpu");
                     List<String> modelosGPU = fabGPU.getModelos();
                     int idxGPU = seleccionarComponente(sc, "GPU", modelosGPU, fabGPU);
                     compuPersonal.setGPU((GPU) fabGPU.crearComponente(modelosGPU.get(idxGPU)));
 
-                    // === RAM ===
+                    // RAMs
                     ContratoFabrica fabRAM = FabricaMaestra.getFabrica("ram");
                     List<String> modelosRAM = fabRAM.getModelos();
                     boolean agregarMasRAM = true;
@@ -97,7 +98,7 @@ public class App {
                         agregarMasRAM = preguntarSN(sc, "¿Desea agregar otra memoria RAM? (s/n)");
                     }
 
-                    // === Disco ===
+                    //Disco
                     ContratoFabrica fabDisco = FabricaMaestra.getFabrica("disco");
                     List<String> modelosDisco = fabDisco.getModelos();
                     boolean agregarMasDisco = true;
@@ -110,19 +111,19 @@ public class App {
                         agregarMasDisco = preguntarSN(sc, "¿Desea agregar otro disco? (s/n)");
                     }
 
-                    // === Fuente ===
+                    //Fuente
                     ContratoFabrica fabFuente = FabricaMaestra.getFabrica("fuente");
                     List<String> modelosFuente = fabFuente.getModelos();
                     int idxFuente = seleccionarComponente(sc, "Fuente", modelosFuente, fabFuente);
                     compuPersonal.setFuente((Fuente) fabFuente.crearComponente(modelosFuente.get(idxFuente)));
 
-                    // === Gabinete ===
+                    //Gabinete
                     ContratoFabrica fabGabinete = FabricaMaestra.getFabrica("gabinete");
                     List<String> modelosGabinete = fabGabinete.getModelos();
                     int idxGabinete = seleccionarComponente(sc, "Gabinete", modelosGabinete, fabGabinete);
                     compuPersonal.setGabinete((Gabinete) fabGabinete.crearComponente(modelosGabinete.get(idxGabinete)));
 
-                    // === Programas personalizados ===
+                    //Programas
                     boolean agregarProgramas = true;
                     while (agregarProgramas) {
                         if (!preguntarSN(sc, "\n¿Desea agregar un programa? (s/n)")) break;
@@ -164,7 +165,7 @@ public class App {
                         }
                     }
 
-                    // Decoramos la computadora con los programas seleccionados
+                    // Decorando la compu
                     Compunent pcFinal = compuPersonal;
                     for (Programa p : programasPersonal) {
                         pcFinal = new PCDecorada(pcFinal, p);
@@ -175,23 +176,23 @@ public class App {
                     System.out.println("\n=== Detalles PC Personalizada ===");
                     System.out.println(pcSeleccionada.getDescripcion());
 
-                    // Guardamos si hubo adaptación para el ticket
+                
                     compuPersonal.setIncompatibilidad(huboIncompatibilidad);
                 }
 
                 case 0 -> {
                     continuar = false;
-                    System.out.println("\nGracias por usar RockBuster PC. ¡Hasta pronto!");
+                    System.out.println("\nGracias por visitarnos, ¡Hasta pronto!");
                 }
 
                 default -> System.out.println("Opción no válida.");
             }
 
             if (pcSeleccionada != null) {
-                if (preguntarSN(sc, "\n¿Desea confirmar la compra de esta PC? (s/n)")) {
+                if (preguntarSN(sc, "\n¿Deseas confirmar la compra de esta PC? (s/n)")) {
                     Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
-                    // Revisamos si hubo incompatibilidad
+                    // Revisar si hubo incompatibilidad
                     boolean huboAdaptacion = false;
                     Compunent base = pcSeleccionada;
                     while (base instanceof PCDecorada decorada) {
@@ -211,7 +212,7 @@ public class App {
         sc.close();
     }
 
-    // 🔹 Método auxiliar para selección con validación
+    // Metodo para desplegar todos los tipos de un componente que hay
     private static int seleccionarComponente(Scanner sc, String tipo, List<String> modelos, ContratoFabrica fab) {
         int idx = -1;
         while (true) {
@@ -234,7 +235,7 @@ public class App {
         return idx;
     }
 
-    // 🔹 Método auxiliar para validar respuestas (s/n)
+    //Método para respuestas SN porque si pasabas numero no salia xddd
     private static boolean preguntarSN(Scanner sc, String mensaje) {
         while (true) {
             System.out.print(mensaje + " ");
