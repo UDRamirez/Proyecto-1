@@ -1,3 +1,4 @@
+import java.io.Serializable;
 /**
  * Clase abstracta {@code Programa}.
  * <p>
@@ -6,7 +7,7 @@
  * que pueden ser instalados o utilizados en una computadora.
  * </p>
  */
-public abstract class Programa {
+public abstract class Programa implements Serializable {
 
     /**
      * Nombre del programa.

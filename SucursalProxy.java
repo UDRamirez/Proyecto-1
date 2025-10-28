@@ -8,7 +8,7 @@ public class SucursalProxy implements SucursalRemota {
     }
 
     @Override
-    public void recibirPc(Compu pc) throws RemoteException {
+    public void recibirPc(Compunent pc) throws RemoteException {
         stub.recibirPc(pc);
     }
 
@@ -20,5 +20,9 @@ public class SucursalProxy implements SucursalRemota {
     @Override
     public void pedirPcPersonalizada(Especificaciones specs) throws RemoteException {
         stub.pedirPcPersonalizada(specs);
+    }
+    @Override
+    public String getNombre()  throws RemoteException{
+	return stub.getNombre();
     }
 }

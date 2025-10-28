@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-
-public class PCDecorada implements Compunent {
+import java.io.Serializable;
+public class PCDecorada implements Compunent , Serializable{
 
     private Compunent compu;
     private List<Programa> instalados;

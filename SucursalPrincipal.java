@@ -23,29 +23,29 @@ public class SucursalPrincipal  implements Sucursal{
     
     
     @Override
-    public Compu construirPcEco() {
+    public Compunent construirPcEco() {
      
-        Compu pc = constructor.construirPcEconomica();
+        Compunent pc = constructor.construirPcEconomica();
         return pc;
     }
     
     @Override
-    public Compu construirPcPrem() {
+    public Compunent construirPcPrem() {
    
-        Compu pc = constructor.construirPcPremium();
+        Compunent pc = constructor.construirPcPremium();
 	return pc;
     }
     
     @Override
-    public Compu construirPcPerso(String cpu, String gpu, String ram, String disco,
-                                       String madre, String fuente, String gabinete) {
+    public Compunent construirPcPerso(String cpu, String gpu, String ram, String disco,
+				      String madre, String fuente, String gabinete, List<Programa> programas) {
       
-        Compu pc = constructor.construirPcPersonalizada(cpu, gpu, ram, disco, madre, fuente, gabinete);
+        Compunent pc = constructor.construirPcPersonalizada(cpu, gpu, ram, disco, madre, fuente, gabinete, programas);
       
         return pc;
     }
     @Override
-    public void distribuir( Compu pc, String sucursal) {
+    public void distribuir( Compunent pc, String sucursal) {
       try {
             SucursalRemota destino = sucursalesRemotas.get(sucursal);
             if (destino != null) {
@@ -59,21 +59,21 @@ public class SucursalPrincipal  implements Sucursal{
         }
     }
     
-  public Compu fabricarPc(String tipoPc) {
+  public Compunent fabricarPc(String tipoPc) {
         switch (tipoPc.toLowerCase()) {
 	case "eco": return construirPcEco();
 	case "prem": return construirPcPrem();
 	default: return null;
         }
     }
-  public Compu fabricarPc(String tipoPc, Especificaciones specs) {
+  public Compunent fabricarPc(String tipoPc, Especificaciones specs) {
         switch (tipoPc.toLowerCase()) {
             case "eco": return construirPcEco();
             case "prem": return construirPcPrem();
             case "perso":
                 return construirPcPerso(
                     specs.cpu, specs.gpu, specs.ram, specs.disco,
-                    specs.madre, specs.fuente, specs.gabinete
+                    specs.madre, specs.fuente, specs.gabinete, specs.programas
                 );
             default: return null;
         }

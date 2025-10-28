@@ -4,7 +4,7 @@ import java.util.*;
 
 public class SucursalRemotaConcreta extends UnicastRemoteObject implements SucursalRemota {
     private String nombre;
-    private List<Compu> inventario;
+    private List<Compunent> inventario;
     private SucursalPrincipal principal;
 
     public SucursalRemotaConcreta(String nombre, SucursalPrincipal principal) throws RemoteException {
@@ -15,23 +15,27 @@ public class SucursalRemotaConcreta extends UnicastRemoteObject implements Sucur
     }
 
     @Override
-    public void recibirPc(Compu pc) throws RemoteException {
+    public void recibirPc(Compunent pc) throws RemoteException {
         inventario.add(pc);
         System.out.println(nombre + " recibió " + pc);
     }
 
     @Override
     public void pedirPc(String tipoPc) throws RemoteException {
-        Compu pc = principal.fabricarPc(tipoPc);
+        Compunent pc = principal.fabricarPc(tipoPc);
         principal.distribuir(pc, nombre);
     }
     @Override
     public void pedirPcPersonalizada(Especificaciones specs) throws RemoteException {
-        Compu pc = principal.fabricarPc("perso", specs);
+        Compunent pc = principal.fabricarPc("perso", specs);
         principal.distribuir(pc, nombre);
     }
 
-    public List<Compu> getInventario() {
+    public List<Compunent> getInventario() {
         return inventario;
+    }
+    @Override
+    public String getNombre() throws RemoteException{
+	return nombre;
     }
 }
