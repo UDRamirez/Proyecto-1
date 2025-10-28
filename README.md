@@ -35,6 +35,13 @@ La razón por la que implementamos este patrón es porque justamente como se lla
 El patrón Decorator en el proyecto fue implementado mediante nuestra clase PCDecorada, un tipo de PC que recibe un Compunent(un objeto de tipo Compu al principio para empezar a decorar) y luego un Programa, cada decorador agregado se envuelve a la PC base, agregando programas a una lista y actualizando el precio total de la PC cada vez que esto sucede, la estructura permite poder encadenar estos decoradores, agregando uno detrás de otro.
 La razón por la que nos pareció factible utilizar este patrón fue para evitar crear subclases para las combinaciones de los programas, además de que de cierta forma consideramos una analogía con la práctica 2, pues en esta se hacía builder con un helado (base) al cual se le decoraba con varios toppings, pero en este caso es una computadora (base) a la que se "decora" con programas, además el uso de este patrón nos permitio agregar funcionalidades sin tener que modificar la clase Compu
 
+### Programas que se pueden añadir: 
+-Windows 10, Precio: 500
+-WSLTerminal: Linux, Precio: 500
+-Adobe Photoshop 2025, Precio: 500
+-Office 2024, Precio:500
+-AutoCAD 2025, Precio:250
+
 
 ### Patrón **Proxy**
 ---
