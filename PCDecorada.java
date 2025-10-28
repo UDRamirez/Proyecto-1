@@ -3,8 +3,8 @@ import java.util.List;
 
 public class PCDecorada implements Compunent {
 
-    private Compunent compu;
-    private List<Programa> instalados;
+    public Compunent compu;
+    public List<Programa> instalados;
 
     public PCDecorada(Compunent compu, Programa programa) {
         this.compu = compu;
