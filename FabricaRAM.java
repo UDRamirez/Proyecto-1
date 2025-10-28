@@ -1,23 +1,23 @@
-
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Clase {@code FabricaRAM}.
  * <p>
  * Implementa la interfaz {@link ContratoFabrica} y se encarga de crear
- * instancias de la clase {@link RAM} según el modelo especificado.
+ * instancias de la clase {@link RAM} segun el modelo especificado.
  * </p>
  *
  * <p>
- * Esta clase forma parte del patrón de diseño <b>Abstract Factory</b>, 
- * donde cada fábrica concreta crea un tipo específico de componente 
+ * Esta clase forma parte del patron de diseño <b>Abstract Factory</b>, 
+ * donde cada fabrica concreta crea un tipo especifico de componente 
  * para ensamblar una computadora.
  * </p>
  */
 public class FabricaRAM implements ContratoFabrica {
 
     /**
-     * Crea una instancia de {@link RAM} en función del modelo indicado.
+     * Crea una instancia de {@link RAM} en funcion del modelo indicado.
      * <p>
      * Si el modelo no coincide con ninguno de los casos definidos,
      * se muestra un mensaje en consola y se devuelve {@code null}.
@@ -47,16 +47,20 @@ public class FabricaRAM implements ContratoFabrica {
         }
     }
 
+    /**
+     * Devuelve la lista de modelos de RAM disponibles en la fabrica.
+     *
+     * @return lista de nombres de modelos de RAM.
+     */
+    @Override
     public List<String> getModelos() {
-    List<String> modelos = new ArrayList<>();
-    modelos.add("Adata 8-GB");
-    modelos.add("Adata 16-GB");
-    modelos.add("Adata 32-GB");
-    modelos.add("Kingston 8-GB");
-    modelos.add("Kingston 16-GB");
-    modelos.add("Kingston 32-GB");
-    return modelos;
-}
-    
-
+        List<String> modelos = new ArrayList<>();
+        modelos.add("Adata 8-GB");
+        modelos.add("Adata 16-GB");
+        modelos.add("Adata 32-GB");
+        modelos.add("Kingston 8-GB");
+        modelos.add("Kingston 16-GB");
+        modelos.add("Kingston 32-GB");
+        return modelos;
+    }
 }
