@@ -16,24 +16,61 @@ public class Compu implements Compunent {
 
     }
 
-    // getters y setters de los componentes existentes
-    public void setCPU(CPU cpu) { this.cpu = cpu; }
-    public void setMadre(Madre madre) { this.madre = madre; }
-    public void setGPU(GPU gpu) { this.gpu = gpu; }
-    public void addRAM(RAM ram) { this.rams.add(ram); }
-    public void addDisco(Disco disco) { this.discos.add(disco); }
-    public void setFuente(Fuente fuente) { this.fuente = fuente; }
-    public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
+    public void setCPU(CPU cpu) { 
+		this.cpu = cpu; 
+	}
+	
+    public void setMadre(Madre madre) { 
+		this.madre = madre;
+	}
+	
+    public void setGPU(GPU gpu) {
+		this.gpu = gpu; 
+	}
+	
+    public void addRAM(RAM ram) { 
+		this.rams.add(ram); 
+	}
+	
+    public void addDisco(Disco disco) { 
+		this.discos.add(disco);
+	}
+	
+    public void setFuente(Fuente fuente) {
+		this.fuente = fuente; 
+	}
+	
+    public void setGabinete(Gabinete gabinete) { 
+		this.gabinete = gabinete; 
+	}
 
-    public List<RAM> getRams() { return rams; }
-    public List<Disco> getDiscos() { return discos; }
-    public CPU getCPU() { return cpu; }
-    public Madre getMadre() { return madre; }
-    public GPU getGPU() { return gpu; }
-    public Fuente getFuente() { return fuente; }
-    public Gabinete getGabinete() { return gabinete; }
+	
+    public List<RAM> getRams() {
+		return rams; 
+	}
+    public List<Disco> getDiscos() {
+		return discos;
+	}
+    public CPU getCPU() { 
+		return cpu; 
+	}
+	
+    public Madre getMadre() { 
+		return madre; 
+	}
+	
+    public GPU getGPU() { 
+		return gpu;
+	}
+	
+    public Fuente getFuente() { 
+		return fuente; 
+	}
+    public Gabinete getGabinete() { 
+		return gabinete; 
+	}
 
-    // NUEVOS MÉTODOS PARA LA INCOMPATIBILIDAD
+
     public void setIncompatibilidad(boolean valor) {
         this.huboIncompatibilidad = valor;
     }
@@ -83,6 +120,6 @@ public class Compu implements Compunent {
 
     @Override
     public List<Programa> getProgramas() {
-        return new ArrayList<>(); // Compu base no tiene programas
+        return new ArrayList<>();
     }
 }
