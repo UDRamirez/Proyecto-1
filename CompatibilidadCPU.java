@@ -3,8 +3,8 @@ import java.util.*;
 /**
  * Clase {@code CompatibilidadCPU}.
  * <p>
- * Proporciona métodos para verificar la compatibilidad entre piezas de hardware
- * utilizando el patrón Adaptador. También permite obtener una lista de piezas
+ * Proporciona metodos para verificar la compatibilidad entre piezas de hardware
+ * utilizando el patron Adaptador. Tambien permite obtener una lista de piezas
  * compatibles a partir de una pieza de referencia.
  * </p>
  *
@@ -28,7 +28,7 @@ import java.util.*;
 public class CompatibilidadCPU {
 
     /**
-     * Verifica si dos piezas adaptadas son compatibles entre sí.
+     * Verifica si dos piezas adaptadas son compatibles entre si.
      *
      * @param a la primera pieza adaptada.
      * @param b la segunda pieza adaptada.
@@ -41,12 +41,12 @@ public class CompatibilidadCPU {
     /**
      * Devuelve una lista de piezas compatibles con una pieza de referencia.
      * <p>
-     * Este método evalúa una lista de posibles alternativas y filtra aquellas
+     * Este metodo evalua una lista de posibles alternativas y filtra aquellas
      * que son compatibles con la pieza de referencia proporcionada.
      * </p>
      *
-     * @param <T> el tipo genérico que extiende {@link AdaptadorPieza}.
-     * @param referencia la pieza base con la que se evaluará la compatibilidad.
+     * @param <T> el tipo generico que extiende {@link AdaptadorPieza}.
+     * @param referencia la pieza base con la que se evaluara la compatibilidad.
      * @param alternativas la lista de piezas candidatas.
      * @return una lista de piezas compatibles con la pieza de referencia.
      */
