@@ -1,21 +1,21 @@
-
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Clase {@code FabricaMadre}.
  * <p>
  * Implementa la interfaz {@link ContratoFabrica} y se encarga de crear instancias
- * de placas madre ({@link Madre}) según el modelo especificado.
+ * de placas madre ({@link Madre}) segun el modelo especificado.
  * Soporta modelos de distintas marcas como ASUS y MSI, con diversos chipsets Intel.
  * </p>
  */
 public class FabricaMadre implements ContratoFabrica {
 
     /**
-     * Crea un componente de tipo {@link Madre} según el modelo proporcionado.
+     * Crea un componente de tipo {@link Madre} segun el modelo proporcionado.
      * <p>
      * Si el modelo no coincide con ninguno de los disponibles, se muestra un mensaje
-     * indicando que no se encontró el modelo y se devuelve {@code null}.
+     * indicando que no se encontro el modelo y se devuelve {@code null}.
      * </p>
      *
      * @param modelo el nombre exacto del modelo de placa madre a crear.
@@ -35,16 +35,17 @@ public class FabricaMadre implements ContratoFabrica {
                 return new Madre("MAG B760 Tomahawk", "MSI", 4200, "Chipset Intel B760");
 
             default:
-                System.out.println("No se ha encontrado ese modelo:  " + modelo);
+                System.out.println("No se ha encontrado ese modelo: " + modelo);
                 return null;
         }
     }
 
-     /**
-     * Devuelve una lista con todos los modelos de placas madre disponibles en la fábrica.
+    /**
+     * Devuelve una lista con todos los modelos de placas madre disponibles en la fabrica.
      *
      * @return lista de nombres de modelos de placas madre ASUS y MSI.
      */
+    @Override
     public List<String> getModelos() {
         List<String> modelos = new ArrayList<>();
         modelos.add("ROG Maximus Z790 Hero");   // ASUS
@@ -52,6 +53,5 @@ public class FabricaMadre implements ContratoFabrica {
         modelos.add("MEG Z790 Godlike");        // MSI
         modelos.add("MAG B760 Tomahawk");       // MSI
         return modelos;
-
     }
 }
