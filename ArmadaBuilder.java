@@ -1,13 +1,24 @@
 /**
  * Clase {@code ArmadaBuilder} que implementa la interfaz {@link ConstructorCompu}.
  * <p>
- * Este builder se utiliza para construir computadoras que ya están armadas,
- * agregando directamente los componentes a una instancia existente de {@link Compu}.
+ * Esta clase concreta del patrón <b>Builder</b> se encarga de construir objetos
+ * del tipo {@link Compu} paso a paso, agregando sus distintos componentes de hardware.
+ * <br><br>
+ * Se utiliza principalmente para crear computadoras ya armadas o predefinidas
+ * dentro del sistema, encapsulando el proceso de construcción y evitando que el
+ * código cliente deba preocuparse por los detalles internos de la creación.
  * </p>
+ *
+ * <h2>Patrón de diseño aplicado:</h2>
+ * <ul>
+ *   <li><b>Builder</b>: Permite construir objetos complejos (como una PC)
+ *       mediante pasos controlados, separando la construcción de su representación.</li>
+ * </ul>
+ *
+ * @author Miguel
+ * @version 1.0
  */
 public class ArmadaBuilder implements ConstructorCompu {
-
-    // Esta clase se usa para las compus que ya están armadas
 
     /**
      * Instancia de la computadora que se está construyendo.
@@ -15,8 +26,8 @@ public class ArmadaBuilder implements ConstructorCompu {
     private Compu pc;
 
     /**
-     * Constructor que inicializa un nuevo objeto {@link Compu} vacío
-     * para comenzar el proceso de construcción.
+     * Constructor que inicializa un nuevo objeto {@link Compu} vacío,
+     * listo para comenzar el proceso de construcción.
      */
     public ArmadaBuilder() {
         this.pc = new Compu();
@@ -28,32 +39,32 @@ public class ArmadaBuilder implements ConstructorCompu {
      * @param cpu el procesador que se agregará.
      */
     @Override
-    public void agregarCPU(CPU cpu) { 
-        pc.setCPU(cpu); 
+    public void agregarCPU(CPU cpu) {
+        pc.setCPU(cpu);
     }
 
     /**
-     * Agrega un componente de tipo {@link GPU} a la computadora.
+     * Agrega un componente de tipo {@link GPU} (tarjeta gráfica) a la computadora.
      *
      * @param gpu la tarjeta gráfica que se agregará.
      */
     @Override
     public void agregarGPU(GPU gpu) {
-        pc.setGPU(gpu); 
+        pc.setGPU(gpu);
     }
 
     /**
-     * Agrega un componente de tipo {@link Madre} (placa madre) a la computadora.
+     * Agrega una placa madre ({@link Madre}) a la computadora.
      *
      * @param madre la placa madre que se agregará.
      */
     @Override
-    public void agregarMadre(Madre madre) { 
-        pc.setMadre(madre); 
+    public void agregarMadre(Madre madre) {
+        pc.setMadre(madre);
     }
 
     /**
-     * Agrega un módulo de memoria {@link RAM} a la computadora.
+     * Agrega un módulo de memoria RAM ({@link RAM}) a la computadora.
      *
      * @param ram la memoria RAM que se agregará.
      */
@@ -63,37 +74,38 @@ public class ArmadaBuilder implements ConstructorCompu {
     }
 
     /**
-     * Agrega un dispositivo de almacenamiento {@link Disco} a la computadora.
+     * Agrega un dispositivo de almacenamiento ({@link Disco}) a la computadora.
      *
      * @param disco el disco duro o SSD que se agregará.
      */
     @Override
-    public void agregarDisco(Disco disco) { 
+    public void agregarDisco(Disco disco) {
         pc.addDisco(disco);
     }
 
     /**
-     * Agrega una fuente de poder {@link Fuente} a la computadora.
+     * Agrega una fuente de poder ({@link Fuente}) a la computadora.
      *
      * @param fuente la fuente de poder que se agregará.
      */
     @Override
-    public void agregarFuente(Fuente fuente) { 
-        pc.setFuente(fuente); 
+    public void agregarFuente(Fuente fuente) {
+        pc.setFuente(fuente);
     }
 
     /**
-     * Agrega un gabinete {@link Gabinete} a la computadora.
+     * Agrega un gabinete ({@link Gabinete}) a la computadora.
      *
      * @param gabinete el gabinete que se agregará.
      */
     @Override
     public void agregarGabinete(Gabinete gabinete) {
-        pc.setGabinete(gabinete); 
+        pc.setGabinete(gabinete);
     }
 
     /**
-     * Devuelve la computadora completamente construida con todos los componentes agregados.
+     * Devuelve la computadora completamente construida con todos los
+     * componentes agregados durante el proceso de construcción.
      *
      * @return el objeto {@link Compu} resultante.
      */
@@ -102,3 +114,4 @@ public class ArmadaBuilder implements ConstructorCompu {
         return pc;
     }
 }
+
