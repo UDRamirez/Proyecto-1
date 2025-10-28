@@ -20,7 +20,7 @@ public class Gabinete extends Pieza {
     }
 
     /**
-     * Devuelve una representación en texto del gabinete.
+     * Devuelve una representacion en texto del gabinete.
      *
      * @return una cadena con la información detallada del gabinete.
      */
