@@ -1,17 +1,17 @@
-import java.util.*;
-
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Clase {@code Madre}.
  * <p>
  * Representa una placa madre (motherboard) de computadora.
- * Hereda de {@link Pieza} e incluye información específica sobre el chipset
+ * Hereda de {@link Pieza} e incluye informacion sobre el chipset
  * y la compatibilidad con ciertos procesadores (AMD o Intel).
  * </p>
  */
 public class Madre extends Pieza {
 
-    /** Descripción del chipset de la placa madre. */
+    /** Descripcion del chipset de la placa madre. */
     private String chips;
 
     /** Lista de procesadores compatibles (AMD e Intel). */
@@ -23,7 +23,7 @@ public class Madre extends Pieza {
      * @param nombre nombre de la placa madre.
      * @param marca marca del fabricante.
      * @param precio precio de la placa madre.
-     * @param chips descripción del chipset de la placa madre.
+     * @param chips descripcion del chipset de la placa madre.
      */
     public Madre(String nombre, String marca, double precio, String chips) {
         super(nombre, marca, precio, "Motherboard");
@@ -31,7 +31,7 @@ public class Madre extends Pieza {
     }
 
     /**
-     * Obtiene la descripción completa del chipset.
+     * Obtiene la descripcion completa del chipset.
      *
      * @return el chipset de la placa madre.
      */
@@ -39,19 +39,17 @@ public class Madre extends Pieza {
         return chips;
     }
 
-
     /**
      * Obtiene el tipo de procesador compatible basado en el chipset.
      * <p>
-     * Analiza la descripción del chipset y devuelve "AMD" o "Intel" si se encuentra
+     * Analiza la descripcion del chipset y devuelve "AMD" o "Intel" si se encuentra
      * en la lista de procesadores compatibles. Si no se encuentra ninguno, devuelve un espacio.
      * </p>
      *
-     * @return el tipo de procesador compatible ("AMD", "Intel") o un valor vacío si no existe.
+     * @return el tipo de procesador compatible ("AMD", "Intel") o un valor vacio si no existe.
      */
     public String getTipoChip() {
-        if (chips.toLowerCase() == null) return "[Inexistente]";
-
+        if (chips == null || chips.isEmpty()) return "[Inexistente]";
 
         String[] palabras = chips.trim().split(" ");
         for (String palabra : palabras) {
@@ -60,15 +58,14 @@ public class Madre extends Pieza {
             }
         }
 
-
         return " ";
     }
 
     /**
-     * Devuelve una representación en texto de la placa madre,
+     * Devuelve una representacion en texto de la placa madre,
      * incluyendo el chipset.
      *
-     * @return una cadena con la información detallada de la placa madre.
+     * @return una cadena con la informacion detallada de la placa madre.
      */
     @Override
     public String toString() {
