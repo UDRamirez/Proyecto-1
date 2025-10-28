@@ -24,25 +24,25 @@ public class App {
             Compunent pcSeleccionada = null;
 
             switch (opcion) {
-                case 1:
+                case 1 -> {
                     Compunent pcEcoPreview = director.construirPcEconomica();
                     System.out.println("\n=== Detalles PC Económica ===");
                     System.out.println(pcEcoPreview.getDescripcion());
-                    if (confirmar(sc, "¿Desea ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcEcoPreview;
                     }
-                    break;
+                }
 
-                case 2:
+                case 2 -> {
                     Compunent pcPremPreview = director.construirPcPremium();
                     System.out.println("\n=== Detalles PC Premium ===");
                     System.out.println(pcPremPreview.getDescripcion());
-                    if (confirmar(sc, "¿Desea ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\n¿Desea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcPremPreview;
                     }
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
                     System.out.println("\n=== Construye tu PC Personalizada ===");
                     Compu compuPersonal = new Compu();
                     List<Programa> programasPersonal = new ArrayList<>();
@@ -64,7 +64,7 @@ public class App {
                     AdaptadorMadre adapMadre = new AdaptadorMadre(madre);
                     if (!adapCPU.esCompatibleCon(adapMadre)) {
                         System.out.println("\n⚠ CPU y Motherboard no son compatibles.");
-                        if (!confirmar(sc, "¿Desea continuar de todos modos? (s/n)")) {
+                        if (!preguntarSN(sc, "¿Desea continuar de todos modos? (s/n)")) {
                             System.out.println("No se añadieron CPU ni Motherboard.");
                             break;
                         }
@@ -89,7 +89,7 @@ public class App {
                         RAM nuevaRAM = (RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM));
                         compuPersonal.addRAM(nuevaRAM);
                         System.out.println("RAM agregada: " + nuevaRAM.getNombre());
-                        agregarMasRAM = confirmar(sc, "¿Desea agregar otra memoria RAM? (s/n)");
+                        agregarMasRAM = preguntarSN(sc, "¿Desea agregar otra memoria RAM? (s/n)");
                     }
 
                     // === Disco ===
@@ -102,7 +102,7 @@ public class App {
                         Disco nuevoDisco = (Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco));
                         compuPersonal.addDisco(nuevoDisco);
                         System.out.println("Disco agregado: " + nuevoDisco.getNombre());
-                        agregarMasDisco = confirmar(sc, "¿Desea agregar otro disco? (s/n)");
+                        agregarMasDisco = preguntarSN(sc, "¿Desea agregar otro disco? (s/n)");
                     }
 
                     // === Fuente ===
@@ -119,14 +119,27 @@ public class App {
 
                     // === Programas personalizados ===
                     boolean agregarProgramas = true;
-                    while (confirmar(sc, "¿Desea agregar un programa? (s/n)")) {
+                    while (agregarProgramas) {
+                        if (!preguntarSN(sc, "\n¿Desea agregar un programa? (s/n)")) break;
+
                         System.out.println("Seleccione el programa a agregar:");
                         String[] opciones = {"Windows", "Office", "Photoshop", "AutoCAD", "WSLTerminal"};
                         for (int i = 0; i < opciones.length; i++) {
                             System.out.println((i + 1) + ". " + opciones[i]);
                         }
 
-                        int progIdx = seleccionarNumero(sc, "Ingrese una opción:", 1, opciones.length) - 1;
+                        if (!sc.hasNextInt()) {
+                            System.out.println("Debe ingresar un número.");
+                            sc.nextLine();
+                            continue;
+                        }
+                        int progIdx = sc.nextInt() - 1;
+                        sc.nextLine();
+
+                        if (progIdx < 0 || progIdx >= opciones.length) {
+                            System.out.println("Opción inválida, no se añadió programa.");
+                            continue;
+                        }
 
                         Programa prog = switch (opciones[progIdx]) {
                             case "Windows" -> new Windows();
@@ -141,7 +154,6 @@ public class App {
                                 .anyMatch(p -> p.getNombre().equalsIgnoreCase(prog.getNombre()));
                         if (!existe) {
                             programasPersonal.add(prog);
-                            System.out.println("Programa agregado: " + prog.getNombre());
                         } else {
                             System.out.println("El programa ya fue agregado, se ignora duplicado.");
                         }
@@ -160,30 +172,34 @@ public class App {
 
                     System.out.println("\n=== Detalles PC Personalizada ===");
                     System.out.println(pcSeleccionada.getDescripcion());
-                    break;
+                }
 
-                case 0:
+                case 0 -> {
                     continuar = false;
                     System.out.println("\nGracias por usar RockBuster PC. ¡Hasta pronto!");
-                    break;
+                }
 
-                default:
-                    System.out.println("Opción no válida.");
+                default -> System.out.println("Opción no válida.");
             }
 
             if (pcSeleccionada != null) {
-                if (confirmar(sc, "\n¿Desea confirmar la compra de esta PC? (s/n)")) {
+                if (preguntarSN(sc, "\n¿Desea confirmar la compra de esta PC? (s/n)")) {
                     Ticket ticket = new Ticket(pcSeleccionada, "Sucursal Central");
 
                     boolean huboAdaptacion = false;
+
+                    // 🔹 Desempaquetamos todas las decoraciones hasta llegar a la base Compu
                     Compunent base = pcSeleccionada;
-                    while (base instanceof PCDecorada decorada) {
-                        base = decorada.getProgramas().isEmpty() ? base : ((PCDecorada) base).compu;
+                    while (base instanceof PCDecorada) {
+                        base = ((PCDecorada) base).compu;
                     }
 
+                    // 🔹 Si la base es una computadora real, revisamos si hubo adaptaciones
                     if (base instanceof Compu c) {
-                        huboAdaptacion = (c.getCPU() != null && c.getCPU().getAdaptado())
-                                || (c.getMadre() != null && c.getMadre().getAdaptado());
+                        if ((c.getCPU() != null && c.getCPU().getAdaptado()) ||
+                                (c.getMadre() != null && c.getMadre().getAdaptado())) {
+                            huboAdaptacion = true;
+                        }
                     }
 
                     System.out.println("\n===== TICKET DE COMPRA =====");
@@ -198,33 +214,7 @@ public class App {
         sc.close();
     }
 
-    // 🔹 Método auxiliar para confirmar S/N con validación
-    private static boolean confirmar(Scanner sc, String mensaje) {
-        while (true) {
-            System.out.print(mensaje + " ");
-            String respuesta = sc.nextLine().trim().toLowerCase();
-            if (respuesta.equals("s")) return true;
-            if (respuesta.equals("n")) return false;
-            System.out.println("⚠ Eso no es una opción válida. Intente nuevamente (s/n).");
-        }
-    }
-
-    // 🔹 Método auxiliar para validar selección numérica segura
-    private static int seleccionarNumero(Scanner sc, String mensaje, int min, int max) {
-        int num;
-        while (true) {
-            System.out.print(mensaje + " ");
-            try {
-                num = Integer.parseInt(sc.nextLine());
-                if (num >= min && num <= max) return num;
-                System.out.println("⚠ Número fuera de rango (" + min + "-" + max + "). Intente de nuevo.");
-            } catch (NumberFormatException e) {
-                System.out.println("⚠ Entrada inválida. Ingrese un número.");
-            }
-        }
-    }
-
-    // 🔹 Método auxiliar para seleccionar componentes con validación
+    // 🔹 Método auxiliar para selección con validación
     private static int seleccionarComponente(Scanner sc, String tipo, List<String> modelos, ContratoFabrica fab) {
         int idx = -1;
         while (true) {
@@ -233,8 +223,29 @@ public class App {
                 Pieza temp = (Pieza) fab.crearComponente(modelos.get(i));
                 System.out.println((i + 1) + ". " + temp.getNombre() + " - $" + temp.getPrecio());
             }
-            idx = seleccionarNumero(sc, "Ingrese el número de su elección:", 1, modelos.size()) - 1;
-            return idx;
+            System.out.print("Ingrese el número de su elección: ");
+            if (!sc.hasNextInt()) {
+                System.out.println("Debe ingresar un número.");
+                sc.nextLine();
+                continue;
+            }
+            idx = sc.nextInt() - 1;
+            sc.nextLine();
+            if (idx >= 0 && idx < modelos.size()) break;
+            System.out.println("Opción inválida, intente de nuevo.");
+        }
+        return idx;
+    }
+
+    // 🔹 Método auxiliar para validar respuestas (s/n)
+    private static boolean preguntarSN(Scanner sc, String mensaje) {
+        while (true) {
+            System.out.print(mensaje + " ");
+            String respuesta = sc.nextLine().trim().toLowerCase();
+            if (respuesta.equals("s")) return true;
+            if (respuesta.equals("n")) return false;
+            System.out.println("Eso no es una opción. Por favor, ingrese 's' o 'n'.");
         }
     }
 }
+
