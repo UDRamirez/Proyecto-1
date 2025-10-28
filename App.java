@@ -7,21 +7,39 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.RemoteException;
 
+/**
+ * Clase principal {@code App} del sistema MonosChinosMX.
+ * <p>
+ * Esta clase ejecuta el flujo principal del programa, permitiendo al usuario:
+ * <ul>
+ *   <li>Visualizar computadoras preconstruidas o personalizar una PC.</li>
+ *   <li>Seleccionar piezas y programas.</li>
+ *   <li>Verificar compatibilidad entre componentes.</li>
+ *   <li>Simular la compra y envio de la PC mediante RMI.</li>
+ * </ul>
+ * </p>
+ */
 public class App {
 
+    /**
+     * Metodo principal del programa. Controla el flujo de seleccion y creacion de PCs,
+     * gestionando tanto PCs prediseñadas como personalizadas.
+     *
+     * @param args argumentos de linea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         DirectorConstructor director = new DirectorConstructor();
-        System.out.println("=== ¡Bienvenido a la plataforma de MonosChinosMX! ===");
-        System.out.println("===Por favor, consulta nuestras Pc's pre-hechas o haz la tuya propia===");
+        System.out.println("=== Bienvenido a la plataforma de MonosChinosMX ===");
+        System.out.println("=== Por favor, consulta nuestras PCs pre-hechas o haz la tuya propia ===");
 
-        // 🔹 Inicialización del sistema de Proxy/RMI
+        // Inicializacion del sistema de Proxy/RMI
         Map<String, SucursalRemota> sucursalesMap = new HashMap<>();
         SucursalPrincipal principal = new SucursalPrincipal(sucursalesMap);
         System.out.println("Sucursal principal CDMX inicializada.");
 
-        // 🔹 Conexión a sucursales remotas
+        // Conexion a sucursales remotas
         String[] nombresRemotas = {"Sucursal Chihuahua", "Sucursal Jalisco", "Sucursal Yucatan"};
         for (String nombre : nombresRemotas) {
             try {
@@ -30,10 +48,10 @@ public class App {
                 SucursalProxy proxy = new SucursalProxy(stub);
                 principal.registrarSucursal(nombre, proxy);
                 sucursalesMap.put(nombre, proxy);
-                System.out.println("✅ Conexión RMI establecida con " + nombre);
+                System.out.println("Conexion RMI establecida con " + nombre);
             } catch (Exception e) {
-                System.err.println("⚠ No se pudo conectar a " + nombre + ": " + e.getMessage());
-                System.out.println("La sucursal se omitirá de la distribución remota.");
+                System.err.println("No se pudo conectar a " + nombre + ": " + e.getMessage());
+                System.out.println("La sucursal se omitira de la distribucion remota.");
             }
         }
 
@@ -41,7 +59,7 @@ public class App {
 
         while (continuar) {
             System.out.println("\nSeleccione el tipo de computadora que desea:");
-            System.out.println("1- PC Económica");
+            System.out.println("1- PC Economica");
             System.out.println("2- PC Premium");
             System.out.println("3- PC Personalizada");
             System.out.println("0- Salir");
@@ -54,7 +72,7 @@ public class App {
                 case 1 -> {
                     Compunent pcEcoPreview = director.construirPcEconomica();
                     System.out.println(pcEcoPreview.getDescripcion());
-                    if (preguntarSN(sc, "\n¿Deseas ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\nDesea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcEcoPreview;
                     }
                 }
@@ -62,13 +80,13 @@ public class App {
                 case 2 -> {
                     Compunent pcPremPreview = director.construirPcPremium();
                     System.out.println(pcPremPreview.getDescripcion());
-                    if (preguntarSN(sc, "\n¿Deseas ordenar esta PC? (s/n)")) {
+                    if (preguntarSN(sc, "\nDesea ordenar esta PC? (s/n)")) {
                         pcSeleccionada = pcPremPreview;
                     }
                 }
 
                 case 3 -> {
-                    System.out.println("\n=== ¡Construyamos tu propia PC! ===");
+                    System.out.println("\n=== Construyamos tu propia PC ===");
                     Compu compuPersonal = new Compu();
                     List<Programa> programasPersonal = new ArrayList<>();
                     boolean huboIncompatibilidad = false;
@@ -89,9 +107,9 @@ public class App {
                     AdaptadorCPU adapCPU = new AdaptadorCPU(cpu);
                     AdaptadorMadre adapMadre = new AdaptadorMadre(madre);
                     if (!adapCPU.esCompatibleCon(adapMadre)) {
-                        System.out.println("\n⚠ CPU y Motherboard no son compatibles.");
-                        if (!preguntarSN(sc, "¿Desea continuar de todos modos? (s/n)")) {
-                            System.out.println("No se añadieron CPU ni Motherboard.");
+                        System.out.println("\nCPU y Motherboard no son compatibles.");
+                        if (!preguntarSN(sc, "Desea continuar de todos modos? (s/n)")) {
+                            System.out.println("No se anadieron CPU ni Motherboard.");
                         } else {
                             cpu.setAdaptado(true);
                             madre.setAdaptado(true);
@@ -110,7 +128,7 @@ public class App {
                     int idxGPU = seleccionarComponente(sc, "GPU", modelosGPU, fabGPU);
                     compuPersonal.setGPU((GPU) fabGPU.crearComponente(modelosGPU.get(idxGPU)));
 
-                    // RAMs
+                    // RAM
                     ContratoFabrica fabRAM = FabricaMaestra.getFabrica("ram");
                     List<String> modelosRAM = fabRAM.getModelos();
                     boolean agregarMasRAM = true;
@@ -120,7 +138,7 @@ public class App {
                         RAM nuevaRAM = (RAM) fabRAM.crearComponente(modelosRAM.get(idxRAM));
                         compuPersonal.addRAM(nuevaRAM);
                         System.out.println("RAM agregada: " + nuevaRAM.getNombre());
-                        agregarMasRAM = preguntarSN(sc, "¿Desea agregar otra memoria RAM? (s/n)");
+                        agregarMasRAM = preguntarSN(sc, "Desea agregar otra memoria RAM? (s/n)");
                     }
 
                     // Discos
@@ -133,7 +151,7 @@ public class App {
                         Disco nuevoDisco = (Disco) fabDisco.crearComponente(modelosDisco.get(idxDisco));
                         compuPersonal.addDisco(nuevoDisco);
                         System.out.println("Disco agregado: " + nuevoDisco.getNombre());
-                        agregarMasDisco = preguntarSN(sc, "¿Desea agregar otro disco? (s/n)");
+                        agregarMasDisco = preguntarSN(sc, "Desea agregar otro disco? (s/n)");
                     }
 
                     // Fuente
@@ -151,7 +169,7 @@ public class App {
                     // Programas
                     boolean agregarProgramas = true;
                     while (agregarProgramas) {
-                        if (!preguntarSN(sc, "\n¿Desea agregar un programa? (s/n)")) break;
+                        if (!preguntarSN(sc, "\nDesea agregar un programa? (s/n)")) break;
 
                         System.out.println("Seleccione el programa a agregar:");
                         String[] opciones = {"Windows", "Office", "Photoshop", "AutoCAD", "WSLTerminal"};
@@ -160,7 +178,7 @@ public class App {
                         }
 
                         if (!sc.hasNextInt()) {
-                            System.out.println("Debe ingresar un número.");
+                            System.out.println("Debe ingresar un numero.");
                             sc.nextLine();
                             continue;
                         }
@@ -168,7 +186,7 @@ public class App {
                         sc.nextLine();
 
                         if (progIdx < 0 || progIdx >= opciones.length) {
-                            System.out.println("Opción inválida, no se añadió programa.");
+                            System.out.println("Opcion invalida, no se anadio programa.");
                             continue;
                         }
 
@@ -205,24 +223,24 @@ public class App {
 
                 case 0 -> {
                     continuar = false;
-                    System.out.println("\nGracias por visitarnos, ¡Hasta pronto!");
+                    System.out.println("\nGracias por visitarnos, hasta pronto!");
                 }
 
-                default -> System.out.println("Opción no válida.");
+                default -> System.out.println("Opcion no valida.");
             }
 
             if (pcSeleccionada != null) {
-                if (preguntarSN(sc, "\n¿Deseas confirmar la compra de esta PC? (s/n)")) {
+                if (preguntarSN(sc, "\nDesea confirmar la compra de esta PC? (s/n)")) {
 
-                    // 🔹 Selección de sucursal destino
+                    // Seleccion de sucursal destino
                     String nombreSucursal = "Sucursal CDMX";
                     SucursalRemota sucursalDestino = null;
 
-                    System.out.println("\n=== Selección de sucursal destino ===");
+                    System.out.println("\n=== Seleccion de sucursal destino ===");
                     System.out.println("1. Sucursal Principal CDMX (local)");
                     System.out.println("2. Sucursal Chihuahua");
                     System.out.println("3. Sucursal Jalisco");
-                    System.out.println("4. Sucursal Yucatán");
+                    System.out.println("4. Sucursal Yucatan");
                     System.out.print("Seleccione la sucursal destino (1-4): ");
 
                     int opcionSucursal = sc.nextInt();
@@ -233,7 +251,7 @@ public class App {
                         case 2 -> sucursalDestino = sucursalesMap.get("Sucursal Chihuahua");
                         case 3 -> sucursalDestino = sucursalesMap.get("Sucursal Jalisco");
                         case 4 -> sucursalDestino = sucursalesMap.get("Sucursal Yucatan");
-                        default -> System.out.println("Opción inválida, se usará la sucursal principal.");
+                        default -> System.out.println("Opcion invalida, se usara la sucursal principal.");
                     }
 
                     boolean envioExitoso = false;
@@ -241,10 +259,10 @@ public class App {
                         try {
                             sucursalDestino.recibirPc(pcSeleccionada);
                             envioExitoso = true;
-                            System.out.println("✅ PC enviada exitosamente a " + nombreSucursal);
+                            System.out.println("PC enviada exitosamente a " + nombreSucursal);
                         } catch (RemoteException e) {
-                            System.err.println("⚠ Error al enviar la PC a " + nombreSucursal + ": " + e.getMessage());
-                            System.out.println("Se usará la sucursal principal localmente.");
+                            System.err.println("Error al enviar la PC a " + nombreSucursal + ": " + e.getMessage());
+                            System.out.println("Se usara la sucursal principal localmente.");
                             nombreSucursal = "Sucursal CDMX";
                         }
                     } else {
@@ -261,7 +279,7 @@ public class App {
         sc.close();
     }
 
-    // Método auxiliar para seleccionar componentes con validación
+    // Metodo auxiliar para seleccionar componentes con validacion
     private static int seleccionarComponente(Scanner sc, String tipo, List<String> modelos, ContratoFabrica fab) {
         int idx = -1;
         while (true) {
@@ -270,28 +288,28 @@ public class App {
                 Pieza temp = (Pieza) fab.crearComponente(modelos.get(i));
                 System.out.println((i + 1) + ". " + temp.getNombre() + " - $" + temp.getPrecio());
             }
-            System.out.print("Ingrese el número de su elección: ");
+            System.out.print("Ingrese el numero de su eleccion: ");
             if (!sc.hasNextInt()) {
-                System.out.println("Debe ingresar un número.");
+                System.out.println("Debe ingresar un numero.");
                 sc.nextLine();
                 continue;
             }
             idx = sc.nextInt() - 1;
             sc.nextLine();
             if (idx >= 0 && idx < modelos.size()) break;
-            System.out.println("Opción inválida, intente de nuevo.");
+            System.out.println("Opcion invalida, intente de nuevo.");
         }
         return idx;
     }
 
-    // Método para preguntar sí/no con validación
+    // Metodo para preguntar si/no con validacion
     private static boolean preguntarSN(Scanner sc, String mensaje) {
         while (true) {
             System.out.print(mensaje + " ");
             String respuesta = sc.nextLine().trim().toLowerCase();
             if (respuesta.equals("s")) return true;
             if (respuesta.equals("n")) return false;
-            System.out.println("Eso no es una opción. Por favor, ingrese 's' o 'n'.");
+            System.out.println("Eso no es una opcion. Por favor, ingrese 's' o 'n'.");
         }
     }
 }
