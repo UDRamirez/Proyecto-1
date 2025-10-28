@@ -6,15 +6,14 @@
  */
 public class Office extends Programa {
 
-
     /**
      * Crea una nueva instancia de {@code Office}.
-     *
-     * @param version versión del programa (por ejemplo, "2024").
-     * @param precio  precio del programa.
+     * <p>
+     * Inicializa el programa con un nombre predeterminado y un precio fijo.
+     * </p>
      */
     public Office() {
-        super("Microsoft Office 2024 ", 500.0);
-
+        super("Microsoft Office 2024", 500.0);
     }
 }
+
