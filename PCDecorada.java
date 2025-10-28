@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Clase {@code PCDecorada}.
  * <p>
- * Implementa el patrón <b>Decorator</b> para añadir programas adicionales
+ * Implementa el patron Decorator para anadir programas adicionales
  * a una computadora ya ensamblada sin modificar su estructura base.
  * Cada programa instalado aumenta el precio total y se agrega a la lista
  * de software de la computadora.
@@ -34,11 +34,11 @@ public class PCDecorada implements Compunent, Serializable {
             this.instalados.addAll(compu.getProgramas());
         }
 
-        // Instalar solo si no está repetido
+        // Instalar solo si no esta repetido
         if (!tienePrograma(programa.getNombre())) {
             this.instalados.add(programa);
         } else {
-            System.out.println("⚠ Advertencia: El programa '" + programa.getNombre() + "' ya está instalado y no se agregará nuevamente.");
+            System.out.println("Advertencia: El programa '" + programa.getNombre() + "' ya esta instalado y no se agregara nuevamente.");
         }
     }
 
@@ -48,7 +48,7 @@ public class PCDecorada implements Compunent, Serializable {
         return instalados;
     }
 
-    /** Verifica si el programa ya está instalado. */
+    /** Verifica si el programa ya esta instalado. */
     public boolean tienePrograma(String nombre) {
         return instalados.stream().anyMatch(p -> p.getNombre().equalsIgnoreCase(nombre));
     }
@@ -61,7 +61,7 @@ public class PCDecorada implements Compunent, Serializable {
         return total;
     }
 
-    /** Devuelve la descripción detallada con los programas añadidos. */
+    /** Devuelve la descripcion detallada con los programas anadidos. */
     @Override
     public String getDescripcion() {
         StringBuilder sb = new StringBuilder(compu.getDescripcionBase());
@@ -77,7 +77,7 @@ public class PCDecorada implements Compunent, Serializable {
         return sb.toString();
     }
 
-    /** Devuelve la descripción base del hardware sin incluir programas. */
+    /** Devuelve la descripcion base del hardware sin incluir programas. */
     @Override
     public String getDescripcionBase() {
         return compu.getDescripcionBase();
