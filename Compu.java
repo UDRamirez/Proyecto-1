@@ -3,13 +3,32 @@ import java.util.List;
 import java.io.Serializable;
 
 /**
- * Clase {@code Compu} que implementa la interfaz {@link Compunent}.
+ * Clase {@code Compu} que implementa la interfaz {@link Compunent} y {@link Serializable}.
  * <p>
  * Representa una computadora ensamblada con sus distintos componentes de hardware,
  * incluyendo CPU, GPU, placa madre, memorias RAM, discos duros, fuente de poder y gabinete.
  * Proporciona métodos para agregar componentes, verificar compatibilidad,
- * obtener el precio total y generar una descripción detallada del hardware instalado.
+ * obtener el precio total y generar una descripcion detallada del hardware instalado.
  * </p>
+ *
+ * <h2>Funcionamiento:</h2>
+ * <ul>
+ *   <li>Permite agregar y obtener cada componente individualmente.</li>
+ *   <li>Calcula el precio total sumando todos los componentes y programas instalados.</li>
+ *   <li>Genera descripciones base y completas, incluyendo programas y posibles incompatibilidades.</li>
+ * </ul>
+ *
+ * <h2>Ejemplo de uso:</h2>
+ * <pre>{@code
+ * Compu miPC = new Compu();
+ * miPC.setCPU(new CPU("Ryzen 5 5600X", "AMD", 250.0, 6));
+ * miPC.setGPU(new GPU("RTX 3060", "Nvidia", 400.0));
+ * System.out.println(miPC.getDescripcion());
+ * }</pre>
+ *
+ * @see Compunent
+ * @see Serializable
+ * @version 1.0
  */
 public class Compu implements Compunent, Serializable {
 
@@ -22,26 +41,44 @@ public class Compu implements Compunent, Serializable {
     private Fuente fuente;
     private List<Programa> programas = new ArrayList<>();
 
-    // 🔹 Campo agregado de tu versión
+    /**
+     * Indica si hubo incompatibilidad entre componentes durante el ensamblaje.
+     */
     private boolean huboIncompatibilidad = false;
 
-    // Constructor vacío
+    /**
+     * Constructor vacio para inicializar una instancia de {@code Compu}.
+     */
     public Compu() {}
 
-    // 🔹 Métodos de compatibilidad
+    /**
+     * Devuelve true si se detectaron incompatibilidades en los componentes.
+     *
+     * @return {@code true} si hubo incompatibilidades, {@code false} en caso contrario.
+     */
     public boolean tuvoIncompatibilidad() {
         return this.huboIncompatibilidad;
     }
 
+    /**
+     * Establece el estado de incompatibilidad de los componentes.
+     *
+     * @param valor {@code true} si hubo incompatibilidad, {@code false} en caso contrario.
+     */
     public void setIncompatibilidad(boolean valor) {
         this.huboIncompatibilidad = valor;
     }
 
+    /**
+     * Obtiene el estado de incompatibilidad de los componentes.
+     *
+     * @return {@code true} si hubo incompatibilidad, {@code false} en caso contrario.
+     */
     public boolean getIncompatibilidad() {
         return this.huboIncompatibilidad;
     }
 
-    // 🔹 Setters
+    // Setters para los componentes
     public void setCPU(CPU cpu) { this.cpu = cpu; }
     public void setGPU(GPU gpu) { this.gpu = gpu; }
     public void setMadre(Madre madre) { this.madre = madre; }
@@ -51,7 +88,7 @@ public class Compu implements Compunent, Serializable {
     public void setGabinete(Gabinete gabinete) { this.gabinete = gabinete; }
     public void addPrograma(Programa programa) { this.programas.add(programa); }
 
-    // 🔹 Getters
+    // Getters para los componentes
     public CPU getCPU() { return cpu; }
     public GPU getGPU() { return gpu; }
     public Madre getMadre() { return madre; }
@@ -62,7 +99,12 @@ public class Compu implements Compunent, Serializable {
     @Override
     public List<Programa> getProgramas() { return programas; }
 
-    // 🔹 Cálculo de precio total
+    /**
+     * Calcula el precio total de la computadora sumando todos los componentes
+     * y los programas instalados.
+     *
+     * @return el precio total de la computadora.
+     */
     @Override
     public double getPrecio() {
         double total = 0;
@@ -77,7 +119,12 @@ public class Compu implements Compunent, Serializable {
         return total;
     }
 
-    // 🔹 Descripción general
+    /**
+     * Genera una descripcion completa de la computadora, incluyendo componentes,
+     * programas instalados, precio total y advertencia de incompatibilidades si existen.
+     *
+     * @return una cadena con la descripcion completa de la computadora.
+     */
     @Override
     public String getDescripcion() {
         StringBuilder sb = new StringBuilder(getDescripcionBase());
@@ -93,15 +140,19 @@ public class Compu implements Compunent, Serializable {
 
         sb.append("\nPrecio total: $").append(getPrecio());
 
-        // 🔹 Si hubo incompatibilidad, lo indicamos al final
         if (huboIncompatibilidad) {
-            sb.append("\n⚠️ Se detectaron incompatibilidades en algunos componentes.");
+            sb.append("\n⚠ Se detectaron incompatibilidades en algunos componentes.");
         }
 
         return sb.toString();
     }
 
-    // 🔹 Descripción detallada del hardware
+    /**
+     * Genera una descripcion detallada del hardware instalado en la computadora,
+     * incluyendo adaptaciones si los componentes fueron adaptados para compatibilidad.
+     *
+     * @return una cadena con la descripcion base de los componentes.
+     */
     @Override
     public String getDescripcionBase() {
         StringBuilder sb = new StringBuilder();
