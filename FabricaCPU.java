@@ -6,7 +6,7 @@ import java.util.List;
  * <p>
  * Implementa la interfaz {@link ContratoFabrica} y se encarga de crear instancias
  * de procesadores {@link CPU} específicos según el modelo solicitado.
- * Forma parte del patrón <b>Abstract Factory</b>, permitiendo la creación de CPUs
+ * Forma parte del patron <b>Abstract Factory</b>, permitiendo la creación de CPUs
  * de distintas marcas (Intel o AMD) sin acoplar el código a clases concretas.
  * </p>
  */
