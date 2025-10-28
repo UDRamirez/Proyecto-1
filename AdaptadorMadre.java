@@ -60,4 +60,3 @@ public class AdaptadorMadre implements AdaptadorPieza {
         return madre;
     }
 }
-
