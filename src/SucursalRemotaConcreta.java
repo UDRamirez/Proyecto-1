@@ -45,7 +45,7 @@ public class SucursalRemotaConcreta extends UnicastRemoteObject implements Sucur
     @Override
     public void recibirPc(Compunent pc) throws RemoteException {
         inventario.add(pc);
-        System.out.println(nombre + " recibio " + pc);
+        System.out.println(nombre + " recibio exitosamente");
     }
 
     /**
