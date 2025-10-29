@@ -143,6 +143,16 @@ El proposito principal del patron proxy en el proyecto fue controlar el acceso a
 
 ---
 
+## Instrucciones de Ejecución para Docker:
+Primero:
+ ```
+  sudo docker build -t app .
+ ```
+Despues:
+```
+sudo docker run -it --name rmi-test --rm app
+```
+
 ## Descripción del Programa
 
 El proyecto MonosChinosMX es un sistema de venta y armado de computadoras que permite al usuario seleccionar entre PCs prediseñadas o construir una completamente personalizada desde 0.
