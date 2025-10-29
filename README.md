@@ -19,12 +19,12 @@ Quisimos usar Abstract Factory para este segmento puesto que son muchas piezas y
 
 ### Tipos de piezas y sus precios (en pesos) con los que se puede construir la PC:
 ### **CPU**
-INTEL:
-  -Core i3-13100:	1500
+-INTEL:
+    -Core i3-13100:	    1500
 	-Core i5-13600K:	3200
 	-Core i7-13700K:	5800
 	-Core i9-13900K:	9500
-  AMD:
+  -AMD:
 	-Ryzen 5 5600G:	1500
 	-Ryzen 5 7600X:	3000
 	-Ryzen 7 7700X:	6000
@@ -37,12 +37,12 @@ INTEL:
 	-Kingston 16-GB:	1300
 	-Kingston 32-GB:	2000
 ### **Discos duros**
-HDD:
+-HDD:
   -Western Digital Blue 500-GB:	450
 	-Western Digital Blue 1-TB:	600
 	-Seagate Barracuda 1-TB: 550
 	-Seagate Barracuda 2-TB: 800
-  SSD:
+  -SSD:
 	-Kingston 500-GB (SSD):	500
 	-Kingston 1-TB (SSD):	800
 	-Kingston 2-TB (SSD):	1600
