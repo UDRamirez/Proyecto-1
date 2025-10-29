@@ -146,5 +146,7 @@ El proposito principal del patron proxy en el proyecto fue controlar el acceso a
 ## Descripción del Programa
 
 El proyecto MonosChinosMX es un sistema de venta y armado de computadoras que permite al usuario seleccionar entre PCs prediseñadas o construir una completamente personalizada desde 0.
+
+
 El proyecto usa varios patrones de diseño como Abstract Factory, Builder, Decorator y Proxy, para estructurar el sistema de forma modular, escalable y flexible.
 Además, emplea RMI (Remote Method Invocation) para simular la comunicación entre sucursales remotas, haciendo que el cliente pueda comprar o distribuir computadoras entre distintas ubicaciones del país sin acceder directamente a los objetos remotos.
