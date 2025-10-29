@@ -258,6 +258,7 @@ public class App {
                     if (sucursalDestino != null) {
                         try {
                             sucursalDestino.recibirPc(pcSeleccionada);
+                            nombreSucursal = sucursalDestino.getNombre();
                             envioExitoso = true;
                             System.out.println("PC enviada exitosamente a " + nombreSucursal);
                         } catch (RemoteException e) {
